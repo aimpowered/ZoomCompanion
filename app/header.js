@@ -71,8 +71,7 @@ const Header = () => {
 
   useEffect(() => {
     localStorage.setItem('selectedWaveHand', selectedWaveHand);
-    // window.dispatchEvent(new Event('storage'))
-    const newImageData = drawNametag(localStorage.getItem('showNametag'), localStorage.getItem('selectedWaveHand'), localStorage.getItem('inputValues'));
+    const newImageData = drawNametag();
     setImageData(newImageData);
   }, [selectedWaveHand]);
 

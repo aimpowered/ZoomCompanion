@@ -8,14 +8,15 @@ import { alpha, styled } from '@mui/material/styles';
 // --------- main drawing function -------------------------------------
 // ---------------------------------------------------------------------
 
-function drawNametag(showNametag, showHands, inputValues) {
+function drawNametag() {
+
   const canvas = document.createElement('canvas');
   const context = canvas.getContext('2d');
   canvas.width = 1600; // Width of the canvas
   canvas.height = 900; // Height of the canvas
   context.clearRect(0, 0, canvas.width, canvas.height);
 
-  if (showNametag) {
+  if (localStorage.getItem('showNametag') == 'true') {
 
     context.fillStyle = 'white'; // Set the background color to white
     context.roundRect(780, 550, 505, 170, 20);
@@ -91,9 +92,10 @@ const NameTag = () => {
     return localStorageData ? JSON.parse(localStorageData) : JSON.stringify(['','','','']);
   });
 
-  useEffect(() => {
-    localStorage.setItem('inputValues', JSON.stringify(inputValues));
-  }, [inputValues]);
+  // useEffect(() => {
+  //   const encodedData = inputValues.map(value => encodeURIComponent(value));
+  //   localStorage.setItem('inputValues', JSON.stringify(encodedData));
+  // }, [inputValues]);
 
 
   const [showNametag, setShowNametag] = useState(() => {
@@ -101,17 +103,20 @@ const NameTag = () => {
     return localStorageData ? JSON.parse(localStorageData) : false;
   });
 
-  useEffect(() => {
-    const encodedData = inputValues.map(value => encodeURIComponent(value));
-    localStorage.setItem('showNametag', JSON.stringify(encodedData));
-  }, [showNametag]);
+  // useEffect(() => {
+  //   localStorage.setItem('showNametag', JSON.stringify(showNametag));
+  // }, [showNametag]);
 
   // ---------------------------------------------------------------------
   // --------- handle nametag and input value change ---------------------
   // ---------------------------------------------------------------------
 
   useEffect(() => {
-    const newImageData = drawNametag(showNametag, showHands, inputValues);
+    localStorage.setItem('showNametag', JSON.stringify(showNametag));
+    const encodedData = inputValues.map(value => encodeURIComponent(value));
+    localStorage.setItem('inputValues', JSON.stringify(encodedData));
+
+    const newImageData = drawNametag();
     setImageData(newImageData);
   }, [showNametag, inputValues]);
 
@@ -185,10 +190,10 @@ const NameTag = () => {
             className="border border-gray-300 rounded-lg p-2 w-1/3"
           >
             <option value="">Select Pronouns</option>
-            <option value="he/him">He/Him</option>
-            <option value="she/her">She/Her</option>
-            <option value="they/them">They/Them</option>
-            <option value="other">Other</option>
+            <option value="He/Him">He/Him</option>
+            <option value="She/Her">She/Her</option>
+            <option value="They/Them">They/Them</option>
+            <option value="Other">Other</option>
           </select>
         </div>
         <div style={blockStyle}></div>
