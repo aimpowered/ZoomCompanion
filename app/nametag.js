@@ -4,92 +4,116 @@ import zoomSdk from "@zoom/appssdk";
 import Switch from '@mui/material/Switch';
 import { alpha, styled } from '@mui/material/styles';
 
+// ---------------------------------------------------------------------
+// --------- main drawing function -------------------------------------
+// ---------------------------------------------------------------------
 
-const NameTag = () => {
-  const [inputValues, setInputValues] = useState(['', '', '', '']);
-  const [showNametag, setShowNametag] = useState(false);
-  const [showHands, setShowHands] = useState(localStorage.getItem('selectedWaveHand'));
-  const [imageData, setImageData] = useState(null);
-  const [selectedPronoun, setSelectedPronoun] = useState('');
+function drawNametag(showNametag, showHands, inputValues) {
+  const canvas = document.createElement('canvas');
+  const context = canvas.getContext('2d');
+  canvas.width = 1600; // Width of the canvas
+  canvas.height = 900; // Height of the canvas
+  context.clearRect(0, 0, canvas.width, canvas.height);
 
-  useEffect(() => {
-    const handleStorageChange = () => {
-      setShowHands(localStorage.getItem('selectedWaveHand'));
-    };
+  if (showNametag) {
 
-    window.addEventListener('storage', handleStorageChange);
+    context.fillStyle = 'white'; // Set the background color to white
+    context.roundRect(780, 550, 505, 170, 20);
+    context.fill();
 
-    return () => {
-      window.removeEventListener('storage', handleStorageChange);
-    };
-  }, []);
+    context.strokeStyle = '#FFD700'; // This is a gold-like color, often associated with the term "Asian yellow"
 
-  useEffect(() => {
+    // Set the line width
+    context.lineWidth = 9;
 
-    const canvas = document.createElement('canvas');
-    const context = canvas.getContext('2d');
-    canvas.width = 1600; // Width of the canvas
-    canvas.height = 900; // Height of the canvas
-    context.clearRect(0, 0, canvas.width, canvas.height);
+    // Draw the line
+    context.beginPath();
+    context.moveTo(790, 570); // Starting point of the line
+    context.lineTo(790, 710); // Ending point of the line
+    context.stroke(); // Apply the stroke
 
-    if (showNametag) {
+    context.font = '40px Arial';
+    context.fillStyle = 'black';
 
-      context.fillStyle = 'white'; // Set the background color to white
-      context.roundRect(780, 550, 505, 170, 20);
-      context.fill();
+    const localStorageData = localStorage.getItem('inputValues');
+    const inputValues = localStorageData ? JSON.parse(localStorageData).map(value => decodeURIComponent(value)) : ['', '', '', ''];
 
-      context.strokeStyle = '#FFD700'; // This is a gold-like color, often associated with the term "Asian yellow"
-
-      // Set the line width
-      context.lineWidth = 9;
-
-      // Draw the line
-      context.beginPath();
-      context.moveTo(790, 570); // Starting point of the line
-      context.lineTo(790, 710); // Ending point of the line
-      context.stroke(); // Apply the stroke
-
-      context.font = '40px Arial';
-      context.fillStyle = 'black';
-      if (inputValues[1] != '') {
-        context.fillText(inputValues[0] + ' (' + inputValues[1] + ')', 800 , 600 + 0 * 50);
-      } else {
-        context.fillText(inputValues[0], 800 , 600 + 0 * 50);
-      }
-      context.font = '30px Arial';
-      context.fillText(inputValues[2], 800 , 600 + 1 * 50);
-
-      context.font = '40px Arial';
-      context.fillText(inputValues[3], 800 , 600 + 2 * 50);
+    if (inputValues[1] != '') {
+      context.fillText(inputValues[0] + ' (' + inputValues[1] + ')', 800 , 600 + 0 * 50);
+    } else {
+      context.fillText(inputValues[0], 800 , 600 + 0 * 50);
     }
+    context.font = '30px Arial';
+    context.fillText(inputValues[2], 800 , 600 + 1 * 50);
 
-    const waveHandsData = JSON.parse(localStorage.getItem('waveHands'));
-    const indexData = JSON.parse(localStorage.getItem('selectedWaveHand'));
-    if (indexData !== null) {
-      context.font = '50px Arial'; // Font size and style
-      context.fillStyle = 'black'; // Text color
+    context.font = '40px Arial';
+    context.fillText(inputValues[3], 800 , 600 + 2 * 50);
+  }
 
-      const out = waveHandsData[indexData]; // Access the selected value
+  const waveHandsData = JSON.parse(localStorage.getItem('waveHands'));
+  const indexData = JSON.parse(localStorage.getItem('selectedWaveHand'));
+  if (indexData !== null) {
+    context.font = '50px Arial'; // Font size and style
+    context.fillStyle = 'black'; // Text color
+
+    const out = waveHandsData[indexData]; // Access the selected value
 
 
-      const textLength = out.length;
-      context.fillStyle = '#d68071'; // Set the background color to white
-      context.roundRect(60, 70, textLength*15+80, 100, 30);
-      context.fill();
-      context.fillStyle = 'white'; // White text color
+    const textLength = out.length;
+    context.fillStyle = '#d68071'; // Set the background color to white
+    context.roundRect(60, 70, textLength*15+80, 100, 30);
+    context.fill();
+    context.fillStyle = 'white'; // White text color
 
-      context.font = 'bold 80px Arial'; // Larger font size
-      context.fillText(out.substring(0, 3), 70, 150); // Draw the first character
-      context.font = 'bold 30px Arial';
-      context.fillText(out.substring(3), 160, 130);
+    context.font = 'bold 80px Arial'; // Larger font size
+    context.fillText(out.substring(0, 3), 70, 150); // Draw the first character
+    context.font = 'bold 30px Arial';
+    context.fillText(out.substring(3), 160, 130);
 
     }
 
     const newImageData = context.getImageData(0, 0, canvas.width, canvas.height);
+    return newImageData
+}
+
+
+
+const NameTag = () => {
+  const [showHands, setShowHands] = useState(localStorage.getItem('selectedWaveHand'));
+  const [imageData, setImageData] = useState(null);
+  const [selectedPronoun, setSelectedPronoun] = useState('');
+
+  // ---------------------------------------------------------------------
+  // --------- initilize or retrieve variables for local storage ---------
+  // ---------------------------------------------------------------------
+  const [inputValues, setInputValues] = useState(() => {
+    const localStorageData = localStorage.getItem('inputValues');
+    return localStorageData ? JSON.parse(localStorageData) : JSON.stringify(['','','','']);
+  });
+
+  useEffect(() => {
+    localStorage.setItem('inputValues', JSON.stringify(inputValues));
+  }, [inputValues]);
+
+
+  const [showNametag, setShowNametag] = useState(() => {
+    const localStorageData = localStorage.getItem('showNametag');
+    return localStorageData ? JSON.parse(localStorageData) : false;
+  });
+
+  useEffect(() => {
+    const encodedData = inputValues.map(value => encodeURIComponent(value));
+    localStorage.setItem('showNametag', JSON.stringify(encodedData));
+  }, [showNametag]);
+
+  // ---------------------------------------------------------------------
+  // --------- handle nametag and input value change ---------------------
+  // ---------------------------------------------------------------------
+
+  useEffect(() => {
+    const newImageData = drawNametag(showNametag, showHands, inputValues);
     setImageData(newImageData);
-
-
-  }, [showNametag, showHands, inputValues]);
+  }, [showNametag, inputValues]);
 
 
 
@@ -101,7 +125,9 @@ const NameTag = () => {
     const newInputValues = [...inputValues];
     newInputValues[index] = value;
     setInputValues(newInputValues);
-    console.log(inputValues)
+    if (index == 2) {
+       setSelectedPronoun(value);
+    }
   }
 
   const blockStyle = {
@@ -187,4 +213,5 @@ const NameTag = () => {
 };
 
 
+export { drawNametag };
 export default NameTag;

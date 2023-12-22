@@ -1,7 +1,38 @@
 
 import React, { useState, useEffect } from 'react';
+import { drawNametag } from './nametag';
+import RefreshAPIs from './RefreshAPIs';
+import zoomSdk from "@zoom/appssdk";
 
 const Header = () => {
+
+  async function configureSdk() {
+    try {
+      const configResponse = await zoomSdk.config({
+        capabilities: [
+          "setVirtualForeground",
+          "removeVirtualForeground"
+
+        ],
+        version: "0.16.0",
+      });
+      console.log("App configured", configResponse);
+      setRunningContext(configResponse.runningContext);
+
+      setUserContextStatus(configResponse.auth.status);
+
+      const userContext = await zoomSdk.invoke("getUserContext");
+      setUser(userContext);
+    } catch (error) {
+      console.log('zoom sdk not loaded')
+    }
+  }
+
+  useEffect(() => {
+    configureSdk();
+  }, []);
+
+  const [imageData, setImageData] = useState(null);
 
   const header_title = localStorage.getItem('title') || 'Say what I want to say, whatever happens will help me grow';
 
@@ -40,7 +71,9 @@ const Header = () => {
 
   useEffect(() => {
     localStorage.setItem('selectedWaveHand', selectedWaveHand);
-    window.dispatchEvent(new Event('storage'))
+    // window.dispatchEvent(new Event('storage'))
+    const newImageData = drawNametag(localStorage.getItem('showNametag'), localStorage.getItem('selectedWaveHand'), localStorage.getItem('inputValues'));
+    setImageData(newImageData);
   }, [selectedWaveHand]);
 
 
@@ -63,6 +96,9 @@ const Header = () => {
             </button>
           ))}
       </div>
+
+      <RefreshAPIs imageData={imageData} />
+
     </div>
 
   );
