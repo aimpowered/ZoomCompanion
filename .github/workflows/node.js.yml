@@ -30,8 +30,9 @@ jobs:
     - run: npm test
     - name: 'Create env file'
       run: |
-        echo "$MOCK_ENV_FILE" > .env
-      env:
-        MOCK_ENV_FILE: ${{ vars.MOCK_ENV_FILE }}
+        echo "ZM_CLIENT_ID=id" > .env
+        echo "ZM_CLIENT_SECRET=csecret" >> .env
+        echo "ZM_REDIRECT_URL=url" >> .env
+        echo "SESSION_SECRET=ssecret" >> .env
     - run: npm run build --if-present
     
