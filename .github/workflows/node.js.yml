@@ -30,6 +30,8 @@ jobs:
     - run: npm test
     - name: 'Create env file'
       run: |
-        echo "${{ vars.MOCK_ENV_FILE }}" > .env
+        echo "$MOCK_ENV_FILE" > .env
+      env:
+        MOCK_ENV_FILE: ${{ vars.MOCK_ENV_FILE }}
     - run: npm run build --if-present
     
