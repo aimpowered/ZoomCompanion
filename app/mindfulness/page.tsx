@@ -20,6 +20,7 @@ function Home() {
               <iframe
                 className='video'
                 title='Youtube player'
+                data-testid="youtube1-iframe"
                 style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
                 src={`https://www.youtube.com/embed/${youtube1ID}`}
               ></iframe>
@@ -29,6 +30,7 @@ function Home() {
               <iframe
                 className='video'
                 title='Youtube player'
+                data-testid="youtube2-iframe"
                 style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
                 src={`https://www.youtube.com/embed/${youtube2ID}`}
               ></iframe>
