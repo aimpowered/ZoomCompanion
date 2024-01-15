@@ -80,6 +80,7 @@ function Home() {
         <button
           style={{ border: 'none', display: 'inline-block', fontSize: '24px', padding: '10px' }}
           onClick={addButton}
+          data-testid="add-button"
         >
           <svg xmlns="http://www.w3.org/2000/svg" width="10%" height="10%" viewBox="0 0 100 100">
             <circle cx="50" cy="50" r="48" fill="#f7f3f3" stroke="none" />
