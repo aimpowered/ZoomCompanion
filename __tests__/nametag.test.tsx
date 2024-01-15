@@ -1,5 +1,5 @@
 import '@testing-library/jest-dom'
-import { render, screen } from '@testing-library/react'
+import { render, screen, fireEvent } from '@testing-library/react'
 import Page from '../app/nametag/page'
 
 jest.mock('next/navigation', () => jest.requireActual('next-router-mock'))
@@ -16,5 +16,14 @@ describe('Page', () => {
     expect(screen.getByText('Self Disclosure')).toBeInTheDocument();
   })
 
-  
+  it('toggles the nametag display on switch change', () => {
+    render(<Page />)
+
+    let switchInput = screen.getByTestId('colored-switch');
+    expect(switchInput).not.toBeChecked();
+
+    // fireEvent.change(switchInput, { target: { 'aria-checked': true } });
+    userEvent.click(switchInput);
+    expect(switchInput).toBeChecked();
+  });
 })
