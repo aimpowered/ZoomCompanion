@@ -5,6 +5,7 @@ import Footer from '../footer';
 import Modal from 'react-modal';
 import { affirmations } from '../state';
 
+
 interface Button {
   id: number;
   text: string;
@@ -64,9 +65,9 @@ function Home() {
     setCurrentEditId(newId);
   };
 
-  const saveAffirmation = (text: string) => {
-    affirmations.setCurrentAffirmation(text);
-  };
+  // const saveAffirmation = (text: string) => {
+  //   affirmations.setCurrentAffirmation(text);
+  // };
 
   return (
     <div className="bg-white w-screen h-screen">
@@ -92,7 +93,7 @@ function Home() {
         <div key={button.id} className="dropdown">
           <button className="dots-button"> {button.text}</button>
           <div className="dropdown-content">
-            <button style={{ border: '0.5px solid black' }} onClick={() => saveAffirmation(button.text)}>
+            <button style={{ border: '0.5px solid black' }} onClick={() => affirmations.setCurrentAffirmation(button.text)}>
               Apply
             </button>
             <button style={{ border: '0.5px solid black' }} onClick={() => openModal(button)}>
