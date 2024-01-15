@@ -23,13 +23,13 @@ class ZoomApiImpl implements ZoomApiWrapper {
 
   async setVirtualForeground(imageData: ImageData): Promise<GeneralMessageResponse> {
     const configResponse = await this.initialize();
-    console.log(`Zoom SDK config response: ${configResponse}`);
+    // console.log(`Zoom SDK config response: ${configResponse}`);
     return zoomSdk.setVirtualForeground({imageData});
   }
 
   async removeVirtualForeground(): Promise<GeneralMessageResponse> {
     const configResponse = await this.initialize();
-    console.log(`Zoom SDK config response: ${configResponse}`);
+    // console.log(`Zoom SDK config response: ${configResponse}`);
     return zoomSdk.removeVirtualForeground();
   }
 

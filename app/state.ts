@@ -6,7 +6,7 @@ const fakeLocalStorage = {
   setItem() {},
 };
 
-const USE_LOCAL_STORAGE_IF_PRESENT = true;
+const USE_LOCAL_STORAGE_IF_PRESENT = false;
 
 const localStorage = (USE_LOCAL_STORAGE_IF_PRESENT && globalThis.localStorage) || fakeLocalStorage;
 
