@@ -72,5 +72,18 @@ describe('Page', () => {
 
   });
 
+  it('press Delete button', () => {
+    render(<Page />);
+
+    const dropdownButton = screen.getByText('I can take up space');
+    fireEvent.click(dropdownButton);
+    const dropdown = within(dropdownButton.nextSibling);
+    const deleteButton = dropdown.getByText('Delete');
+    fireEvent.click(deleteButton);
+
+    expect(screen.queryByText('I can take up space')).not.toBeInTheDocument();
+    
+  });
+
 
 });
