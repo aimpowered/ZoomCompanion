@@ -87,9 +87,9 @@ const NameTag: React.FC = () => {
     setImageData(newImageData);
   }, [showNametag, inputValues]);
 
-  const handleNametag = () => {
-    setShowNametag(!showNametag);
-  };
+  // const handleNametag = () => {
+  //   setShowNametag(!showNametag);
+  // };
 
   const handleInputChange = (index: number, value: string) => {
     const newInputValues = [...inputValues];
@@ -118,8 +118,11 @@ const NameTag: React.FC = () => {
       <div>
         <h2 style={{ fontSize: '30px', fontWeight: 'bold', display: 'inline-block' }}>Name Tag</h2>
         <ColoredSwitch
+          role='switch'
+          data-testid = 'colored-switch'
+          aria-checked={showNametag}
           checked={showNametag}
-          onChange={handleNametag}
+          onChange={() => setShowNametag(!showNametag)}
         />
       </div>
       <div>
