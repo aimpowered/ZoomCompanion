@@ -6,11 +6,15 @@ jest.mock('next/navigation', () => jest.requireActual('next-router-mock'))
 jest.mock('../lib/zoomapi', () => jest.requireActual('../lib/fakezoomapi'));
 
 describe('Page', () => {
-  it('renders a heading', () => {
+  it('renders the heading and input fields', () => {
     render(<Page />)
 
-    const heading = screen.getByRole('heading', { level: 1 })
-
-    expect(heading).toBeInTheDocument()
+    expect(screen.getByRole('heading', { level: 1 })).toBeInTheDocument()
+    expect(screen.getByText('Full Name')).toBeInTheDocument();
+    expect(screen.getByText('Preferred Name')).toBeInTheDocument();
+    expect(screen.getAllByText('Select Pronouns')[0]).toBeInTheDocument();
+    expect(screen.getByText('Self Disclosure')).toBeInTheDocument();
   })
+
+  
 })
