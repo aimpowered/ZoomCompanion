@@ -54,10 +54,10 @@ describe('Page', () => {
   });
 
 
-  it('press Edit button opens a modal', () => {
+  it('press Edit button, open and close a modal', () => {
     render(<Page />);
 
-    const dropdownButton = screen.getByText('I have an important voice');
+    const dropdownButton = screen.getByText('I can take up space');
     fireEvent.click(dropdownButton);
     const dropdown = within(dropdownButton.nextSibling);
     const editButton = dropdown.getByText('Edit');
@@ -65,7 +65,12 @@ describe('Page', () => {
     fireEvent.click(editButton);
     const modal = screen.getByPlaceholderText('Edit text');
     expect(modal).toBeInTheDocument();
-    
+    userEvent.type(modal, 'New text for testing');
+    const saveButton = screen.getByText('Save');
+    fireEvent.click(saveButton);
+    expect(modal).not.toBeInTheDocument();
+
   });
+
 
 });

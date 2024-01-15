@@ -28,11 +28,13 @@ const RefreshAPIs: React.FC<RefreshAPIsProps> = ({ imageData }) => {
 
   useEffect(() => {
     if (imageData) {
-      const setForegroundResponse = zoomApiInstance.setVirtualForeground(imageData);
+      // const setForegroundResponse = zoomApiInstance.setVirtualForeground(imageData);
+      zoomApiInstance.setVirtualForeground(imageData);
       // console.log('Set Virtual Foreground Response:', setForegroundResponse);
     } else {
-      const removeForegroundResponse = zoomApiInstance.removeVirtualForeground();
+      // const removeForegroundResponse = zoomApiInstance.removeVirtualForeground();
       // console.log('Remove Virtual Foreground Response:', removeForegroundResponse);
+      zoomApiInstance.removeVirtualForeground();
     }
   }, [imageData]);
 
