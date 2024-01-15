@@ -86,4 +86,13 @@ describe('Page', () => {
   });
 
 
+  it('press new affirmation button, opens a modal', () => {
+    render(<Page />);
+    const addButtonElement = screen.getByTestId('add-button');
+    fireEvent.click(addButtonElement);
+    const modal = screen.getByPlaceholderText('Edit text');
+    expect(modal).toBeInTheDocument();
+  });
+
+
 });
