@@ -29,7 +29,7 @@ const Login = () => {
         });
 
         if (res?.error) return setError(res.error);
-        router.replace("/affirmation");
+        router.replace("/main");
     };
 
     return (
