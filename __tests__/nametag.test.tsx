@@ -27,7 +27,7 @@ describe('Page', () => {
     // fireEvent.change(switchInput, { target: { 'aria-checked': true } });
     await userEvent.click(switchInput);
 
-    // need to revise this test case
+    // TODO: need to revise this test case to not to be checked
     expect(switchInput).not.toBeChecked();
   });
 })
