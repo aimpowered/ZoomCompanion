@@ -240,20 +240,45 @@ label,input{
 
 
 .tab-list {
-  border-bottom: 1px solid #ccc;
-  padding-left: 0;
+  display: flex;
+  justify-content: space-around;
+  padding: 0px;
+  background: #f8f9fa;
+  width: 100%;
 }
 
 .tab-list-item {
-  display: inline-block;
-  list-style: none;
-  margin-bottom: -1px;
-  padding: 0.5rem 0.75rem;
+  display: block;
+  width: 100%; /* Take the full width */
+  height: 100%; /* Take the full height */
+  background-color: transparent;
+  text-decoration: none;
+  color: #000;
+  font-weight: bold;
+  text-align: center; /* Ensure the text is centered */
+  padding: 0px 0px; /* Add padding to the top and bottom if needed */
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+  transition: color 0.1s;
 }
+
 
 .tab-list-active {
-  background-color: white;
-  border: solid #ccc;
-  border-width: 1px 1px 0 1px;
+  color: #d68071;
+  background-color: #e9ecef;
+  display: block;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  font-weight: bold;
+  text-align: center; 
+  padding: 0px 0px; /* Add padding to the top and bottom if needed */
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+  transition: color 0.1s;
 }
 
+
+.tab-list-item:hover {
+  color: #d68071; /* Replace with the color you want on hover */
+  background-color: #e9ecef; /* Optional: if you want to keep the background change on hover */
+
+}
