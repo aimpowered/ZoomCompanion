@@ -88,6 +88,8 @@ describe('Page', () => {
 
   it('press new affirmation button, opens a modal', () => {
     render(<Page />);
+
+    // TODO: add aria button to it to get rid of testID
     const addButtonElement = screen.getByTestId('add-button');
     fireEvent.click(addButtonElement);
     const modal = screen.getByPlaceholderText('Edit text');
