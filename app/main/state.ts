@@ -71,6 +71,8 @@ export const useCustomState = () => {
       ...prevState,
       currentNameTag: NewNametag,
     }));
+
+    console.log(NewNametag)
   };
 
   const setNameTagStatus = (newNameTagStatus: string) => {
@@ -78,6 +80,8 @@ export const useCustomState = () => {
       ...prevState,
       nameTagStatus: newNameTagStatus,
     }));
+
+    console.log(newNameTagStatus)
   };
 
   return {

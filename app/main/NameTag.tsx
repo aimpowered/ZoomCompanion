@@ -1,27 +1,34 @@
 import React, { useEffect, useState } from 'react';
-// import RefreshAPIs from './RefreshAPIs';
 import Switch from '@mui/material/Switch';
 import { alpha, styled } from '@mui/material/styles';
-import { nametags, hands } from '../state';
-import drawNametag from "@/lib/drawNametag";
+import { drawNametag } from "@/lib/drawNametag";
 
+interface NameTagProps {
+  currentNameTag: string[];
+  nameTagStatus: string;
+  setCurrentNameTag: (newNametag: string[]) => void;
+  setNameTagStatus: (newNameTagStatus: string) => void;
+}
 
-const NameTag: React.FC = () => {
-  const [inputValues, setInputValues] = useState(nametags.getCurrentNametag());
-  const [showNametag, setShowNametag] = useState(false);
+function NameTag({
+  currentNameTag,
+  nameTagStatus,
+  setCurrentNameTag,
+  setNameTagStatus,
+  }: NameTagProps) {
+  const [inputValues, setInputValues] = useState(currentNameTag);
+  const [showNametag, setShowNametag] = useState(nameTagStatus);
   const [imageData, setImageData] = useState<ImageData | null>(null);
 
   useEffect(() => {
-    nametags.setNametagStatus(JSON.stringify(showNametag));
-    nametags.setCurrentNametag(inputValues);
+    setNameTagStatus(JSON.stringify(showNametag));
+    setCurrentNameTag(inputValues);
 
-    const newImageData = drawNametag();
-    setImageData(newImageData);
+    // TODO: revise drawNametag function
+    // const newImageData = drawNametag();
+    // setImageData(newImageData);
   }, [showNametag, inputValues]);
 
-  // const handleNametag = () => {
-  //   setShowNametag(!showNametag);
-  // };
 
   const handleInputChange = (index: number, value: string) => {
     const newInputValues = [...inputValues];
@@ -110,7 +117,5 @@ const NameTag: React.FC = () => {
     </div>
   );
 };
-
-export { drawNametag };
 
 export default NameTag;

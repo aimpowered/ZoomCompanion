@@ -1,6 +1,6 @@
 // drawNametag.ts
 
-export function drawNametag(): ImageData {
+export default function drawNametag(): ImageData {
   const canvas = document.createElement('canvas');
   const context = canvas.getContext('2d')!;
   canvas.width = 1600; // Width of the canvas

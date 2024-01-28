@@ -19,7 +19,7 @@ class Tabs extends Component<TabsProps, TabsState> {
     super(props);
 
     this.state = {
-      activeTab: (props.children as React.ReactElement<any>[])[0].props.label,
+      activeTab: (props.children as React.ReactElement<any>[])[1].props.label,
     };
   }
 

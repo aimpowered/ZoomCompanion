@@ -13,7 +13,9 @@ function App() {
   setSelectedWaveHand,
   setHandChoicesAsString, 
   setCurrentAffirmation,
-  setAllAffirmations } = useCustomState();
+  setAllAffirmations,
+  setCurrentNameTag,
+  setNameTagStatus,} = useCustomState();
   
 
   const initialWaveHands: string[] = [
@@ -62,7 +64,12 @@ function App() {
           </div>
 
           <div label="nametag">
-            <NameTag />
+            <NameTag 
+              currentNameTag={state.currentNameTag}
+              nameTagStatus={state.nameTagStatus}
+              setCurrentNameTag={setCurrentNameTag}
+              setNameTagStatus={setNameTagStatus}
+            />
           </div>
 
           <div label="mindfulness">
