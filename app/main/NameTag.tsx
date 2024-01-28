@@ -3,6 +3,16 @@ import Switch from '@mui/material/Switch';
 import { alpha, styled } from '@mui/material/styles';
 import drawNametag from "@/lib/drawNametag";
 
+import { createFromConfig, ZoomApiWrapper } from "@/lib/zoomapi";
+import { ConfigOptions }  from "@zoom/appssdk";
+
+type Apis = "setVirtualForeground" | "removeVirtualForeground"
+const apiList: Apis[] = [
+  "setVirtualForeground",
+  "removeVirtualForeground",
+];
+
+
 interface NameTagProps {
   currentNameTag: string[];
   nameTagStatus: string;
@@ -28,9 +38,19 @@ function NameTag({
     setNameTagStatus(JSON.stringify(showNametag));
     setCurrentNameTag(inputValues);
 
-    // TODO: revise drawNametag function
-    const newImageData = drawNametag(nameTagStatus, currentNameTag, selectedWaveHand, waveHands);
-    // setImageData(newImageData);
+    const imageData = drawNametag(nameTagStatus, currentNameTag, selectedWaveHand, waveHands);
+
+    const configOptions: ConfigOptions = {
+      capabilities: apiList
+    }
+    const zoomApiInstance: ZoomApiWrapper = createFromConfig(configOptions);
+
+    if (imageData) {
+      zoomApiInstance.setVirtualForeground(imageData);
+    } else {
+      zoomApiInstance.removeVirtualForeground();
+    }
+
   }, [showNametag, inputValues]);
 
 
