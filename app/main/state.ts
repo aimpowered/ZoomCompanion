@@ -1,9 +1,20 @@
-
 import { useState } from 'react';
 
-const initialState = {
+interface Button {
+  id: number;
+  text: string;
+}
+
+interface State {
+  selectedWaveHand: string;
+  waveHands: string[];
+  selectedAffirmation: string;
+  allAffirmations: Button[];
+}
+
+const initialState: State = {
   selectedWaveHand: 'null',
-  waveHands:[
+  waveHands: [
     '👋',
     '👋 I\'m not done',
     '👋 Question',
@@ -11,10 +22,18 @@ const initialState = {
     '👋 Different Opinion',
     '👋 Support',
   ],
+  selectedAffirmation: 'Say what I want to say, whatever happens will help me grow',
+  allAffirmations: [
+    { id: 1, text: 'Say what I want to say, whatever happens will help me grow' },
+    { id: 2, text: 'I can take up space' },
+    { id: 3, text: 'I have an important voice' },
+    { id: 4, text: 'Feel the tension and proceed' },
+    { id: 5, text: 'I have the right to stutter' },
+  ],
 };
 
 export const useCustomState = () => {
-  const [state, setState] = useState(initialState);
+  const [state, setState] = useState<State>(initialState);
 
   const setSelectedWaveHand = (newSelectedWaveHand: string) => {
     setState((prevState) => ({
@@ -23,35 +42,32 @@ export const useCustomState = () => {
     }));
   };
 
-  const setHandChoicesAsString = (hands: string) => {
+  const setHandChoicesAsString = (hands: string[]) => {
     setState((prevState) => ({
       ...prevState,
       waveHands: hands,
     }));
   };
 
-  return { state, setSelectedWaveHand, setHandChoicesAsString };
+  const setCurrentAffirmation = (newAffirmation: string) => {
+    setState((prevState) => ({
+      ...prevState,
+      selectedAffirmation: newAffirmation,
+    }));
+  };
+
+  const setAllAffirmations = (affirmations: Button[]) => {
+    setState((prevState) => ({
+      ...prevState,
+      allAffirmations: affirmations,
+    }));
+  };
+
+  return {
+    state,
+    setSelectedWaveHand,
+    setHandChoicesAsString,
+    setCurrentAffirmation,
+    setAllAffirmations,
+  };
 };
-
-
-// export const hands = {
-//   getCurrentHand(): string | null {
-//     const { state } = useCustomState();
-//     return state.selectedWaveHand;
-//   },
-
-//   setCurrentHand(text: string) {
-//     // Access the state update function to set the new value
-//     const { setSelectedWaveHand } = useCustomState();
-//     setSelectedWaveHand(text);
-//   },
-
-//   getHandChoicesAsString(): string|null {
-//     const { state } = useCustomState();
-//     return state.waveHands;
-//   },
-
-
-// };
-
-
