@@ -30,6 +30,9 @@ const initialState: State = {
     { id: 4, text: 'Feel the tension and proceed' },
     { id: 5, text: 'I have the right to stutter' },
   ],
+
+  currentNameTag: ['', '', '', ''],
+  nameTagStatus:false,
 };
 
 export const useCustomState = () => {
@@ -63,11 +66,27 @@ export const useCustomState = () => {
     }));
   };
 
+  const setCurrentNameTag = (NewNametag: string[]) => {
+    setState((prevState) => ({
+      ...prevState,
+      currentNameTag: NewNametag,
+    }));
+  };
+
+  const setNameTagStatus = (newNameTagStatus: string) => {
+    setState((prevState) => ({
+      ...prevState,
+      nameTagStatus: newNameTagStatus,
+    }));
+  };
+
   return {
     state,
     setSelectedWaveHand,
     setHandChoicesAsString,
     setCurrentAffirmation,
     setAllAffirmations,
+    setCurrentNameTag,
+    setNameTagStatus
   };
 };
