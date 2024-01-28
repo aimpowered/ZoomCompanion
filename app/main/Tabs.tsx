@@ -42,7 +42,7 @@ class Tabs extends Component<TabsProps, TabsState> {
             return (child as React.ReactElement<any>).props.children;
           })}
         </div>
-        
+
         <ol className="tab-list">
           {React.Children.map(children, (child) => {
             const { label } = (child as React.ReactElement<any>).props;
