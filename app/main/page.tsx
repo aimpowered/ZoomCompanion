@@ -18,16 +18,6 @@ function App() {
   setNameTagStatus,} = useCustomState();
   
 
-  const initialWaveHands: string[] = [
-    '👋',
-    '👋 I\'m not done',
-    '👋 Question',
-    '👋 Agree',
-    '👋 Different Opinion',
-    '👋 Support',
-  ];
-
-
   const handleWaveHandsClick = (text: string) => {
     setSelectedWaveHand(text)
   };
@@ -69,6 +59,9 @@ function App() {
               nameTagStatus={state.nameTagStatus}
               setCurrentNameTag={setCurrentNameTag}
               setNameTagStatus={setNameTagStatus}
+
+              selectedWaveHand = {state.selectedWaveHand}
+              waveHands = {state.waveHands}
             />
           </div>
 
