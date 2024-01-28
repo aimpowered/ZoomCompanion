@@ -25,6 +25,10 @@ function App() {
     return localStorageData ? JSON.parse(localStorageData) : null;
   });
 
+  const handleWaveHandsClick = (text: string) => {
+    hands.setCurrentHand(text);
+  };
+
   return (
     <div>
       <div className="header">
