@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Tabs from "./Tabs";
 import Mindfulness from "./Mindfulness";
+import Affirmation from "./Affirmation";
 import { useCustomState } from './state';
 
 function App() {
@@ -46,7 +47,8 @@ function App() {
       <div>
         <Tabs>
           <div label="affirmation">
-            See ya later, <em>Alligator</em> {state.selectedWaveHand}!
+            {/*See ya later, <em>Alligator</em> {state.selectedWaveHand}!*/}
+            <Affirmation />
           </div>
 
           <div label="nametag">
