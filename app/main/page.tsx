@@ -4,11 +4,16 @@ import React, { useState, useEffect } from 'react';
 import Tabs from "./Tabs";
 import Mindfulness from "./Mindfulness";
 import Affirmation from "./Affirmation";
-import { useCustomState } from './state';
+import { useCustomState, affirmations } from './state';
 
 function App() {
 
-  const { state, setSelectedWaveHand, setHandChoicesAsString } = useCustomState();
+  const { state, 
+  setSelectedWaveHand,
+  setHandChoicesAsString, 
+  setCurrentAffirmation,
+  setAllAffirmations } = useCustomState();
+  
 
   const initialWaveHands: string[] = [
     '👋',
@@ -24,11 +29,12 @@ function App() {
     setSelectedWaveHand(text)
   };
 
+
   return (
     <div>
       <div className="header">
         <div className="self-confirm">
-          <h1>{"I can take up space"}</h1>
+          <h1>{state.selectedAffirmation}</h1>
         </div>
       </div>
 
@@ -48,7 +54,11 @@ function App() {
         <Tabs>
           <div label="affirmation">
             {/*See ya later, <em>Alligator</em> {state.selectedWaveHand}!*/}
-            <Affirmation />
+            <Affirmation 
+              allAffirmations={state.allAffirmations}
+              setCurrentAffirmation={setCurrentAffirmation}
+              setAllAffirmations={setAllAffirmations}
+            />
           </div>
 
           <div label="nametag">

@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect } from 'react';
 import Modal from 'react-modal';
-import { affirmations } from '../state';
+// import { useCustomState } from './state';
 
 
 interface Button {
@@ -9,26 +9,32 @@ interface Button {
   text: string;
 }
 
-function Affirmation() {
+interface AffirmationProps {
+  allAffirmations: Button[];
+  setCurrentAffirmation: (buttons: Button[]) => void;
+  setAllAffirmations: (text: string) => void;
+}
+
+
+function Affirmation({
+  allAffirmations,
+  setCurrentAffirmation,
+  setAllAffirmations,
+}: AffirmationProps) {
+
+  // const { state, setCurrentAffirmation, setAllAffirmations  } = useCustomState();
+  // console.log('current AllAffirmations', state.allAffirmations)
+
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [currentEditId, setCurrentEditId] = useState<number | null>(null);
   const [editText, setEditText] = useState('');
-  const initialButtons: Button[] = [
-    { id: 1, text: 'Say what I want to say, whatever happens will help me grow' },
-    { id: 2, text: 'I can take up space' },
-    { id: 3, text: 'I have an important voice' },
-    { id: 4, text: 'Feel the tension and proceed' },
-    { id: 5, text: 'I have the right to stutter' },
-  ];
 
-  // Initialize state with saved data if it exists, otherwise use the initial data.
-  const [buttons, setButtons] = useState<Button[]>(() => {
-    const stringifiedAffirmations = affirmations.getAffirmationsAsString();
-    return stringifiedAffirmations ? JSON.parse(stringifiedAffirmations) : initialButtons;
-  });
+  const [buttons, setButtons] = useState(allAffirmations)
+
+  // console.log('applyed', state.selectedAffirmation)
 
   useEffect(() => {
-    affirmations.setAffirmationsAsString(JSON.stringify(buttons));
+    setAllAffirmations(buttons);
   }, [buttons]);
 
   const openModal = (button: Button) => {
@@ -43,11 +49,17 @@ function Affirmation() {
 
   const handleEdit = () => {
     setButtons((prevButtons) =>
-      prevButtons.map((button) =>
-        button.id === currentEditId ? { ...button, text: editText } : button
-      )
+      prevButtons.map((button) => {
+        // console.log('Original text:', button.text);
+
+        if (button.id === currentEditId) {
+          // console.log('Edited text:', editText);
+          return { ...button, text: editText };
+        } else {
+          return button;
+        }
+      })
     );
-    console.log(buttons);
     closeModal();
   };
 
@@ -63,9 +75,6 @@ function Affirmation() {
     setCurrentEditId(newId);
   };
 
-  // const saveAffirmation = (text: string) => {
-  //   affirmations.setCurrentAffirmation(text);
-  // };
 
   return (
 
@@ -90,7 +99,7 @@ function Affirmation() {
         <div key={button.id} className="dropdown">
           <button className="dots-button"> {button.text}</button>
           <div className="dropdown-content">
-            <button style={{ border: '0.5px solid black' }} onClick={() => affirmations.setCurrentAffirmation(button.text)}>
+            <button style={{ border: '0.5px solid black' }} onClick={() => setCurrentAffirmation(button.text)}>
               Apply
             </button>
             <button style={{ border: '0.5px solid black' }} onClick={() => openModal(button)}>
