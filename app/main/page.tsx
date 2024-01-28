@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import { affirmations, hands } from '../state';
+import { affirmations, hands } from './state';
 import Tabs from "./Tabs";
 import Mindfulness from "./Mindfulness";
 
