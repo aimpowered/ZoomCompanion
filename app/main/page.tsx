@@ -1,11 +1,13 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import { affirmations, hands } from './state';
 import Tabs from "./Tabs";
 import Mindfulness from "./Mindfulness";
+import { useCustomState } from './state';
 
 function App() {
+
+  const { state, setSelectedWaveHand, setHandChoicesAsString } = useCustomState();
 
   const initialWaveHands: string[] = [
     '👋',
@@ -16,20 +18,8 @@ function App() {
     '👋 Support',
   ];
 
-  const [waveHands, _setWaveHands] = useState<string[]>(() => {
-    const localStorageData = hands.getHandChoicesAsString();
-    return localStorageData ? JSON.parse(localStorageData) : initialWaveHands;
-  });
-
-  // const [selectedWaveHand, setSelectedWaveHand] = useState<number | null>(() => {
-  //   const localStorageData = hands.getCurrentHand();
-  //   return localStorageData ? JSON.parse(localStorageData) : null;
-  // });
-
-  const [selectedWaveHand, setSelectedWaveHand] = useState<string>('null');
 
   const handleWaveHandsClick = (text: string) => {
-    // hands.setCurrentHand(text);
     setSelectedWaveHand(text)
   };
 
@@ -42,10 +32,10 @@ function App() {
       </div>
 
       <div className="button-rows">
-        {waveHands.map((waveHand, index) => (
+        {state.waveHands.map((waveHand, index) => (
           <button
             key={index}
-            className={`wave-hand-button ${selectedWaveHand === index ? 'selected' : ''}`}
+            className={`wave-hand-button ${state.selectedWaveHand === index ? 'selected' : ''}`}
             onClick={() => handleWaveHandsClick(index)}
           >
             {waveHand}
@@ -56,7 +46,7 @@ function App() {
       <div>
         <Tabs>
           <div label="affirmation">
-            See ya later, <em>Alligator</em> {selectedWaveHand}!
+            See ya later, <em>Alligator</em> {state.selectedWaveHand}!
           </div>
 
           <div label="nametag">
