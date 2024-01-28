@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { affirmations, hands } from '../state';
 import Tabs from "./Tabs";
+import Mindfulness from "./Mindfulness";
 
 function App() {
 
@@ -62,7 +63,8 @@ function App() {
             After 'while, <em>Crocodile</em>!
           </div>
           <div label="mindfulness">
-            Nothing to see here, this tab is <em>extinct</em>!
+            {/*Nothing to see here, this tab is <em>extinct</em>!*/}
+            <Mindfulness />
           </div>
 
           <div label="wave-hands">
