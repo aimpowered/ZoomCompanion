@@ -20,13 +20,16 @@ function App() {
     return localStorageData ? JSON.parse(localStorageData) : initialWaveHands;
   });
 
-  const [selectedWaveHand, setSelectedWaveHand] = useState<number | null>(() => {
-    const localStorageData = hands.getCurrentHand();
-    return localStorageData ? JSON.parse(localStorageData) : null;
-  });
+  // const [selectedWaveHand, setSelectedWaveHand] = useState<number | null>(() => {
+  //   const localStorageData = hands.getCurrentHand();
+  //   return localStorageData ? JSON.parse(localStorageData) : null;
+  // });
+
+  const [selectedWaveHand, setSelectedWaveHand] = useState<string>('null');
 
   const handleWaveHandsClick = (text: string) => {
-    hands.setCurrentHand(text);
+    // hands.setCurrentHand(text);
+    setSelectedWaveHand(text)
   };
 
   return (
@@ -52,8 +55,9 @@ function App() {
       <div>
         <Tabs>
           <div label="affirmation">
-            See ya later, <em>Alligator</em>!
+            See ya later, <em>Alligator</em> {selectedWaveHand}!
           </div>
+
           <div label="nametag">
             After 'while, <em>Crocodile</em>!
           </div>
