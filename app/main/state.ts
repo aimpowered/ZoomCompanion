@@ -10,10 +10,12 @@ interface State {
   waveHands: string[];
   selectedAffirmation: string;
   allAffirmations: Button[];
+  currentNameTag: string[]
+  nameTagStatus: string;
 }
 
 const initialState: State = {
-  selectedWaveHand: 'null',
+  selectedWaveHand: null,
   waveHands: [
     '👋',
     '👋 I\'m not done',
@@ -32,7 +34,7 @@ const initialState: State = {
   ],
 
   currentNameTag: ['', '', '', ''],
-  nameTagStatus:false,
+  nameTagStatus:'false',
 };
 
 export const useCustomState = () => {
@@ -41,9 +43,10 @@ export const useCustomState = () => {
   const setSelectedWaveHand = (newSelectedWaveHand: string) => {
     setState((prevState) => ({
       ...prevState,
-      selectedWaveHand: newSelectedWaveHand,
+      selectedWaveHand: prevState.selectedWaveHand === newSelectedWaveHand ? null : newSelectedWaveHand,
     }));
   };
+
 
   const setHandChoicesAsString = (hands: string[]) => {
     setState((prevState) => ({
@@ -72,7 +75,7 @@ export const useCustomState = () => {
       currentNameTag: NewNametag,
     }));
 
-    console.log(NewNametag)
+    // console.log(NewNametag)
   };
 
   const setNameTagStatus = (newNameTagStatus: string) => {
@@ -81,7 +84,7 @@ export const useCustomState = () => {
       nameTagStatus: newNameTagStatus,
     }));
 
-    console.log(newNameTagStatus)
+    // console.log(newNameTagStatus)
   };
 
   return {

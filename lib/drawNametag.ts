@@ -1,13 +1,13 @@
 // drawNametag.ts
 
-export default function drawNametag(): ImageData {
+export default function drawNametag(nameTagStatus:string, currentNameTag:string[], selectedWaveHand: string | null, waveHands: string[]): ImageData {
   const canvas = document.createElement('canvas');
   const context = canvas.getContext('2d')!;
   canvas.width = 1600; // Width of the canvas
   canvas.height = 900; // Height of the canvas
   context.clearRect(0, 0, canvas.width, canvas.height);
 
-  if (localStorage.getItem('showNametag') === 'true') {
+  if (nameTagStatus === 'true') {
 
     context.fillStyle = 'white'; 
     context.roundRect(780, 550, 505, 170, 20);
@@ -26,32 +26,26 @@ export default function drawNametag(): ImageData {
     context.font = '40px Arial';
     context.fillStyle = 'black';
 
-    const inputValues = nametags.getCurrentNametag();
 
-    if (inputValues[1] !== '') {
-      context.fillText(inputValues[0] + ' (' + inputValues[1] + ')', 800, 600 + 0 * 50);
+    if (currentNameTag[1] !== '') {
+      context.fillText(currentNameTag[0] + ' (' + currentNameTag[1] + ')', 800, 600 + 0 * 50);
     } else {
-      context.fillText(inputValues[0], 800, 600 + 0 * 50);
+      context.fillText(currentNameTag[0], 800, 600 + 0 * 50);
     }
     context.font = '30px Arial';
-    context.fillText(inputValues[2], 800, 600 + 1 * 50);
+    context.fillText(currentNameTag[2], 800, 600 + 1 * 50);
 
     context.font = '40px Arial';
-    context.fillText(inputValues[3], 800, 600 + 2 * 50);
+    context.fillText(currentNameTag[3], 800, 600 + 2 * 50);
   }
 
 
-  const indexDataRaw = hands.getCurrentHand();
-  const indexData = (indexDataRaw !== null) ? JSON.parse(indexDataRaw) : null;
-
-  if (indexData !== null) {
-    const waveHandsDataRaw = hands.getHandChoicesAsString();
-    const waveHandsData = (waveHandsDataRaw !== null) ? JSON.parse(waveHandsDataRaw) : null;
+  if (selectedWaveHand !== null) {
 
     context.font = '50px Arial'; // Font size and style
     context.fillStyle = 'black'; // Text color
 
-    const out = waveHandsData[indexData]; // Access the selected value
+    const out = waveHands[selectedWaveHand]; // Access the selected value
 
     const textLength = out.length;
     context.fillStyle = '#d68071'; // Set the background color to white
@@ -67,5 +61,7 @@ export default function drawNametag(): ImageData {
   }
 
   const newImageData = context.getImageData(0, 0, canvas.width, canvas.height);
+
+  console.log(newImageData)
   return newImageData;
 }

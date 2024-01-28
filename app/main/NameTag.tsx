@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import Switch from '@mui/material/Switch';
 import { alpha, styled } from '@mui/material/styles';
-import { drawNametag } from "@/lib/drawNametag";
+import drawNametag from "@/lib/drawNametag";
 
 interface NameTagProps {
   currentNameTag: string[];
   nameTagStatus: string;
   setCurrentNameTag: (newNametag: string[]) => void;
   setNameTagStatus: (newNameTagStatus: string) => void;
+  selectedWaveHand: string;
+  waveHands: string[];
 }
 
 function NameTag({
@@ -15,6 +17,8 @@ function NameTag({
   nameTagStatus,
   setCurrentNameTag,
   setNameTagStatus,
+  selectedWaveHand,
+  waveHands,
   }: NameTagProps) {
   const [inputValues, setInputValues] = useState(currentNameTag);
   const [showNametag, setShowNametag] = useState(nameTagStatus);
@@ -25,7 +29,7 @@ function NameTag({
     setCurrentNameTag(inputValues);
 
     // TODO: revise drawNametag function
-    // const newImageData = drawNametag();
+    const newImageData = drawNametag(nameTagStatus, currentNameTag, selectedWaveHand, waveHands);
     // setImageData(newImageData);
   }, [showNametag, inputValues]);
 
