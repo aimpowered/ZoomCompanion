@@ -4,7 +4,8 @@ import React, { useState, useEffect } from 'react';
 import Tabs from "./Tabs";
 import Mindfulness from "./Mindfulness";
 import Affirmation from "./Affirmation";
-import { useCustomState, affirmations } from './state';
+import NameTag from "./NameTag";
+import { useCustomState } from './state';
 
 function App() {
 
@@ -53,7 +54,6 @@ function App() {
       <div>
         <Tabs>
           <div label="affirmation">
-            {/*See ya later, <em>Alligator</em> {state.selectedWaveHand}!*/}
             <Affirmation 
               allAffirmations={state.allAffirmations}
               setCurrentAffirmation={setCurrentAffirmation}
@@ -62,10 +62,10 @@ function App() {
           </div>
 
           <div label="nametag">
-            After 'while, <em>Crocodile</em>!
+            <NameTag />
           </div>
+
           <div label="mindfulness">
-            {/*Nothing to see here, this tab is <em>extinct</em>!*/}
             <Mindfulness />
           </div>
 
