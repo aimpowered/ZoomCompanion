@@ -11,7 +11,7 @@ interface State {
   selectedAffirmation: string;
   allAffirmations: Button[];
   currentNameTag: string[]
-  nameTagStatus: string;
+  nameTagStatus: boolean;
 }
 
 const initialState: State = {
@@ -34,7 +34,7 @@ const initialState: State = {
   ],
 
   currentNameTag: ['', '', '', ''],
-  nameTagStatus:'false',
+  nameTagStatus:false,
 };
 
 export const useCustomState = () => {
@@ -78,7 +78,7 @@ export const useCustomState = () => {
     // console.log(NewNametag)
   };
 
-  const setNameTagStatus = (newNameTagStatus: string) => {
+  const setNameTagStatus = (newNameTagStatus: boolean) => {
     setState((prevState) => ({
       ...prevState,
       nameTagStatus: newNameTagStatus,
