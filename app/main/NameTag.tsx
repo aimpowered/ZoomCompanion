@@ -17,7 +17,7 @@ interface NameTagProps {
   currentNameTag: string[];
   nameTagStatus: boolean;
   setCurrentNameTag: (newNametag: string[]) => void;
-  setNameTagStatus: (newNameTagStatus: string) => void;
+  setNameTagStatus: (newNameTagStatus: boolean) => void;
   selectedWaveHand: string;
   waveHands: string[];
 }
@@ -32,13 +32,13 @@ function NameTag({
   }: NameTagProps) {
   const [inputValues, setInputValues] = useState(currentNameTag);
   const [showNametag, setShowNametag] = useState(nameTagStatus);
-  const [imageData, setImageData] = useState<ImageData | null>(null);
+  // const [imageData, setImageData] = useState<ImageData | null>(null);
 
   useEffect(() => {
     setNameTagStatus(showNametag);
     setCurrentNameTag(inputValues);
     console.log('function input:', showNametag)
-    const imageData = drawNametag(showNametag, currentNameTag, selectedWaveHand, waveHands);
+    const imageData = drawNametag(showNametag, inputValues, selectedWaveHand, waveHands);
 
     const configOptions: ConfigOptions = {
       capabilities: apiList
@@ -51,7 +51,7 @@ function NameTag({
       zoomApiInstance.removeVirtualForeground();
     }
 
-  }, [showNametag, inputValues, selectedWaveHand, waveHands]);
+  }, [showNametag, inputValues, selectedWaveHand, waveHands, setNameTagStatus, setCurrentNameTag]);
 
 
   const handleInputChange = (index: number, value: string) => {
@@ -140,6 +140,6 @@ function NameTag({
 
     </div>
   );
-};
+}
 
 export default NameTag;
