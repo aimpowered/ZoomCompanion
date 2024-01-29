@@ -11,8 +11,8 @@ interface Button {
 
 interface AffirmationProps {
   allAffirmations: Button[];
-  setCurrentAffirmation: (buttons: Button[]) => void;
-  setAllAffirmations: (text: string) => void;
+  setCurrentAffirmation: (buttons: string) => void;
+  setAllAffirmations: (text: Button[]) => void;
 }
 
 
@@ -35,7 +35,7 @@ function Affirmation({
 
   useEffect(() => {
     setAllAffirmations(buttons);
-  }, [buttons]);
+  }, [buttons, setAllAffirmations]);
 
   const openModal = (button: Button) => {
     setModalIsOpen(true);
