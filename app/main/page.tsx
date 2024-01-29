@@ -1,7 +1,8 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Tabs from "./Tabs";
+// import Tab from "./Tab";
 import Mindfulness from "./Mindfulness";
 import Affirmation from "./Affirmation";
 import NameTag from "./NameTag";
@@ -11,15 +12,15 @@ function App() {
 
   const { state, 
   setSelectedWaveHand,
-  setHandChoicesAsString, 
+  // setHandChoicesAsString, 
   setCurrentAffirmation,
   setAllAffirmations,
   setCurrentNameTag,
   setNameTagStatus,} = useCustomState();
   
 
-  const handleWaveHandsClick = (text: string) => {
-    setSelectedWaveHand(text)
+  const handleWaveHandsClick = (num: number) => {
+    setSelectedWaveHand(num)
   };
 
 

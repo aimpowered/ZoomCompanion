@@ -10,6 +10,9 @@ interface TabsState {
   activeTab: string;
 }
 
+type TabElement = React.ReactElement<React.ComponentProps<typeof Tab>>;
+
+
 class Tabs extends Component<TabsProps, TabsState> {
   static propTypes = {
     children: PropTypes.instanceOf(Array).isRequired,
@@ -19,7 +22,7 @@ class Tabs extends Component<TabsProps, TabsState> {
     super(props);
 
     this.state = {
-      activeTab: (props.children as React.ReactElement<any>[])[1].props.label,
+      activeTab: (props.children as TabElement[])[1].props.label,
     };
   }
 
@@ -38,14 +41,14 @@ class Tabs extends Component<TabsProps, TabsState> {
       <div className="tabs">
         <div className="tab-content">
           {React.Children.map(children, (child) => {
-            if ((child as React.ReactElement<any>).props.label !== activeTab) return null;
-            return (child as React.ReactElement<any>).props.children;
+            if ((child as TabElement).props.label !== activeTab) return null;
+            return (child as TabElement).props.children;
           })}
         </div>
 
         <ol className="tab-list">
           {React.Children.map(children, (child) => {
-            const { label } = (child as React.ReactElement<any>).props;
+            const { label } = (child as React.ReactElement<{ label: string }>).props;
 
             return (
               <Tab
