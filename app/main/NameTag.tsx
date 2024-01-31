@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Switch from '@mui/material/Switch';
 import { alpha, styled } from '@mui/material/styles';
 import drawNametag from "@/lib/drawNametag";
+import debounce from 'lodash/debounce';
 
 import { createFromConfig, ZoomApiWrapper } from "@/lib/zoomapi";
 import { ConfigOptions }  from "@zoom/appssdk";
@@ -34,15 +35,15 @@ function NameTag({
   const [showNametag, setShowNametag] = useState(nameTagStatus);
   // const [imageData, setImageData] = useState<ImageData | null>(null);
 
-  useEffect(() => {
+  
+  const debouncedEffect = debounce(() => {
     setNameTagStatus(showNametag);
     setCurrentNameTag(inputValues);
-    console.log('function input:', showNametag)
     const imageData = drawNametag(showNametag, inputValues, selectedWaveHand, waveHands);
-
+    console.log(inputValues)
     const configOptions: ConfigOptions = {
       capabilities: apiList
-    }
+    };
     const zoomApiInstance: ZoomApiWrapper = createFromConfig(configOptions);
 
     if (imageData) {
@@ -50,13 +51,17 @@ function NameTag({
     } else {
       zoomApiInstance.removeVirtualForeground();
     }
+  }, 1000, { trailing: true });
 
-  }, [showNametag, inputValues, selectedWaveHand, waveHands, setNameTagStatus, setCurrentNameTag]);
-
+  useEffect(() => {
+    debouncedEffect();
+    return debouncedEffect.cancel;
+  }, [showNametag, inputValues, selectedWaveHand, waveHands]);
 
   const handleInputChange = (index: number, value: string) => {
     const newInputValues = [...inputValues];
     newInputValues[index] = value;
+    console.log(value)
     setInputValues(newInputValues);
   }
 
