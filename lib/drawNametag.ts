@@ -1,6 +1,6 @@
 // drawNametag.ts
 
-export default function drawNametag(nameTagStatus:boolean, currentNameTag:string[], selectedWaveHand: string | null, waveHands: string[]): ImageData {
+export default function drawNametag(nameTagStatus:boolean, currentNameTag:string[], selectedWaveHand: number | null, waveHands: string[]): ImageData {
   console.log('function received:', nameTagStatus)
   const canvas = document.createElement('canvas');
   const context = canvas.getContext('2d')!;

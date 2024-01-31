@@ -1,38 +1,40 @@
 "use client";
 
-import React, { MouseEvent } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 interface TabProps {
   activeTab: string;
-  label: string;
+  'page-label': string;
   onClick: (label: string) => void;
+  // children: React.ReactNode;
 }
 
 class Tab extends React.Component<TabProps> {
   static propTypes = {
     activeTab: PropTypes.string.isRequired,
-    label: PropTypes.string.isRequired,
+    'page-label': PropTypes.string.isRequired,
     onClick: PropTypes.func.isRequired,
   };
 
   onClick = () => {
-    const { label, onClick } = this.props;
-    onClick(label);
+    const { 'page-label': dataLabel, onClick } = this.props;
+    onClick(dataLabel);
   };
 
   render() {
-    const { onClick, props: { activeTab, label } } = this;
+    const { onClick, props: { activeTab, 'page-label': dataLabel } } = this;
 
     let className = 'tab-list-item';
 
-    if (activeTab === label) {
+    if (activeTab === dataLabel) {
       className += ' tab-list-active';
     }
 
     return (
       <li className={className} onClick={onClick}>
-        {label === 'affirmation' && 
+
+        {dataLabel === 'affirmation' && 
           <div className="footer-section">
             <a className="footer-link">
               <span className="icon-container">
@@ -43,7 +45,7 @@ class Tab extends React.Component<TabProps> {
           </div>
         }
 
-        {label === 'nametag' && 
+        {dataLabel === 'nametag' && 
           <div className="footer-section">
             <a className="footer-link">
               <span className="icon-container">
@@ -56,7 +58,7 @@ class Tab extends React.Component<TabProps> {
           </div>
         }
 
-        {label === 'mindfulness' && 
+        {dataLabel === 'mindfulness' && 
           <div className="footer-section">
             <a className="footer-link">
               <span className="icon-container">
@@ -67,7 +69,7 @@ class Tab extends React.Component<TabProps> {
           </div>
         }
 
-        {label === 'wave-hands' && 
+        {dataLabel === 'wave-hands' && 
           <div className="footer-section">
             <a className="footer-link">
               <span className="icon-container">
