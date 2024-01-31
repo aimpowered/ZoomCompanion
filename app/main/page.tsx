@@ -46,7 +46,7 @@ function App() {
 
       <div>
         <Tabs>
-          <div label="affirmation">
+          <div page-label="affirmation">
             <Affirmation 
               allAffirmations={state.allAffirmations}
               setCurrentAffirmation={setCurrentAffirmation}
@@ -54,7 +54,7 @@ function App() {
             />
           </div>
 
-          <div label="nametag">
+          <div page-label="nametag">
             <NameTag 
               currentNameTag={state.currentNameTag}
               nameTagStatus={state.nameTagStatus}
@@ -66,11 +66,11 @@ function App() {
             />
           </div>
 
-          <div label="mindfulness">
+          <div page-label="mindfulness">
             <Mindfulness />
           </div>
 
-          <div label="wave-hands">
+          <div page-label="wave-hands">
             wave-hands here! this tab is also <em>extinct</em>!
           </div>
         </Tabs>

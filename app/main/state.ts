@@ -6,7 +6,7 @@ interface Button {
 }
 
 interface State {
-  selectedWaveHand: number;
+  selectedWaveHand: number | null;
   waveHands: string[];
   selectedAffirmation: string;
   allAffirmations: Button[];

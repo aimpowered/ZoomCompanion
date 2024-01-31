@@ -18,7 +18,7 @@ interface NameTagProps {
   nameTagStatus: boolean;
   setCurrentNameTag: (newNametag: string[]) => void;
   setNameTagStatus: (newNameTagStatus: boolean) => void;
-  selectedWaveHand: string;
+  selectedWaveHand: number | null;
   waveHands: string[];
 }
 
