@@ -80,14 +80,22 @@ function Affirmation({
 
     <div className="bg-white w-screen h-screen">
 
-      <div style={{ marginLeft: '20px', marginRight: '20px' }}>
-        <h2 style={{ fontSize: '30px', fontWeight: 'bold', display: 'inline-block' }}>Affirmation</h2>
+      <div style={{ marginLeft: '20px', marginRight: '20px', alignItems: 'center' }}>
+        <h2 style={{ fontSize: '30px', fontWeight: 'bold', display: 'inline-block', margin: '0' }}>Affirmation</h2>
         <button
-          style={{ border: 'none', display: 'inline-block', fontSize: '24px', padding: '10px' }}
+          style={{
+            border: 'none',
+            display: 'inline-block',
+            fontSize: '24px',
+            padding: '10px',
+            width: '50px', // Set a fixed width, adjust as needed
+            height: '50px', // Set a fixed height, adjust as needed
+            boxSizing: 'border-box', // Include padding in the total width
+          }}
           onClick={addButton}
           data-testid="add-button"
         >
-          <svg xmlns="http://www.w3.org/2000/svg" width="10%" height="10%" viewBox="0 0 100 100">
+          <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 100 100">
             <circle cx="50" cy="50" r="48" fill="#f7f3f3" stroke="none" />
             <line x1="30" y1="50" x2="70" y2="50" stroke="#d68071" strokeWidth="8" />
             <line x1="50" y1="30" x2="50" y2="70" stroke="#d68071" strokeWidth="8" />
