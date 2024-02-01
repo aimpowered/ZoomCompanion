@@ -39,10 +39,8 @@ return (
                 )}
                 <form className="space-y-4" onSubmit={handleSubmit}>
                     <div>
-                        <label htmlFor="name" className="block">
-                            Name
-                        </label>
                         <input
+                            placeholder="Username"
                             type="text"
                             id="name"
                             name="name"
@@ -53,10 +51,8 @@ return (
                         />
                     </div>
                     <div>
-                        <label htmlFor="email" className="block">
-                            Email
-                        </label>
                         <input
+                            placeholder="Email"
                             type="email"
                             id="email"
                             name="email"
@@ -67,10 +63,8 @@ return (
                         />
                     </div>
                     <div>
-                        <label htmlFor="password" className="block">
-                            Password
-                        </label>
                         <input
+                            placeholder="Password"
                             type="password"
                             id="password"
                             name="password"
