@@ -31,15 +31,15 @@ const SignUp = () => {
     };
 
 return (
-        <div className="flex items-center justify-center min-h-screen bg-gray-100">
-            <div className="max-w-md w-full p-6 bg-[#35377D] rounded-lg shadow-lg">
-                <h2 className="text-2xl font-semibold mb-6 text-white">Sign Up</h2>
+        <div className="flex items-center justify-center min-h-screen bg-white">
+            <div className="max-w-md w-full p-6">
+                <h2 className="text-2xl font-semibold mb-6">Sign Up</h2>
                 {isUserCreated && (
                     <Alert value="User created successfully!"  />
                 )}
                 <form className="space-y-4" onSubmit={handleSubmit}>
                     <div>
-                        <label htmlFor="name" className="block text-white">
+                        <label htmlFor="name" className="block">
                             Name
                         </label>
                         <input
@@ -53,7 +53,7 @@ return (
                         />
                     </div>
                     <div>
-                        <label htmlFor="email" className="block text-white">
+                        <label htmlFor="email" className="block">
                             Email
                         </label>
                         <input
@@ -67,7 +67,7 @@ return (
                         />
                     </div>
                     <div>
-                        <label htmlFor="password" className="block text-white">
+                        <label htmlFor="password" className="block">
                             Password
                         </label>
                         <input
