@@ -74,7 +74,7 @@ const Login = () => {
                     </div>
                 </form>
                 <p className="mt-8 text-center text-gray-500">
-                    Don't have an account,{" "}
+                    Don&rsquo;t have an account,{" "}
                     <a href="/sign-up" className="text-blue-500 underline" style={{ color: '#d68071' }}>
                         sign up
                     </a>
