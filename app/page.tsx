@@ -63,14 +63,17 @@ const Login = () => {
                             required
                         />
                     </div>
-                    <button
-                        type="submit"
-                        className="w-full bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-colors"
-                    >
-                        Login
-                    </button>
+                    <div className="flex justify-center items-center mt-8">
+                        <button
+                            type="submit"
+                            className="w-full text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-colors"
+                            style={{ maxWidth: '100px', backgroundColor: '#d68071' }}
+                        >
+                            Sign In
+                        </button>
+                    </div>
                 </form>
-                <p className="mt-4 text-center">
+                <p className="mt-8 text-center">
                     I am new,{" "}
                     <a href="/sign-up" className="text-blue-500 underline">
                         sign up only
