@@ -33,9 +33,9 @@ const Login = () => {
     };
 
     return (
-        <div className="flex items-center justify-center min-h-screen bg-gray-100">
-            <div className="max-w-md w-full p-6 bg-white rounded-lg shadow-lg">
-                <h1 className="text-2xl font-semibold mb-6">Login</h1>
+        <div className="flex items-center justify-center min-h-screen bg-white">
+            <div className="max-w-md w-full p-6 bg-white rounded-lg">
+                <h1 className="text-2xl font-semibold mb-6 text-center">Welcome Back!</h1>
                 <form onSubmit={handleSubmit}>
                     {error ? <Alert value={error} /> : null}
                     <div className="mb-4">
