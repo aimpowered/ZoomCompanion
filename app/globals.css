@@ -250,8 +250,9 @@ label,input{
 .tab-list-item {
   display: block;
   width: 100%; /* Take the full width */
-  height: 100%; /* Take the full height */
+  height: 136px;
   background-color: transparent;
+/*  background: #f8f9fa;*/
   text-decoration: none;
   color: #000;
   font-weight: bold;
@@ -267,7 +268,7 @@ label,input{
   background-color: #e9ecef;
   display: block;
   width: 100%;
-  height: 100%;
+  height: 136px;
   text-decoration: none;
   font-weight: bold;
   text-align: center; 
