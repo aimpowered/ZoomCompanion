@@ -76,7 +76,7 @@ return (
                     </div>
                     <div className="flex justify-center items-center mt-8">
                         <button
-                            className="w-full text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-colors mt-8"
+                            className="w-full text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-colors"
                             type="submit"
                             disabled={busy}
                             style={{ opacity: busy ? 0.5 : 1 , maxWidth: '100px', backgroundColor: '#d68071'}}
@@ -85,7 +85,12 @@ return (
                         </button>
                     </div>
 
-                    
+                    <p className="mt-8 text-center text-gray-500">
+                    Already have an account,{" "}
+                    <a href="/" className="text-blue-500 underline" style={{ color: '#d68071' }}>
+                        sign in.
+                    </a>
+                </p>
                 </form>
             </div>
         </div>
