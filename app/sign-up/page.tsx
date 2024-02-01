@@ -33,7 +33,7 @@ const SignUp = () => {
 return (
         <div className="flex items-center justify-center min-h-screen bg-white">
             <div className="max-w-md w-full p-6">
-                <h2 className="text-2xl font-semibold mb-6">Sign Up</h2>
+                <h2 className="text-2xl font-semibold mb-6 text-center">Create an account</h2>
                 {isUserCreated && (
                     <Alert value="User created successfully!"  />
                 )}
