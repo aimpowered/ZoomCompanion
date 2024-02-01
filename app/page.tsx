@@ -73,11 +73,12 @@ const Login = () => {
                         </button>
                     </div>
                 </form>
-                <p className="mt-8 text-center">
-                    I am new,{" "}
-                    <a href="/sign-up" className="text-blue-500 underline">
-                        sign up only
+                <p className="mt-8 text-center text-gray-500">
+                    Don't have an account,{" "}
+                    <a href="/sign-up" className="text-blue-500 underline" style={{ color: '#d68071' }}>
+                        sign up
                     </a>
+                    {" "}now!
                 </p>
             </div>
         </div>
