@@ -39,10 +39,8 @@ const Login = () => {
                 <form onSubmit={handleSubmit}>
                     {error ? <Alert value={error} /> : null}
                     <div className="mb-4">
-                      <label htmlFor="email" className="block text-gray-700">
-                          Email
-                      </label>
                       <input
+                          placeholder="Email"
                           type="email"
                           id="email"
                           name="email"
@@ -53,13 +51,9 @@ const Login = () => {
                         />
                     </div>
                     <div className="mb-4">
-                        <label
-                            htmlFor="password"
-                            className="block text-gray-700"
-                        >
-                            Password
-                        </label>
+                        
                         <input
+                            placeholder="Password"
                             type="password"
                             id="password"
                             name="password"
