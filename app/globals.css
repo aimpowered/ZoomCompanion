@@ -86,7 +86,7 @@ label,input{
 
 .self-confirm {
   color: #ffffff; /* White text, change if needed */
-  padding: 10px 0; /* 10px vertical padding, no horizontal padding */
+  padding: 10px 0px 10px 0px;
   text-align: center;
   font-size: 24px;
   border-radius: 10px; /* Adjust as needed */
@@ -95,14 +95,15 @@ label,input{
 }
 
 .header {
-  width: 100%;
-  margin-left: 20px;
-  margin-right: 20px;
+  width: 95%;
+  margin-left: 30px;
+  margin-right: 30px;
 }
 
 .button-rows {
   display: inline-block;
-  width: 100%;
+  width: 95%;
+  margin-left: 30px;
   margin-top: 20px;
 }
 
@@ -244,7 +245,7 @@ label,input{
   justify-content: space-around;
   padding: 0px;
   background: #f8f9fa;
-  width: 100%;
+  width: 95%;
 }
 
 .tab-list-item {
@@ -282,4 +283,11 @@ label,input{
   color: #d68071; /* Replace with the color you want on hover */
   background-color: #e9ecef; /* Optional: if you want to keep the background change on hover */
 
+}
+
+
+.tabs {
+  width: 95%;
+  margin-left: 30px;
+  margin-right: 30px;
 }
