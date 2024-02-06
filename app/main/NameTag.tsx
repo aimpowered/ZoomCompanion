@@ -40,7 +40,7 @@ function NameTag({
     setNameTagStatus(showNametag);
     setCurrentNameTag(inputValues);
     const imageData = drawNametag(showNametag, inputValues, selectedWaveHand, waveHands);
-    console.log(inputValues)
+    console.log(selectedWaveHand)
     const configOptions: ConfigOptions = {
       capabilities: apiList
     };
