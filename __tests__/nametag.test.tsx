@@ -2,7 +2,7 @@ import '@testing-library/jest-dom'
 import { render, screen, fireEvent } from '@testing-library/react'
 import { userEvent } from '@testing-library/user-event'
 
-import Page from '../app/nametag/page'
+import Page from '../app/main/page'
 
 jest.mock('next/navigation', () => jest.requireActual('next-router-mock'))
 jest.mock('../lib/zoomapi', () => jest.requireActual('../lib/fakezoomapi'));
