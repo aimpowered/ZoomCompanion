@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom'
 import { render, screen } from '@testing-library/react'
-import Page from '../app/main/mindfulness'
+import Page from '../app/main/Mindfulness'
 
 
 jest.mock('next/navigation', () => jest.requireActual('next-router-mock'))
