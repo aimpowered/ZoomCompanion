@@ -1,7 +1,7 @@
 // drawNametag.ts
 
 export default function drawNametag(nameTagStatus:boolean, currentNameTag:string[], selectedWaveHand: number | null, waveHands: string[]): ImageData {
-  console.log('function received:', nameTagStatus)
+  console.log('function received:', nameTagStatus, selectedWaveHand)
   const canvas = document.createElement('canvas');
   const context = canvas.getContext('2d')!;
   canvas.width = 1600; // Width of the canvas
@@ -10,7 +10,7 @@ export default function drawNametag(nameTagStatus:boolean, currentNameTag:string
 
   if (nameTagStatus === true) {
 
-    console.log('drawing!!!!')
+    // console.log('drawing!!!!')
 
     context.fillStyle = 'white'; 
     context.roundRect(780, 550, 505, 170, 20);

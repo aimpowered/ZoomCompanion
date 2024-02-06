@@ -7,6 +7,16 @@ import Mindfulness from "./Mindfulness";
 import Affirmation from "./Affirmation";
 import NameTag from "./NameTag";
 import { useCustomState } from './state';
+import drawNametag from "@/lib/drawNametag";
+import { createFromConfig, ZoomApiWrapper } from "@/lib/zoomapi";
+import { ConfigOptions }  from "@zoom/appssdk";
+
+
+type Apis = "setVirtualForeground" | "removeVirtualForeground"
+const apiList: Apis[] = [
+  "setVirtualForeground",
+  "removeVirtualForeground",
+];
 
 function App() {
 
@@ -21,6 +31,18 @@ function App() {
 
   const handleWaveHandsClick = (num: number) => {
     setSelectedWaveHand(num)
+    const imageData = drawNametag(state.nameTagStatus, state.currentNameTag, num, state.waveHands);
+    console.log(state.selectedWaveHand)
+    const configOptions: ConfigOptions = {
+      capabilities: apiList
+    };
+    const zoomApiInstance: ZoomApiWrapper = createFromConfig(configOptions);
+
+    if (imageData) {
+      zoomApiInstance.setVirtualForeground(imageData);
+    } else {
+      zoomApiInstance.removeVirtualForeground();
+    }
   };
 
 

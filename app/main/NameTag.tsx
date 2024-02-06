@@ -61,7 +61,7 @@ function NameTag({
   const handleInputChange = (index: number, value: string) => {
     const newInputValues = [...inputValues];
     newInputValues[index] = value;
-    console.log(value)
+    // console.log(value)
     setInputValues(newInputValues);
   }
 
