@@ -3,6 +3,7 @@ import RefreshAPIs from './RefreshAPIs';
 import Switch from '@mui/material/Switch';
 import { alpha, styled } from '@mui/material/styles';
 import { nametags, hands } from '../state';
+// import drawNametag from "@/lib/drawNametag";
 
 function drawNametag(): ImageData {
   const canvas = document.createElement('canvas');
