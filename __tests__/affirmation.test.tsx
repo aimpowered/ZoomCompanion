@@ -9,21 +9,17 @@ jest.mock('next/navigation', () => jest.requireActual('next-router-mock'));
 jest.mock('../lib/zoomapi', () => jest.requireActual('../lib/fakezoomapi'));
 
 
+const allAffirmations = [
+  { id: 1, text: 'Affirmation 1' },
+  { id: 2, text: 'Affirmation 2' },
+  { id: 3, text: 'Affirmation 3' },
+];
+const setCurrentAffirmation = jest.fn();
+const setAllAffirmations = jest.fn();
+
 describe('Page', () => {
-  // it('renders a heading', () => {
-  //   render(<Page />);
-  //   const heading = screen.getByRole('heading', { level: 1 });
-  //   expect(heading).toBeInTheDocument();
-  // });
 
   it('affirmation buttons existed in this page', () => {
-    const allAffirmations = [
-      { id: 1, text: 'Affirmation 1' },
-      { id: 2, text: 'Affirmation 2' },
-      { id: 3, text: 'Affirmation 3' },
-    ];
-    const setCurrentAffirmation = jest.fn();
-    const setAllAffirmations = jest.fn();
 
     render(
     <Affirmation
@@ -45,31 +41,21 @@ describe('Page', () => {
     });
   });
 
-  // it('press Apply button triggers setCurrentAffirmation', () => {
-  //   const allAffirmations = [
-  //     { id: 1, text: 'Affirmation 1' },
-  //     { id: 2, text: 'Affirmation 2' },
-  //     { id: 3, text: 'Affirmation 3' },
-  //   ];
-  //   const setCurrentAffirmation = jest.fn();
-  //   const setAllAffirmations = jest.fn();
+  it('press Apply button triggers setCurrentAffirmation', () => {
+    render(
+      <Affirmation
+        allAffirmations={allAffirmations}
+        setCurrentAffirmation={setCurrentAffirmation}
+        setAllAffirmations={setAllAffirmations}
+      />
+    );
 
-  //   // Render the component with mock data
-  //   const { getByText } = render(
-  //     <Affirmation
-  //       allAffirmations={allAffirmations}
-  //       setCurrentAffirmation={setCurrentAffirmation}
-  //       setAllAffirmations={setAllAffirmations}
-  //     />
-  //   );
-
-    // Find and click the "Apply" button
-    // fireEvent.click(getByText('Apply'));
-
-    // // Assert that setCurrentAffirmation has been called with the correct parameters
-    // expect(setCurrentAffirmation).toHaveBeenCalledTimes(1);
-    // expect(setCurrentAffirmation).toHaveBeenCalledWith('Affirmation 1');
-  // });
+    const applyButtons = screen.getAllByText('Apply', { selector: 'button' });
+    fireEvent.click(applyButtons[0]);
+    
+    expect(setCurrentAffirmation).toHaveBeenCalledTimes(1);
+    expect(setCurrentAffirmation).toHaveBeenCalledWith('Affirmation 1');
+  });
 
 
   // it('press Edit button, open and close a modal', () => {
