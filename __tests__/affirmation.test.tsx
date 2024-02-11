@@ -1,7 +1,6 @@
 import '@testing-library/jest-dom';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import { within } from '@testing-library/dom';
-import userEvent from '@testing-library/user-event';
 import Page from '../app/main/Affirmation'
 import Affirmation from '../app/main/Affirmation';
 
@@ -52,53 +51,79 @@ describe('Page', () => {
 
     const applyButtons = screen.getAllByText('Apply', { selector: 'button' });
     fireEvent.click(applyButtons[0]);
-    
+
     expect(setCurrentAffirmation).toHaveBeenCalledTimes(1);
     expect(setCurrentAffirmation).toHaveBeenCalledWith('Affirmation 1');
   });
 
 
-  // it('press Edit button, open and close a modal', () => {
-  //   render(<Page />);
+  it('press Edit button, open and close a modal', () => {
+    render(
+      <Affirmation
+        allAffirmations={allAffirmations}
+        setCurrentAffirmation={setCurrentAffirmation}
+        setAllAffirmations={setAllAffirmations}
+      />
+    );
 
-  //   const dropdownButton = screen.getByText('I can take up space');
-  //   fireEvent.click(dropdownButton);
-  //   const dropdown = within(dropdownButton.nextSibling);
-  //   const editButton = dropdown.getByText('Edit');
+    const dropdownButton = screen.getByText('Affirmation 1');
+    fireEvent.click(dropdownButton);
+    const dropdown = within(dropdownButton.nextSibling);
+    const editButton = dropdown.getByText('Edit');
 
-  //   fireEvent.click(editButton);
-  //   const modal = screen.getByPlaceholderText('Edit text');
-  //   expect(modal).toBeInTheDocument();
-  //   userEvent.type(modal, 'New text for testing');
-  //   const saveButton = screen.getByText('Save');
-  //   fireEvent.click(saveButton);
-  //   expect(modal).not.toBeInTheDocument();
+    fireEvent.click(editButton);
+    const modal = screen.getByPlaceholderText('Edit text');
+    expect(modal).toBeInTheDocument();
+    fireEvent.change(modal, { target: { value: 'New text for testing' } });
+    const saveButton = screen.getByText('Save');
+    fireEvent.click(saveButton);
+    expect(modal).not.toBeInTheDocument();
 
-  // });
+    const modified_button = screen.getByText('New text for testing');
+    expect(modified_button).toBeInTheDocument();
+  });
 
-  // it('press Delete button', () => {
-  //   render(<Page />);
+  it('press Delete button', () => {
+    render(
+      <Affirmation
+        allAffirmations={allAffirmations}
+        setCurrentAffirmation={setCurrentAffirmation}
+        setAllAffirmations={setAllAffirmations}
+      />
+    );
 
-  //   const dropdownButton = screen.getByText('I can take up space');
-  //   fireEvent.click(dropdownButton);
-  //   const dropdown = within(dropdownButton.nextSibling);
-  //   const deleteButton = dropdown.getByText('Delete');
-  //   fireEvent.click(deleteButton);
+    const dropdownButton = screen.getByText('Affirmation 1');
+    fireEvent.click(dropdownButton);
+    const dropdown = within(dropdownButton.nextSibling);
+    const deleteButton = dropdown.getByText('Delete');
+    fireEvent.click(deleteButton);
 
-  //   expect(screen.queryByText('I can take up space')).not.toBeInTheDocument();
+    expect(screen.queryByText('Affirmation 1')).not.toBeInTheDocument();
     
-  // });
+  });
 
 
-  // it('press new affirmation button, opens a modal', () => {
-  //   render(<Page />);
+  it('press new affirmation button, opens a modal, and save new affirmation', () => {
+    render(
+      <Affirmation
+        allAffirmations={allAffirmations}
+        setCurrentAffirmation={setCurrentAffirmation}
+        setAllAffirmations={setAllAffirmations}
+      />
+    );
 
-  //   // TODO: add aria button to it to get rid of testID
-  //   const addButtonElement = screen.getByTestId('add-button');
-  //   fireEvent.click(addButtonElement);
-  //   const modal = screen.getByPlaceholderText('Edit text');
-  //   expect(modal).toBeInTheDocument();
-  // });
+    const addButtonElement = screen.getByLabelText('New Affirmation');
+    fireEvent.click(addButtonElement);
+    const modal = screen.getByPlaceholderText('Edit text');
+    expect(modal).toBeInTheDocument();
+
+    fireEvent.change(modal, { target: { value: 'New Affirmation' } });
+    const saveButton = screen.getByText('Save');
+    fireEvent.click(saveButton);
+
+    const modified_button = screen.getByText('New Affirmation');
+    expect(modified_button).toBeInTheDocument();
+  });
 
 
 });
