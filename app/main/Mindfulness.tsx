@@ -19,10 +19,12 @@ const generateVideoPlayer = ({ videoId, Label }: VideoPlayerProps) => (
 
 function Mindfullness() {
 
-  const youtube1ID = 'SD6dPo98dWw'
-  const youtube2ID = '90mqR3A9Pno'
+  const youtube1ID = 'AKN_gbj8UtU'
+  const youtube2ID = 'c7IkEhKtUwI'
+  const youtube3ID = 'sG69_omRCyo'
   const youtube1Label = 'youtube-video-1';
   const youtube2Label = 'youtube-video-2';
+  const youtube3Label = 'youtube-video-3';
 
   return (
       <div style={{ marginLeft: '20px', marginRight: '20px' }}>
@@ -30,6 +32,7 @@ function Mindfullness() {
           <div className="flex flex-col items-center mt-4">
             {generateVideoPlayer({ videoId: youtube1ID, Label: youtube1Label })}
             {generateVideoPlayer({ videoId: youtube2ID, Label: youtube2Label })}
+            {generateVideoPlayer({ videoId: youtube3ID, Label: youtube3Label })}
           </div>
       </div>
   );
