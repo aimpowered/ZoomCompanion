@@ -1,3 +1,4 @@
+// Under Review
 // drawNametag.ts
 
 export default function drawNametag(nameTagStatus:boolean, currentNameTag:string[], selectedWaveHand: number | null, waveHands: string[]): ImageData {
