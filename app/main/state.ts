@@ -50,13 +50,6 @@ export const useCustomState = () => {
   };
 
 
-  // const setHandChoicesAsString = (hands: string[]) => {
-  //   setState((prevState) => ({
-  //     ...prevState,
-  //     waveHands: hands,
-  //   }));
-  // };
-
   const setCurrentAffirmation = (newAffirmation: string) => {
     setState((prevState) => ({
       ...prevState,

@@ -3,8 +3,6 @@
 "use client";
 import React, { useState, useEffect } from 'react';
 import Modal from 'react-modal';
-// import { useCustomState } from './state';
-
 
 interface Button {
   id: number;
@@ -24,16 +22,11 @@ function Affirmation({
   setAllAffirmations,
 }: AffirmationProps) {
 
-  // const { state, setCurrentAffirmation, setAllAffirmations  } = useCustomState();
-  // console.log('current AllAffirmations', state.allAffirmations)
-
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [currentEditId, setCurrentEditId] = useState<number | null>(null);
   const [editText, setEditText] = useState('');
 
   const [buttons, setButtons] = useState(allAffirmations)
-
-  // console.log('applyed', state.selectedAffirmation)
 
   useEffect(() => {
     setAllAffirmations(buttons);
@@ -52,10 +45,7 @@ function Affirmation({
   const handleEdit = () => {
     setButtons((prevButtons) =>
       prevButtons.map((button) => {
-        // console.log('Original text:', button.text);
-
         if (button.id === currentEditId) {
-          // console.log('Edited text:', editText);
           return { ...button, text: editText };
         } else {
           return button;

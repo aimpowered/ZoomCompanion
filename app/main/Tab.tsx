@@ -9,7 +9,6 @@ interface TabProps {
   activeTab: string;
   'page-label': string;
   onClick: (label: string) => void;
-  // children: React.ReactNode;
 }
 
 class Tab extends React.Component<TabProps> {

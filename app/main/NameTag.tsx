@@ -35,7 +35,6 @@ function NameTag({
   }: NameTagProps) {
   const [inputValues, setInputValues] = useState(currentNameTag);
   const [showNametag, setShowNametag] = useState(nameTagStatus);
-  // const [imageData, setImageData] = useState<ImageData | null>(null);
 
   
   const debouncedEffect = debounce(() => {
@@ -63,7 +62,6 @@ function NameTag({
   const handleInputChange = (index: number, value: string) => {
     const newInputValues = [...inputValues];
     newInputValues[index] = value;
-    // console.log(value)
     setInputValues(newInputValues);
   }
 

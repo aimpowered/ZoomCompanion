@@ -1,5 +1,4 @@
 // Under Review
-// drawNametag.ts
 
 export default function drawNametag(nameTagStatus:boolean, currentNameTag:string[], selectedWaveHand: number | null, waveHands: string[]): ImageData {
   console.log('function received:', nameTagStatus, selectedWaveHand)
@@ -10,8 +9,6 @@ export default function drawNametag(nameTagStatus:boolean, currentNameTag:string
   context.clearRect(0, 0, canvas.width, canvas.height);
 
   if (nameTagStatus === true) {
-
-    // console.log('drawing!!!!')
 
     context.fillStyle = 'white'; 
     context.roundRect(780, 550, 505, 170, 20);
@@ -65,7 +62,5 @@ export default function drawNametag(nameTagStatus:boolean, currentNameTag:string
   }
 
   const newImageData = context.getImageData(0, 0, canvas.width, canvas.height);
-
-  // console.log(newImageData)
   return newImageData;
 }

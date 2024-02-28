@@ -4,7 +4,6 @@
 
 import React from 'react';
 import Tabs from "./Tabs";
-// import Tab from "./Tab";
 import Mindfulness from "./Mindfulness";
 import Affirmation from "./Affirmation";
 import NameTag from "./NameTag";
@@ -24,7 +23,6 @@ function App() {
 
   const { state, 
   setSelectedWaveHand,
-  // setHandChoicesAsString, 
   setCurrentAffirmation,
   setAllAffirmations,
   setCurrentNameTag,
