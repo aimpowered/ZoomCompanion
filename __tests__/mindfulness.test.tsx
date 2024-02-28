@@ -17,8 +17,8 @@ describe('Page', () => {
     const video2 = screen.getByLabelText('youtube-video-2');
     expect(video2).toBeInTheDocument();
 
-    const video2 = screen.getByLabelText('youtube-video-3');
-    expect(video2).toBeInTheDocument();
+    const video3 = screen.getByLabelText('youtube-video-3');
+    expect(video3).toBeInTheDocument();
   })
 
   it('renders three correct videos', () => {
@@ -34,8 +34,8 @@ describe('Page', () => {
     const video2 = screen.getByLabelText('youtube-video-2');
     expect(video2).toHaveAttribute('src', expect.stringContaining(youtube2ID));
 
-    const video2 = screen.getByLabelText('youtube-video-3');
-    expect(video2).toHaveAttribute('src', expect.stringContaining(youtube2ID));
+    const video3 = screen.getByLabelText('youtube-video-3');
+    expect(video3).toHaveAttribute('src', expect.stringContaining(youtube3ID));
 
   })
 
