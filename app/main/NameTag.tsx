@@ -101,11 +101,14 @@ function NameTag({
       <div>
         <h2 style={{ fontSize: '30px', fontWeight: 'bold', display: 'inline-block' }}>Name Tag</h2>
         <ColoredSwitch
-          role='switch'
-          data-testid = 'colored-switch'
-          aria-checked={showNametag}
-          checked={showNametag}
-          onChange={() => setShowNametag(!showNametag)}
+          inputProps={{
+            role: 'switch',
+            'aria-checked': showNametag,
+            checked: showNametag,
+            value: showNametag.toString(),
+            onChange: () => setShowNametag(!showNametag)
+          }}
+          checked={showNametag} // It ensures the switch visually changes when clicked
         />
       </div>
       <div>

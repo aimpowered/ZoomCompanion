@@ -47,11 +47,7 @@ describe('Page', () => {
 
     let switchInput = screen.getByRole('switch')
     expect(switchInput).not.toBeChecked();
-
-    // fireEvent.change(switchInput, { target: { 'aria-checked': true } });
     await userEvent.click(switchInput);
-
-    // TODO: need to revise this test case to not to be checked
-    expect(switchInput).not.toBeChecked();
+    expect(switchInput).toBeChecked();
   });
 })
