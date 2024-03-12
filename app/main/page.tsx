@@ -31,12 +31,6 @@ function App() {
   
 
   const handleWaveHandsClick = (num: number) => {
-    let tempSelectedWaveHand;
-    if (state.selectedWaveHand == num) {
-        tempSelectedWaveHand = null;
-    } else {
-        tempSelectedWaveHand = num;
-    }
     setSelectedWaveHand(num)
 
     const nametag: NameTagBadge = {
@@ -48,13 +42,12 @@ function App() {
     };
 
     const handWave: HandWaveBadge =
-       tempSelectedWaveHand !== null ?
-           {visible: true, waveText: state.waveHands[tempSelectedWaveHand]} :
+       state.selectedWaveHand !== null ?
+           {visible: true, waveText: state.waveHands[state.selectedWaveHand]} :
            {visible: false};
     const imageData = drawNametag(nametag, handWave);
     
-    console.log(state.selectedWaveHand, num)
-
+    console.log(state.selectedWaveHand)
     const configOptions: ConfigOptions = {
       capabilities: apiList
     };
