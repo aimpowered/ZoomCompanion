@@ -103,9 +103,7 @@ function NameTag({
         <FormControlLabel 
           control={
             <ColoredSwitch
-              inputProps={{
-                onChange: () => setShowNametag(!showNametag)
-              }}
+              onChange={() => setShowNametag(!showNametag)}
               checked={showNametag}
             />}
           label={<span style={{ fontWeight: 'bold', fontSize: '30px' }}>Name Tag</span>}
