@@ -103,12 +103,9 @@ function NameTag({
         <ColoredSwitch
           inputProps={{
             role: 'switch',
-            'aria-checked': showNametag,
-            checked: showNametag,
-            value: showNametag.toString(),
             onChange: () => setShowNametag(!showNametag)
           }}
-          checked={showNametag} // It ensures the switch visually changes when clicked
+          checked={showNametag}
         />
       </div>
       <div>
