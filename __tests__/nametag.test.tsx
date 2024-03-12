@@ -50,6 +50,9 @@ describe('Page', () => {
 
     render(<Page />)
 
+    const element = screen.getByLabelText('Name Tag');
+    expect(element).toBeInTheDocument();
+
     let switchInput = screen.getByRole('switch')
     expect(switchInput).not.toBeChecked();
     await userEvent.click(switchInput);

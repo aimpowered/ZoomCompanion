@@ -5,6 +5,7 @@ import Switch from '@mui/material/Switch';
 import { alpha, styled } from '@mui/material/styles';
 import drawNametag, { NameTagBadge, HandWaveBadge } from "@/lib/drawNametag";
 import debounce from 'lodash/debounce';
+import FormControlLabel from '@mui/material/FormControlLabel';
 
 import { createFromConfig, ZoomApiWrapper } from "@/lib/zoomapi";
 import { ConfigOptions }  from "@zoom/appssdk";
@@ -99,14 +100,19 @@ function NameTag({
   return (
     <div style={{ marginLeft: '20px', marginRight: '20px' }}>
       <div>
-        <h2 style={{ fontSize: '30px', fontWeight: 'bold', display: 'inline-block' }}>Name Tag</h2>
-        <ColoredSwitch
-          inputProps={{
-            role: 'switch',
-            onChange: () => setShowNametag(!showNametag)
-          }}
-          checked={showNametag}
+        <FormControlLabel 
+          control={
+            <ColoredSwitch
+              inputProps={{
+                role: 'switch',
+                onChange: () => setShowNametag(!showNametag)
+              }}
+              checked={showNametag}
+            />}
+          label={<span style={{ fontWeight: 'bold', fontSize: '30px' }}>Name Tag</span>}
+          labelPlacement = 'start'
         />
+
       </div>
       <div>
         <label>Full Name </label>
