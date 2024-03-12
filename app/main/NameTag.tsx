@@ -104,7 +104,6 @@ function NameTag({
           control={
             <ColoredSwitch
               inputProps={{
-                role: 'switch',
                 onChange: () => setShowNametag(!showNametag)
               }}
               checked={showNametag}

@@ -53,7 +53,7 @@ describe('Page', () => {
     const element = screen.getByLabelText('Name Tag');
     expect(element).toBeInTheDocument();
 
-    let switchInput = screen.getByRole('switch')
+    let switchInput = screen.getByRole('checkbox')
     expect(switchInput).not.toBeChecked();
     await userEvent.click(switchInput);
     expect(switchInput).toBeChecked();
