@@ -25,6 +25,9 @@ describe('Page', () => {
     expect(element).toBeInTheDocument();
 
     let switchInput = screen.getByRole('checkbox')
+
+    expect(switchInput).toBe(element);
+    
     expect(switchInput).not.toBeChecked();
     await userEvent.click(switchInput);
     expect(switchInput).toBeChecked();
