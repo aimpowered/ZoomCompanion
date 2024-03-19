@@ -1,0 +1,23 @@
+/* NameTag.css */
+.name-tag-container {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.label-text {
+  font-weight: bold;
+  font-size: 30px;
+}
+
+.input-field {
+  margin-top: 0px;
+}
+
+.text-input,
+.select-input {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 8px;
+  width: 80%; /* Adjust the width as needed */
+}
+

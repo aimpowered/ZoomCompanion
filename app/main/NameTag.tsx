@@ -10,6 +10,8 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import { createFromConfig, ZoomApiWrapper } from "@/lib/zoomapi";
 import { ConfigOptions }  from "@zoom/appssdk";
 
+import '../css/NameTag.css'; // Import CSS file
+
 type Apis = "setVirtualForeground" | "removeVirtualForeground"
 const apiList: Apis[] = [
   "setVirtualForeground",
@@ -98,7 +100,7 @@ function NameTag({
   }));
 
   return (
-    <div style={{ marginLeft: '20px', marginRight: '20px' }}>
+    <div className="name-tag-container">
       <div>
         <FormControlLabel 
           control={
@@ -106,39 +108,39 @@ function NameTag({
               onChange={() => setShowNametag(!showNametag)}
               checked={showNametag}
             />}
-          label={<span style={{ fontWeight: 'bold', fontSize: '30px' }}>Name Tag</span>}
+          label={<span className="label-text">Name Tag</span>}
           labelPlacement = 'start'
         />
 
       </div>
-      <div>
+      <div className="input-field">
         <label>Full Name </label>
         <input
           type="text"
-          className="border border-gray-300 rounded-lg p-2 w-1/3"
+          className="text-input"
           value={inputValues[0]}
           onChange={(e) => handleInputChange(0, e.target.value)}
         />
       </div>
       <div style={blockStyle}></div>
 
-      <div>
+      <div className="input-field">
         <label>Preferred Name </label>
         <input
           type="text"
-          className="border border-gray-300 rounded-lg p-2 w-1/3"
+          className="text-input"
           value={inputValues[1]}
           onChange={(e) => handleInputChange(1, e.target.value)}
         />
       </div>
       <div style={blockStyle}></div>
 
-      <div>
+      <div className="input-field">
         <label>Select Pronouns</label>
         <select
           value={inputValues[2]}
           onChange={(e) => handleInputChange(2, e.target.value)}
-          className="border border-gray-300 rounded-lg p-2 w-1/3"
+          className="select-input"
         >
           <option value="">Select Pronouns</option>
           <option value="He/Him">He/Him</option>
@@ -149,11 +151,11 @@ function NameTag({
       </div>
       <div style={blockStyle}></div>
 
-      <div>
+      <div className="input-field">
         <label>Self Disclosure </label>
         <input
           type="text"
-          className="border border-gray-300 rounded-lg p-2 w-1/3"
+          className="text-input"
           value={inputValues[3]}
           onChange={(e) => handleInputChange(3, e.target.value)}
         />
