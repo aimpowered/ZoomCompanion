@@ -29,14 +29,14 @@ function Mindfullness() {
   const youtube3Label = 'youtube-video-3';
 
   return (
-      <div style={{ marginLeft: '20px', marginRight: '20px' }}>
-        <h2 style={{ fontSize: '30px', fontWeight: 'bold', display: 'inline-block' }}>Mindfulness</h2>
-          <div className="flex flex-col items-center mt-4">
-            {generateVideoPlayer({ videoId: youtube1ID, Label: youtube1Label })}
-            {generateVideoPlayer({ videoId: youtube2ID, Label: youtube2Label })}
-            {generateVideoPlayer({ videoId: youtube3ID, Label: youtube3Label })}
-          </div>
+    <div className="mindfulness-container">
+      <h2 className="title">Mindfulness</h2>
+      <div className="video-container">
+        {generateVideoPlayer({ videoId: youtube1ID, Label: youtube1Label })}
+        {generateVideoPlayer({ videoId: youtube2ID, Label: youtube2Label })}
+        {generateVideoPlayer({ videoId: youtube3ID, Label: youtube3Label })}
       </div>
+    </div>
   );
 }
 
