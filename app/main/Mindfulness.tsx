@@ -2,6 +2,8 @@
 
 "use client";
 
+import '../css/Mindfullness.css'; // Import CSS file
+
 interface VideoPlayerProps {
   videoId: string;
   Label: string;
