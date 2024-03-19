@@ -3,6 +3,7 @@
 "use client";
 import React, { useState, useEffect } from 'react';
 import Modal from 'react-modal';
+import '../css/Affirmation.css'; // Import CSS file
 
 interface Button {
   id: number;
@@ -69,24 +70,10 @@ function Affirmation({
 
 
   return (
-
-    <div className="bg-white w-screen h-screen">
-
-      <div style={{ marginLeft: '20px', marginRight: '20px', alignItems: 'center' }}>
-        <h2 style={{ fontSize: '30px', fontWeight: 'bold', display: 'inline-block', margin: '0' }}>Affirmation</h2>
-        <button
-          style={{
-            border: 'none',
-            display: 'inline-block',
-            fontSize: '24px',
-            padding: '10px',
-            width: '50px', // Set a fixed width, adjust as needed
-            height: '50px', // Set a fixed height, adjust as needed
-            boxSizing: 'border-box', // Include padding in the total width
-          }}
-          onClick={addButton}
-          aria-label="New Affirmation"
-        >
+    <div className="affirmation-container">
+      <div className="header">
+        <h2 className="title">Affirmation</h2>
+        <button className="add-button" onClick={addButton} aria-label="New Affirmation">
           <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 100 100">
             <circle cx="50" cy="50" r="48" fill="#f7f3f3" stroke="none" />
             <line x1="30" y1="50" x2="70" y2="50" stroke="#d68071" strokeWidth="8" />
@@ -97,15 +84,15 @@ function Affirmation({
 
       {buttons.map((button) => (
         <div key={button.id} className="dropdown">
-          <button className="dots-button"> {button.text}</button>
+          <button className="dots-button">{button.text}</button>
           <div className="dropdown-content">
-            <button style={{ border: '0.5px solid black' }} onClick={() => setCurrentAffirmation(button.text)}>
+            <button className="dropdown-action" onClick={() => setCurrentAffirmation(button.text)}>
               Apply
             </button>
-            <button style={{ border: '0.5px solid black' }} onClick={() => openModal(button)}>
+            <button className="dropdown-action" onClick={() => openModal(button)}>
               Edit
             </button>
-            <button style={{ border: '0.5px solid black' }} onClick={() => deleteButton(button.id)}>
+            <button className="dropdown-action" onClick={() => deleteButton(button.id)}>
               Delete
             </button>
           </div>
@@ -128,11 +115,16 @@ function Affirmation({
             onChange={(e) => setEditText(e.target.value)}
           ></textarea>
         </div>
-        <button onClick={handleEdit}>Save</button>
-        <button onClick={closeModal}>Cancel</button>
+        <button className="modal-button" onClick={handleEdit}>
+          Save
+        </button>
+        <button className="modal-button" onClick={closeModal}>
+          Cancel
+        </button>
       </Modal>
     </div>
   );
 }
+
 
 export default Affirmation;
