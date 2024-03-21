@@ -10,12 +10,11 @@ interface VideoPlayerProps {
 }
 
 const generateVideoPlayer = ({ videoId, Label }: VideoPlayerProps) => (
-  <div style={{ position: 'relative', width: '100%', height: 0, paddingBottom: '56.25%', marginBottom: '20px' }}>
+  <div className="video-wrapper">
     <iframe
       className='video'
       title='Youtube player'
       aria-label={Label}
-      style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
       src={`https://www.youtube.com/embed/${videoId}`}
     ></iframe>
   </div>
