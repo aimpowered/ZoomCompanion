@@ -2,7 +2,6 @@
 
 import React, { useEffect, useState } from 'react';
 import Switch from '@mui/material/Switch';
-import { alpha, styled } from '@mui/material/styles';
 import drawNametag, { NameTagBadge, HandWaveBadge } from "@/lib/drawNametag";
 import debounce from 'lodash/debounce';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -83,24 +82,13 @@ function NameTag({
     setInputValues(newInputValues);
   }
 
-  const ColoredSwitch = styled(Switch)(({ theme }) => ({
-    '& .MuiSwitch-switchBase.Mui-checked': {
-      color: '#d68071', // Set the color using a hex value
-      '&:hover': {
-        backgroundColor: alpha('#d68071', theme.palette.action.hoverOpacity), // Set the hover color using a hex value
-      },
-    },
-    '& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track': {
-      backgroundColor: '#d68071', // Set the track color using a hex value
-    },
-  }));
-
   return (
     <div className="name-tag-container">
       <div>
         <FormControlLabel 
           control={
-            <ColoredSwitch
+            <Switch
+              className="colored-switch" // Add class name for Switch styling
               onChange={() => setShowNametag(!showNametag)}
               checked={showNametag}
             />}
