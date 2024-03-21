@@ -21,3 +21,7 @@
   width: 80%; /* Adjust the width as needed */
 }
 
+.block-style {
+  height: 20px; /* Adjust the height value to control the spacing */
+}
+

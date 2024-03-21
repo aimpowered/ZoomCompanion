@@ -83,10 +83,6 @@ function NameTag({
     setInputValues(newInputValues);
   }
 
-  const blockStyle: React.CSSProperties = {
-    height: '20px', // Adjust the height value to control the spacing
-  };
-
   const ColoredSwitch = styled(Switch)(({ theme }) => ({
     '& .MuiSwitch-switchBase.Mui-checked': {
       color: '#d68071', // Set the color using a hex value
@@ -122,7 +118,7 @@ function NameTag({
           onChange={(e) => handleInputChange(0, e.target.value)}
         />
       </div>
-      <div style={blockStyle}></div>
+      <div className="block-style"></div>
 
       <div className="input-field">
         <label>Preferred Name </label>
@@ -133,7 +129,7 @@ function NameTag({
           onChange={(e) => handleInputChange(1, e.target.value)}
         />
       </div>
-      <div style={blockStyle}></div>
+      <div className="block-style"></div>
 
       <div className="input-field">
         <label>Select Pronouns</label>
@@ -149,7 +145,7 @@ function NameTag({
           <option value="Other">Other</option>
         </select>
       </div>
-      <div style={blockStyle}></div>
+      <div className="block-style"></div>
 
       <div className="input-field">
         <label>Self Disclosure </label>
@@ -160,7 +156,7 @@ function NameTag({
           onChange={(e) => handleInputChange(3, e.target.value)}
         />
       </div>
-      <div style={blockStyle}></div>
+      <div className="block-style"></div>
 
 
     </div>
