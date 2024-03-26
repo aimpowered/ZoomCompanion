@@ -88,7 +88,7 @@ function NameTag({
         <FormControlLabel 
           control={
             <Switch
-              className="colored-switch" // Add class name for Switch styling
+              className="colored-switch"
               onChange={() => setShowNametag(!showNametag)}
               checked={showNametag}
             />}
