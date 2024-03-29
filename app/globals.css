@@ -246,6 +246,8 @@ label,input{
   padding: 0px;
   background: #f8f9fa;
   width: 95%;
+  position: fixed;
+  bottom: 0;
 }
 
 .tab-list-item {
