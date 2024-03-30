@@ -248,6 +248,7 @@ label,input{
   width: 95%;
   position: fixed;
   bottom: 0;
+  height: 100px;
 }
 
 .tab-list-item {
