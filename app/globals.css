@@ -249,8 +249,6 @@ label,input{
   position: fixed;
   bottom: 0;
   height: 100px;
-  left: 50%;
-  transform: translateX(-50%);
 }
 
 .tab-list-item {
