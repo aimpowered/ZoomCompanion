@@ -245,10 +245,12 @@ label,input{
   justify-content: space-around;
   padding: 0px;
   background: #f8f9fa;
-  width: 83%;
+  width: 100%;
   position: fixed;
   bottom: 0;
   height: 100px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .tab-list-item {
@@ -291,6 +293,6 @@ label,input{
 
 .tabs {
   width: 95%;
-  margin-left: 30px;
+  margin-left: 10px;
   margin-right: 30px;
 }
