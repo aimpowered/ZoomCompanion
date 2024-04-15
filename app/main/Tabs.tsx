@@ -24,7 +24,7 @@ class Tabs extends Component<TabsProps, TabsState> {
     super(props);
 
     this.state = {
-      activeTab: (props.children as TabElement[])[1].props['page-label'],
+      activeTab: (props.children as TabElement[])[0].props['page-label'],
     };
   }
 
