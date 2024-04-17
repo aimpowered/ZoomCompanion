@@ -1,0 +1,20 @@
+[{
+    "name": "guided breathing",
+    "youtubeId": "AKN_gbj8UtU",
+    "description": "One minute guided breathing to calm your breath",
+    "alt": "One minute guided breathing meditation video, with both audio guide and on-screen text guide",
+    "label": "guided-breathing-video"
+}, {
+    "name": "guided body scan",
+    "youtubeId": "c7IkEhKtUwI",
+    "description": "3 minutes guided body scan to reconnect with your body",
+    "alt":"Three-minute guided body scan meditation video, with both audio guide and on-screen text guide.",
+    "label": "guided-body-scan-video"
+}, {
+    "name": "guided stretching",
+    "youtubeId": "sG69_omRCyo",
+    "description": "80 second guided stretching to reset your intention",
+    "alt": "80-second guided stretching meditation video, with both audio guide and on-screen text guide.",
+    "label": "guided-stretching-video"
+}]
+
