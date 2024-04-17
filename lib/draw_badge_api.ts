@@ -1,6 +1,6 @@
-// Under Review
+import { ZoomApiWrapper }  from "@/lib/zoomapi";
 
-export interface NameTagBadge {
+export interface EnabledNameTagBadge {
   visible: boolean;
   fullName: string;
   preferredName: string;
@@ -14,9 +14,35 @@ interface EnabledHandWaveBadge {
   visible: true;
   waveText: string;
 }
+export type NameTagBadge = DisabledBadge | EnabledNameTagBadge;
 export type HandWaveBadge = DisabledBadge | EnabledHandWaveBadge;
 
-export default function drawNametag(nametag: NameTagBadge, handWave: HandWaveBadge): ImageData {
+const DISABLED_BADGE = { visible: false } as const;
+
+export class DrawBadgeApi {
+  private nametag: NameTagBadge = DISABLED_BADGE;
+  private handwave: HandWaveBadge = DISABLED_BADGE;
+
+  constructor(private zoomApiWrapper: ZoomApiWrapper) {}
+
+  private forceDrawing() {
+    const imageData = drawEverythingToImage(this.nametag, this.handwave);
+    return this.zoomApiWrapper.setVirtualForeground(imageData);
+  }
+
+  drawNameTag(nametag: NameTagBadge) {
+    this.nametag = nametag;
+    return this.forceDrawing();
+  }
+
+  drawHandWave(handwave: HandWaveBadge) {
+    this.handwave = handwave;
+    return this.forceDrawing();
+  }
+}
+
+/** @deprecated Use DrawBadgeApi instead */
+export function drawEverythingToImage(nametag: NameTagBadge, handWave: HandWaveBadge): ImageData {
   const canvas = document.createElement('canvas');
   const context = canvas.getContext('2d')!;
   canvas.width = 1600; // Width of the canvas

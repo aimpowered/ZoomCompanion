@@ -8,7 +8,7 @@ import Mindfulness from "./Mindfulness";
 import Affirmation from "./Affirmation";
 import NameTag from "./NameTag";
 import { useCustomState } from './state';
-import drawNametag, { NameTagBadge, HandWaveBadge } from "@/lib/drawNametag";
+import { NameTagBadge, HandWaveBadge, drawEverythingToImage } from "@/lib/draw_badge_api";
 
 import { createFromConfig, ZoomApiWrapper } from "@/lib/zoomapi";
 import { ConfigOptions }  from "@zoom/appssdk";
@@ -45,7 +45,9 @@ function App() {
        state.selectedWaveHand !== null ?
            {visible: true, waveText: state.waveHands[state.selectedWaveHand]} :
            {visible: false};
-    const imageData = drawNametag(nametag, handWave);
+
+    // TODO: Switch this to use DrawBadgeApi
+    const imageData = drawEverythingToImage(nametag, handWave);
     
     console.log(state.selectedWaveHand)
     const configOptions: ConfigOptions = {

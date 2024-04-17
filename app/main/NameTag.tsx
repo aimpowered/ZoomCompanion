@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import Switch from '@mui/material/Switch';
-import drawNametag, { NameTagBadge, HandWaveBadge } from "@/lib/drawNametag";
+import { NameTagBadge, HandWaveBadge, drawEverythingToImage } from "@/lib/draw_badge_api";
 import debounce from 'lodash/debounce';
 import FormControlLabel from '@mui/material/FormControlLabel';
 
@@ -56,7 +56,8 @@ function NameTag({
            {visible: true, waveText: waveHands[selectedWaveHand]} :
            {visible: false};
 
-    const imageData = drawNametag(nametag, handWave);
+    // TODO: Switch this to use DrawBadgeApi
+    const imageData = drawEverythingToImage(nametag, handWave);
 
     console.log(selectedWaveHand)
     const configOptions: ConfigOptions = {
