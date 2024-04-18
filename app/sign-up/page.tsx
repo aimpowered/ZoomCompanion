@@ -35,8 +35,8 @@ return (
             <div className="max-w-md w-full p-6">
                 <h2 className="text-2xl font-semibold mb-6 text-center">Create an account</h2>
                 {isUserCreated && (
-                    <div class="success-alert" role="alert">
-                      <span class="font-medium">User created successfully!</span>
+                    <div className="success-alert" role="alert">
+                      <span className="font-medium">User created successfully!</span>
                     </div>
                 )}
                 <form className="space-y-4" onSubmit={handleSubmit}>
