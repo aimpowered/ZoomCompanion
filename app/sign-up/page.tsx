@@ -1,7 +1,7 @@
 // Signup Page - User sign up only
 "use client";
 import React, { ChangeEventHandler, FormEventHandler, useState } from "react";
-import Alert from "@/components/Alert"; // Import the Alert component
+import '../css/sign-up.css'; // Import CSS file
 
 const SignUp = () => {
     const [busy, setBusy] = useState(false);
@@ -35,7 +35,9 @@ return (
             <div className="max-w-md w-full p-6">
                 <h2 className="text-2xl font-semibold mb-6 text-center">Create an account</h2>
                 {isUserCreated && (
-                    <Alert value="User created successfully!"  />
+                    <div class="success-alert" role="alert">
+                      <span class="font-medium">User created successfully!</span>
+                    </div>
                 )}
                 <form className="space-y-4" onSubmit={handleSubmit}>
                     <div>
