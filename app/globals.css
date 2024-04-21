@@ -88,7 +88,7 @@ label,input{
   color: #ffffff; /* White text, change if needed */
   padding: 10px 0px 10px 0px;
   text-align: center;
-  font-size: 24px;
+  font-size: 32px;
   border-radius: 10px; /* Adjust as needed */
   width: 100%; /* Full width */
   background: linear-gradient(#98b8cd, #cbb3e5); /* Example gradient colors */
