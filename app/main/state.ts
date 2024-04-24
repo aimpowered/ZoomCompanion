@@ -12,8 +12,6 @@ interface State {
   waveHands: string[];
   selectedAffirmation: string;
   allAffirmations: Button[];
-  currentNameTag: string[]
-  nameTagStatus: boolean;
 }
 
 const initialState: State = {
@@ -34,9 +32,6 @@ const initialState: State = {
     { id: 4, text: 'Feel the tension and proceed' },
     { id: 5, text: 'I have the right to stutter' },
   ],
-
-  currentNameTag: ['', '', '', ''],
-  nameTagStatus:false,
 };
 
 export const useCustomState = () => {

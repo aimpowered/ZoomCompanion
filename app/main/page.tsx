@@ -11,19 +11,14 @@ import Affirmation from "./Affirmation";
 import { useCustomState } from './state';
 import { NameTagContent, NameTagForm } from "@/components/NameTagForm";
 import { HandWaveBadge, DrawBadgeApi } from "@/lib/draw_badge_api";
-
 import { createFromConfig, ZoomApiWrapper } from "@/lib/zoomapi";
 import { ConfigOptions }  from "@zoom/appssdk";
 
-
-type Apis = "setVirtualForeground" | "removeVirtualForeground"
-const apiList: Apis[] = [
-  "setVirtualForeground",
-  "removeVirtualForeground",
-];
-
 const zoomConfigOptions: ConfigOptions = {
-  capabilities: apiList
+  capabilities: [
+    "setVirtualForeground",
+    "removeVirtualForeground",
+  ]
 };
 const zoomApi: ZoomApiWrapper = createFromConfig(zoomConfigOptions);
 const foregroundDrawer: DrawBadgeApi = new DrawBadgeApi(zoomApi);
@@ -57,20 +52,12 @@ function App() {
            {visible: false};
 
     foregroundDrawer.drawHandWave(handWave);
-    
-    console.log(state.selectedWaveHand);
   };
 
   //TODO: store the new nametag content into DB
   const updateNameTagContent: SubmitHandler<NameTagContent> = (data) => {
     setNameTagContent(data);
-    foregroundDrawer.drawNameTag({
-      visible: data.visible,
-      fullName: data.fullName,
-      preferredName: data.preferredName,
-      pronouns: data.pronouns,
-      disclosure: data.disclosure,
-    });
+    foregroundDrawer.drawNameTag(data);
   };
 
   return (

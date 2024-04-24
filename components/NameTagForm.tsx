@@ -30,19 +30,6 @@ export function NameTagForm({
 
   return (
     <form onSubmit={handleSubmit(onNameTagContentChange)}>
-      <Controller
-        control={control}
-        name="visible"
-        defaultValue={false}
-        render={({ field: { onChange, value } }) => (
-          <FormControlLabel
-            control={
-              <Checkbox checked={value} onChange={onChange} />
-            }
-            label="Display Name Tag"
-          />
-        )}
-      />
       <div>
         <label>Full Name</label>
         <input
@@ -79,6 +66,22 @@ export function NameTagForm({
           className="text-input"
           defaultValue={content.disclosure}
           {...register("disclosure")}
+        />
+      </div>
+      <div>
+        <Controller
+          control={control}
+          name="visible"
+          defaultValue={content.visible}
+          render={({ field: { onChange, value } }) => (
+            <FormControlLabel
+              control={
+                <Checkbox checked={value} onChange={onChange} />
+              }
+              label="Display Name Tag"
+              labelPlacement="end"
+            />
+          )}
         />
       </div>
       <input type="submit" />

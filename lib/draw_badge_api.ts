@@ -26,9 +26,6 @@ export class DrawBadgeApi {
   constructor(private zoomApiWrapper: ZoomApiWrapper) {}
 
   private forceDrawing() {
-    //TODO: remove debugging code after finishing handWave component refactoring
-    console.log(this.nametag);
-    console.log(this.handwave);
     const imageData = drawEverythingToImage(this.nametag, this.handwave);
     return this.zoomApiWrapper.setVirtualForeground(imageData);
   }
