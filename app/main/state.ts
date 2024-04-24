@@ -64,40 +64,10 @@ export const useCustomState = () => {
     }));
   };
 
-  const setCurrentNameTag = (newNametag: string[]) => {
-    setState((prevState) => {
-      // Check if the new value is different before updating state
-      if (JSON.stringify(prevState.currentNameTag) !== JSON.stringify(newNametag)) {
-        return {
-          ...prevState,
-          currentNameTag: newNametag,
-        };
-      }
-      return prevState;
-    });
-
-    // console.log(newNametag);
-  };
-
-  const setNameTagStatus = (newNameTagStatus: boolean) => {
-    setState((prevState) => {
-      // Check if the new value is different before updating state
-      if (prevState.nameTagStatus !== newNameTagStatus) {
-        return {
-          ...prevState,
-          nameTagStatus: newNameTagStatus,
-        };
-      }
-      return prevState;
-    });
-  };
-
   return {
     state,
     setSelectedWaveHand,
     setCurrentAffirmation,
     setAllAffirmations,
-    setCurrentNameTag,
-    setNameTagStatus
   };
 };

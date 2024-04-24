@@ -26,6 +26,9 @@ export class DrawBadgeApi {
   constructor(private zoomApiWrapper: ZoomApiWrapper) {}
 
   private forceDrawing() {
+    //TODO: remove debugging code after finishing handWave component refactoring
+    console.log(this.nametag);
+    console.log(this.handwave);
     const imageData = drawEverythingToImage(this.nametag, this.handwave);
     return this.zoomApiWrapper.setVirtualForeground(imageData);
   }
@@ -41,7 +44,8 @@ export class DrawBadgeApi {
   }
 }
 
-/** @deprecated Use DrawBadgeApi instead */
+// TODO: make sure the imageData scale and resize correctly based on window size.
+//       make need to make some more Zoom API calls to get user window size.
 export function drawEverythingToImage(nametag: NameTagBadge, handWave: HandWaveBadge): ImageData {
   const canvas = document.createElement('canvas');
   const context = canvas.getContext('2d')!;
