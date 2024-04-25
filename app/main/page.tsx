@@ -3,7 +3,7 @@
 "use client";
 
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { SubmitHandler } from "react-hook-form";
 import Tabs from "./Tabs";
 import Mindfulness from "./Mindfulness";
@@ -13,6 +13,7 @@ import { NameTagContent, NameTagForm } from "@/components/NameTagForm";
 import { HandWaveBadge, DrawBadgeApi } from "@/lib/draw_badge_api";
 import { createFromConfig, ZoomApiWrapper } from "@/lib/zoomapi";
 import { ConfigOptions }  from "@zoom/appssdk";
+import { getSession } from 'next-auth/react';
 
 const zoomConfigOptions: ConfigOptions = {
   capabilities: [
@@ -32,7 +33,6 @@ function App() {
   setAllAffirmations,
   } = useCustomState();
   
-  //TODO: initialize nametag with stored values
   const [nameTagContent, setNameTagContent] = useState<NameTagContent>({
     visible:false,
     fullName:"",
@@ -40,6 +40,8 @@ function App() {
     pronouns:"",
     disclosure:"",
   });
+
+  const [nameTagIsLoaded, setNameTagIsLoaded] = useState(false);
 
   // TODO: refactor HandWave component to maintain the selected state there
   //       only use the callback function to redraw when the state is changed.
@@ -54,11 +56,49 @@ function App() {
     foregroundDrawer.drawHandWave(handWave);
   };
 
-  //TODO: store the new nametag content into DB
   const updateNameTagContent: SubmitHandler<NameTagContent> = (data) => {
     setNameTagContent(data);
     foregroundDrawer.drawNameTag(data);
+
+    // Update nametag in DB
+    updateNameTagInDB(data as NameTagContent);
   };
+
+  const fetchNametagFromDB = async () => {
+    const session = await getSession();
+
+    if (session && session.user) {
+      await fetch("/api/auth/users/fetchUserData/nameTag", { 
+        method: "POST",
+        body: JSON.stringify({
+          email: session.user.email,
+        }),
+      }).then((res) => res.json()).then((resJson) => {
+        if (resJson.success && resJson.nameTag) {
+          setNameTagContent(resJson.nameTag);
+        }
+        setNameTagIsLoaded(true);
+      });
+    }
+  }
+
+  const updateNameTagInDB = async (newNameTag: NameTagContent) => {
+    const session = await getSession();
+
+    if (session && session.user) {
+      await fetch("/api/auth/users/updateUserData/nameTag", { 
+        method: "POST",
+        body: JSON.stringify({
+          email: session.user.email,
+          nameTag: newNameTag
+        }),
+      }).then((res) => res.json());
+    }
+  };
+
+  useEffect(() => {
+    fetchNametagFromDB();
+  }, []);
 
   return (
     <div>
@@ -91,10 +131,10 @@ function App() {
           </div>
 
           <div page-label="nametag">
-            <NameTagForm
+            {nameTagIsLoaded && <NameTagForm
               content={nameTagContent}
               onNameTagContentChange={updateNameTagContent}
-            />
+            />}
           </div>
 
           <div page-label="mindfulness">
