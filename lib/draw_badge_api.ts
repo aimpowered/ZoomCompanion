@@ -46,7 +46,7 @@ export class DrawBadgeApi {
 
 // TODO: make sure the imageData scale and resize correctly based on window size.
 //       make need to make some more Zoom API calls to get user window size.
-export function drawEverythingToImage(nametag: NameTagBadge, handWave: HandWaveBadge): ImageData {
+function drawEverythingToImage(nametag: NameTagBadge, handWave: HandWaveBadge): ImageData {
   const canvas = document.createElement('canvas');
   const context = canvas.getContext('2d')!;
   canvas.width = 1600; // Width of the canvas
