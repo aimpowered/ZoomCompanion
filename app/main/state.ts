@@ -8,22 +8,11 @@ interface Button {
 }
 
 interface State {
-  selectedWaveHand: number | null;
-  waveHands: string[];
   selectedAffirmation: string;
   allAffirmations: Button[];
 }
 
 const initialState: State = {
-  selectedWaveHand: null,
-  waveHands: [
-    '👋',
-    '👋 I\'m not done',
-    '👋 Question',
-    '👋 Agree',
-    '👋 Different Opinion',
-    '👋 Support',
-  ],
   selectedAffirmation: 'Say what I want to say, whatever happens will help me grow',
   allAffirmations: [
     { id: 1, text: 'Say what I want to say, whatever happens will help me grow' },
@@ -36,14 +25,6 @@ const initialState: State = {
 
 export const useCustomState = () => {
   const [state, setState] = useState<State>(initialState);
-
-  const setSelectedWaveHand = (newSelectedWaveHand: number) => {
-    setState((prevState) => ({
-      ...prevState,
-      selectedWaveHand: prevState.selectedWaveHand === newSelectedWaveHand ? null : newSelectedWaveHand,
-    }));
-  };
-
 
   const setCurrentAffirmation = (newAffirmation: string) => {
     setState((prevState) => ({
@@ -61,7 +42,6 @@ export const useCustomState = () => {
 
   return {
     state,
-    setSelectedWaveHand,
     setCurrentAffirmation,
     setAllAffirmations,
   };

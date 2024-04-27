@@ -29,62 +29,68 @@ export function NameTagForm({
   const { register, handleSubmit, control } = useForm<NameTagContent>();
 
   return (
-    <form onSubmit={handleSubmit(onNameTagContentChange)}>
-      <div>
-        <label>Full Name</label>
-        <input
-          className="text-input"
-          defaultValue={content.fullName}
-          {...register("fullName", { required: true })}
-        />
+    <div className="nametag-container">
+      <div className="header">
+        <h2 className="title">Name Tag</h2>
       </div>
-      <div>
-        <label>Preferred Name</label>
-        <input
-          className="text-input"
-          defaultValue={content.preferredName}
-          {...register("preferredName")}
-        />
-      </div>
-      <div>
-        <label>Pronouns</label>
-        <select
-          className="select-input"
-          defaultValue={content.pronouns}
-          {...register("pronouns")}
-        >
-          <option value="">Select Pronouns</option>
-          <option value="He/Him">He/Him</option>
-          <option value="She/Her">She/Her</option>
-          <option value="They/Them">They/Them</option>
-          <option value="other">Other</option>
-        </select>
-      </div>
-      <div>
-        <label>Self Disclosure</label>
-        <input
-          className="text-input"
-          defaultValue={content.disclosure}
-          {...register("disclosure")}
-        />
-      </div>
-      <div>
-        <Controller
-          control={control}
-          name="visible"
-          defaultValue={content.visible}
-          render={({ field: { onChange, value } }) => (
-            <FormControlLabel
-              control={
-                <Checkbox checked={value} onChange={onChange} />
-              }
-              label="Display Name Tag"
-              labelPlacement="end"
-            />
-          )}
-        />
-      </div>
-      <input type="submit" />
-    </form>
+
+      <form onSubmit={handleSubmit(onNameTagContentChange)}>
+        <div>
+          <label>Full Name</label>
+          <input
+            className="text-input"
+            defaultValue={content.fullName}
+            {...register("fullName", { required: true })}
+          />
+        </div>
+        <div>
+          <label>Preferred Name</label>
+          <input
+            className="text-input"
+            defaultValue={content.preferredName}
+            {...register("preferredName")}
+          />
+        </div>
+        <div>
+          <label>Pronouns</label>
+          <select
+            className="select-input"
+            defaultValue={content.pronouns}
+            {...register("pronouns")}
+          >
+            <option value="">Select Pronouns</option>
+            <option value="He/Him">He/Him</option>
+            <option value="She/Her">She/Her</option>
+            <option value="They/Them">They/Them</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div>
+          <label>Self Disclosure</label>
+          <input
+            className="text-input"
+            defaultValue={content.disclosure}
+            {...register("disclosure")}
+          />
+        </div>
+        <div>
+          <Controller
+            control={control}
+            name="visible"
+            defaultValue={content.visible}
+            render={({ field: { onChange, value } }) => (
+              <FormControlLabel
+                control={
+                  <Checkbox checked={value} onChange={onChange} />
+                }
+                label="Display Name Tag"
+                labelPlacement="end"
+              />
+            )}
+          />
+        </div>
+        <input type="submit" />
+      </form>
+    </div>
   );
 }
