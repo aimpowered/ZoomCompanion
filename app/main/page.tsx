@@ -68,15 +68,17 @@ function App() {
     const session = await getSession();
 
     if (session && session.user) {
-      await fetch("/api/auth/users/fetchUserData/nameTag", { 
-        method: "POST",
-        body: JSON.stringify({
-          email: session.user.email,
-        }),
-      }).then((res) => res.json()).then((resJson) => {
+      await fetch("/api/auth/users/fetchUserData/nameTag?userEmail=" + session.user.email, { method: "GET" })
+      .then((res) => res.json())
+      .then((resJson) => {
         if (resJson.success && resJson.nameTag) {
           setNameTagContent(resJson.nameTag);
         }
+        setNameTagIsLoaded(true);
+      })
+      .catch((error) => {
+        // Nametag not yet set. Set the nameTagIsLoaded flag for now to allow the user to fill in their nametag.
+        console.error(error);
         setNameTagIsLoaded(true);
       });
     }

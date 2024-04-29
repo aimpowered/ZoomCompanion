@@ -13,7 +13,6 @@ interface UserDocument extends Document {
     // affirmations: string[];
     // selectedAffirmation: string;
     // waveHands: string[];
-    // selectedWaveHand: string;
 }
 
 interface Methods {
@@ -35,8 +34,7 @@ const userSchema = new Schema<UserDocument, {}, Methods>({
     },
     // affirmations: [{ type: String }],
     // selectedAffirmation: { type: String },
-    // waveHands: [{ type: String }],
-    // selectedWaveHand: { type: String }
+    // waveHands: [{ type: String }]
 });
 
 //Hash the password before saving
