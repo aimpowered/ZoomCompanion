@@ -13,7 +13,8 @@ import { NameTagContent, NameTagForm } from "@/components/NameTagForm";
 import { HandWaveBadge, DrawBadgeApi } from "@/lib/draw_badge_api";
 import { createFromConfig, ZoomApiWrapper } from "@/lib/zoomapi";
 import { ConfigOptions }  from "@zoom/appssdk";
-import { getSession } from 'next-auth/react';
+import { fetchNametagFromDB, updateNameTagInDB } from '@/lib/nametag_db';
+// import { getSession } from 'next-auth/react';
 
 const zoomConfigOptions: ConfigOptions = {
   capabilities: [
@@ -64,42 +65,13 @@ function App() {
     updateNameTagInDB(data as NameTagContent);
   };
 
-  const fetchNametagFromDB = async () => {
-    const session = await getSession();
-
-    if (session && session.user) {
-      await fetch("/api/auth/users/fetchUserData/nameTag?userEmail=" + session.user.email, { method: "GET" })
-      .then((res) => res.json())
-      .then((resJson) => {
-        if (resJson.success && resJson.nameTag) {
-          setNameTagContent(resJson.nameTag);
-        }
-        setNameTagIsLoaded(true);
-      })
-      .catch((error) => {
-        // Nametag not yet set. Set the nameTagIsLoaded flag for now to allow the user to fill in their nametag.
-        console.error(error);
-        setNameTagIsLoaded(true);
-      });
-    }
-  }
-
-  const updateNameTagInDB = async (newNameTag: NameTagContent) => {
-    const session = await getSession();
-
-    if (session && session.user) {
-      await fetch("/api/auth/users/updateUserData/nameTag", { 
-        method: "POST",
-        body: JSON.stringify({
-          email: session.user.email,
-          nameTag: newNameTag
-        }),
-      }).then((res) => res.json());
-    }
-  };
-
   useEffect(() => {
-    fetchNametagFromDB();
+    fetchNametagFromDB().then((newNameTag) => {
+      if (newNameTag !== undefined) {
+        setNameTagContent(newNameTag);
+      }
+      setNameTagIsLoaded(true);
+    });
   }, []);
 
   return (
