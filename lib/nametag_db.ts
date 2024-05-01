@@ -5,7 +5,7 @@ export async function fetchNametagFromDB(): Promise<NameTagContent | undefined> 
     const session = await getSession();
 
     if (session && session.user) {
-        var nameTagToReturn = undefined;
+        let nameTagToReturn = undefined;
 
         await fetch("/api/auth/users/fetchUserData/nameTag?userEmail=" + session.user.email, { method: "GET" })
         .then((res) => res.json())
@@ -45,4 +45,4 @@ export async function updateNameTagInDB(newNameTag: NameTagContent) {
             console.error(error);
         });
     }
-};
+}
