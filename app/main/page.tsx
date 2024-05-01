@@ -11,6 +11,7 @@ import Affirmation from "./Affirmation";
 import { useCustomState } from './state';
 import { NameTagContent, NameTagForm } from "@/components/NameTagForm";
 import { WaveHandPicker } from "@/components/WaveHandPicker";
+import { AffirmationCarousel } from '@/components/AffirmationCarousel';
 import { HandWaveBadge, DrawBadgeApi } from "@/lib/draw_badge_api";
 import { createFromConfig, ZoomApiWrapper } from "@/lib/zoomapi";
 import { ConfigOptions }  from "@zoom/appssdk";
@@ -33,8 +34,15 @@ const defaultWaveHandButtons = [
     'Support',
 ];
 
+const defaultAffirmations = [
+    'Say what I want to say, whatever happens will help me grow',
+    'I can take up space',
+    'I have an important voice',
+    'Feel the tension and proceed',
+    'I have the right to stutter',
+]
+
 function App() {
- 
   const { state, 
   setCurrentAffirmation,
   setAllAffirmations,
@@ -65,9 +73,9 @@ function App() {
   return (
     <div>
       <div className="header">
-        <div className="self-confirm">
-          <h1>{state.selectedAffirmation}</h1>
-        </div>
+        <AffirmationCarousel
+          initialAffirmations={defaultAffirmations}
+        />
       </div>
 
       <WaveHandPicker
