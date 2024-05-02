@@ -14,7 +14,6 @@ import { HandWaveBadge, DrawBadgeApi } from "@/lib/draw_badge_api";
 import { createFromConfig, ZoomApiWrapper } from "@/lib/zoomapi";
 import { ConfigOptions }  from "@zoom/appssdk";
 import { fetchNametagFromDB, updateNameTagInDB } from '@/lib/nametag_db';
-// import { getSession } from 'next-auth/react';
 
 const zoomConfigOptions: ConfigOptions = {
   capabilities: [
