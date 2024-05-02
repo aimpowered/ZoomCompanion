@@ -62,7 +62,7 @@ function App() {
     foregroundDrawer.drawNameTag(data);
 
     // Update nametag in DB
-    updateNameTagInDB(data as NameTagContent);
+    updateNameTagInDB(data);
   };
 
   useEffect(() => {
