@@ -10,9 +10,6 @@ interface UserDocument extends Document {
     password: string;
     role: "admin" | "user";
     nameTag: NameTagContent;
-    // affirmations: string[];
-    // selectedAffirmation: string;
-    // waveHands: string[];
 }
 
 interface Methods {
@@ -31,10 +28,7 @@ const userSchema = new Schema<UserDocument, {}, Methods>({
         pronouns: { type: String },
         disclosure: { type: String },
         visible: { type: Boolean }
-    },
-    // affirmations: [{ type: String }],
-    // selectedAffirmation: { type: String },
-    // waveHands: [{ type: String }]
+    }
 });
 
 //Hash the password before saving
