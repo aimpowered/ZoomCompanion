@@ -1,8 +1,11 @@
-// Handle updating the user's nametag
 import { NameTagContent } from "@/components/NameTagForm";
 import startDB from "@/lib/db";
 import UserModel from "@/models/userModel";
 import { NextRequest, NextResponse } from "next/server";
+
+/**
+ * GET request to fetch the user's nametag
+ */
 
 type FetchUserNametagResponse = NextResponse<{
   success?: boolean;
@@ -10,7 +13,6 @@ type FetchUserNametagResponse = NextResponse<{
   nameTag?: NameTagContent;
 }>;
 
-// Make a GET request to fetch a user's nametag
 export const GET = async (req: NextRequest): Promise<FetchUserNametagResponse> => {
     const userEmail = req.nextUrl.searchParams.get("userEmail");
 
@@ -42,4 +44,25 @@ export const GET = async (req: NextRequest): Promise<FetchUserNametagResponse> =
       },
       { status: 400 });
     }
+};
+
+/**
+ * POST request to update the user's nametag
+ */
+
+interface UpdateUserNametagRequest {
+    email: string;
+    nameTag: NameTagContent;
+}
+
+type UpdateUserNametagResponse = NextResponse<{ success?: boolean; error?: string }>;
+
+export const POST = async (req: Request): Promise<UpdateUserNametagResponse> => {
+    const body = (await req.json()) as UpdateUserNametagRequest;
+
+    await startDB();
+
+    await UserModel.updateOne({ email: body.email }, { nameTag: body.nameTag });
+
+    return NextResponse.json({ success: true, }, { status: 200 });
 };
