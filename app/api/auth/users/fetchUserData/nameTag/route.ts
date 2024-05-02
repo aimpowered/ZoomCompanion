@@ -38,7 +38,7 @@ export const GET = async (req: NextRequest): Promise<FetchUserNametagResponse> =
     else {
       return NextResponse.json({
         success: false,
-        error: "User does not exist."
+        error: "userEmail param not specified."
       },
       { status: 400 });
     }
