@@ -37,3 +37,7 @@
 .colored-switch .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track {
   background-color: #d68071; /* Set the track color using a hex value */
 }
+
+.nametag-container {
+    margin-bottom: 100px; /* Adjust this value as needed */
+}

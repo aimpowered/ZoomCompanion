@@ -22,11 +22,13 @@ const DISABLED_BADGE = { visible: false } as const;
 export class DrawBadgeApi {
   private nametag: NameTagBadge = DISABLED_BADGE;
   private handwave: HandWaveBadge = DISABLED_BADGE;
+  private videoWidth: number = 1600;
+  private videoHeight: number = 900;
 
   constructor(private zoomApiWrapper: ZoomApiWrapper) {}
 
   private forceDrawing() {
-    const imageData = drawEverythingToImage(this.nametag, this.handwave);
+    const imageData = drawEverythingToImage(this.nametag, this.handwave, this.videoWidth, this.videoHeight);
     return this.zoomApiWrapper.setVirtualForeground(imageData);
   }
 
@@ -39,15 +41,25 @@ export class DrawBadgeApi {
     this.handwave = handwave;
     return this.forceDrawing();
   }
+
+  drawCameraSizeChange(videoWidth: number, videoHeight: number) {
+    this.videoWidth = videoWidth;
+    this.videoHeight = videoHeight;
+    // console.log('it finally changed!!!!!!')
+    // console.log(videoWidth, videoHeight)
+    return this.forceDrawing();
+  }
 }
 
 // TODO: make sure the imageData scale and resize correctly based on window size.
 //       make need to make some more Zoom API calls to get user window size.
-function drawEverythingToImage(nametag: NameTagBadge, handWave: HandWaveBadge): ImageData {
+function drawEverythingToImage(nametag: NameTagBadge, handWave: HandWaveBadge, videoWidth: number, videoHeight: number): ImageData {
   const canvas = document.createElement('canvas');
   const context = canvas.getContext('2d')!;
-  canvas.width = 1600; // Width of the canvas
-  canvas.height = 900; // Height of the canvas
+  canvas.width = videoWidth; // Width of the canvas
+  canvas.height = videoHeight; // Height of the canvas
+
+  // console.log('inside function', canvas.width, canvas.height)
   context.clearRect(0, 0, canvas.width, canvas.height);
 
   if (nametag.visible) {
