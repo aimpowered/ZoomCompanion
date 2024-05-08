@@ -16,33 +16,30 @@ type FetchUserNametagResponse = NextResponse<{
 export const GET = async (req: NextRequest): Promise<FetchUserNametagResponse> => {
     const userEmail = req.nextUrl.searchParams.get("userEmail");
 
-    if (userEmail) {
+    if (!userEmail) {
+      return NextResponse.json({
+        success: false,
+        error: "userEmail param not specified."
+      },
+      { status: 400 });
+    }
+    else {
       await startDB();
-
       const user = await UserModel.findOne({ email: userEmail });
-
-      if (user) {
-        return NextResponse.json({
-          success: true,
-          nameTag: user?.nameTag
-        },
-        { status: 200 });
-      }
-      else {
+      if (!user) {
         return NextResponse.json({
           success: false,
           error: "User does not exist."
         },
         { status: 400 });
       }
-    }
-
-    else {
-      return NextResponse.json({
-        success: false,
-        error: "userEmail param not specified."
-      },
-      { status: 400 });
+      else {
+        return NextResponse.json({
+          success: true,
+          nameTag: user?.nameTag
+        },
+        { status: 200 });
+      }
     }
 };
 
