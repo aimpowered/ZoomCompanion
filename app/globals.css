@@ -84,23 +84,6 @@ label,input{
   fill: #d68071; /* Change to your desired hover color */
 }
 
-.self-affirm-card {
-  padding: 10px 0px 10px 0px;
-  border-radius: 10px; /* Adjust as needed */
-  width: 100%;
-  background: linear-gradient(#98b8cd, #cbb3e5); /* Example gradient colors */
-}
-
-.self-affirm-text {
-  color: #ffffff; /* White text, change if needed */
-  font-size: 32px;
-  text-align: center;
-  padding: 1.5rem;
-  justify-content: center;
-  align-items: center;
-  display: flex;
-}
-
 .header {
   width: 85%;
   padding: 0px 0px 0px 30px;
