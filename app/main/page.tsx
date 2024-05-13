@@ -15,15 +15,40 @@ import { AffirmationCarousel } from '@/components/AffirmationCarousel';
 import { HandWaveBadge, DrawBadgeApi } from "@/lib/draw_badge_api";
 import { createFromConfig, ZoomApiWrapper } from "@/lib/zoomapi";
 import { ConfigOptions }  from "@zoom/appssdk";
+import zoomSdk from "@zoom/appssdk";
 
 const zoomConfigOptions: ConfigOptions = {
   capabilities: [
     "setVirtualForeground",
     "removeVirtualForeground",
+    "onMyMediaChange",
   ]
 };
 const zoomApi: ZoomApiWrapper = createFromConfig(zoomConfigOptions);
+
 const foregroundDrawer: DrawBadgeApi = new DrawBadgeApi(zoomApi);
+
+// TODO: Ideally this should be in the /lib/draw_badge_api
+zoomSdk.config({
+    capabilities: [
+    "setVirtualForeground",
+    "removeVirtualForeground",
+    "onMyMediaChange",
+  ]
+})
+zoomSdk.onMyMediaChange((event) => {
+  console.log(event)
+  if (
+    event.media &&
+    'video' in event.media &&
+    event.media.video &&
+    event.media.video.state &&
+    typeof event.media.video.width === 'number' &&
+    typeof event.media.video.height === 'number'
+  ) {
+    foregroundDrawer.drawCameraSizeChange(event.media.video.width, event.media.video.height);
+  }
+});
 
 const defaultWaveHandButtons = [
     '',
