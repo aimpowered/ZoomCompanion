@@ -37,8 +37,15 @@ zoomSdk.config({
 })
 zoomSdk.onMyMediaChange((event) => {
   console.log(event)
-  if (event.media.video.state){
-    foregroundDrawer.drawCameraSizeChange(event.media.video.width, event.media.video.height)
+  if (
+    event.media &&
+    'video' in event.media &&
+    event.media.video &&
+    event.media.video.state &&
+    typeof event.media.video.width === 'number' &&
+    typeof event.media.video.height === 'number'
+  ) {
+    foregroundDrawer.drawCameraSizeChange(event.media.video.width, event.media.video.height);
   }
 });
 

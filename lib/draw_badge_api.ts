@@ -59,10 +59,6 @@ function drawEverythingToImage(nametag: NameTagBadge, handWave: HandWaveBadge, v
   canvas.width = videoWidth; // Width of the canvas
   canvas.height = videoHeight; // Height of the canvas
 
-  // Calculate proportional values based on original dimensions
-  const widthRatio = videoWidth / 1600;
-  const heightRatio = videoHeight / 900;
-
   // Apply transformations to maintain proportions
   const xFactor = videoWidth / 1600;
   const yFactor = videoHeight / 900;
