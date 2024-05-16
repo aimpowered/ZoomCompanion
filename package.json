@@ -19,9 +19,13 @@
     "@zoom/appssdk": "^0.16.15",
     "bcrypt": "^5.1.1",
     "canvas": "^2.11.2",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.1",
     "dotenv": "^16.3.1",
+    "embla-carousel-react": "^8.0.2",
     "html2canvas": "^1.4.1",
     "json-loader": "^0.5.7",
+    "lucide-react": "^0.376.0",
     "mongoose": "^8.0.3",
     "next": "^14.0.4",
     "next-auth": "^4.24.5",
@@ -30,6 +34,8 @@
     "react-hook-form": "^7.51.3",
     "react-modal": "^3.16.1",
     "react-router-dom": "^6.21.0",
+    "tailwind-merge": "^2.3.0",
+    "tailwindcss-animate": "^1.0.7",
     "ts-node": "^10.9.2"
   },
   "devDependencies": {

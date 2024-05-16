@@ -10,6 +10,8 @@ import Mindfulness from "./Mindfulness";
 import Affirmation from "./Affirmation";
 import { useCustomState } from './state';
 import { NameTagContent, NameTagForm } from "@/components/NameTagForm";
+import { WaveHandPicker } from "@/components/WaveHandPicker";
+import { AffirmationCarousel } from '@/components/AffirmationCarousel';
 import { HandWaveBadge, DrawBadgeApi } from "@/lib/draw_badge_api";
 import { createFromConfig, ZoomApiWrapper } from "@/lib/zoomapi";
 import { ConfigOptions }  from "@zoom/appssdk";
@@ -24,11 +26,25 @@ const zoomConfigOptions: ConfigOptions = {
 const zoomApi: ZoomApiWrapper = createFromConfig(zoomConfigOptions);
 const foregroundDrawer: DrawBadgeApi = new DrawBadgeApi(zoomApi);
 
+const defaultWaveHandButtons = [
+    '',
+    'I\'m not done',
+    'Question',
+    'Agree',
+    'Different Opinion',
+    'Support',
+];
+
+const defaultAffirmations = [
+    'Say what I want to say, whatever happens will help me grow',
+    'I can take up space',
+    'I have an important voice',
+    'Feel the tension and proceed',
+    'I have the right to stutter',
+]
 
 function App() {
- 
   const { state, 
-  setSelectedWaveHand,
   setCurrentAffirmation,
   setAllAffirmations,
   } = useCustomState();
@@ -64,6 +80,13 @@ function App() {
     updateNameTagInDB(data);
   };
 
+  const updateHandWaveBadge = (badge: HandWaveBadge) => {
+    foregroundDrawer.drawHandWave(badge);
+  };
+
+  //TODO: query and load user saved buttons;
+  const savedWaveHandButtons = defaultWaveHandButtons;
+  
   useEffect(() => {
     fetchNametagFromDB().then((newNameTag) => {
       if (newNameTag !== undefined) {
@@ -76,22 +99,15 @@ function App() {
   return (
     <div>
       <div className="header">
-        <div className="self-confirm">
-          <h1>{state.selectedAffirmation}</h1>
-        </div>
+        <AffirmationCarousel
+          initialAffirmations={defaultAffirmations}
+        />
       </div>
 
-      <div className="button-rows">
-        {state.waveHands.map((waveHand, index) => (
-          <button
-            key={index}
-            className={`wave-hand-button ${state.selectedWaveHand === index ? 'selected' : ''}`}
-            onClick={() => handleWaveHandsClick(index)}
-          >
-            {waveHand}
-          </button>
-        ))}
-      </div>
+      <WaveHandPicker
+        initialHands={savedWaveHandButtons}
+        updateHandWaveBadge={updateHandWaveBadge}
+      />
 
       <div>
         <Tabs>
