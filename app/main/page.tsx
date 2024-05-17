@@ -59,19 +59,6 @@ function App() {
 
   const [nameTagIsLoaded, setNameTagIsLoaded] = useState(false);
 
-  // TODO: refactor HandWave component to maintain the selected state there
-  //       only use the callback function to redraw when the state is changed.
-  const handleWaveHandsClick = (num: number) => {
-    setSelectedWaveHand(num)
-
-    const handWave: HandWaveBadge =
-       state.selectedWaveHand !== null ?
-           {visible: true, waveText: state.waveHands[state.selectedWaveHand]} :
-           {visible: false};
-
-    foregroundDrawer.drawHandWave(handWave);
-  };
-
   const updateNameTagContent: SubmitHandler<NameTagContent> = (data) => {
     setNameTagContent(data);
     foregroundDrawer.drawNameTag(data);
