@@ -33,6 +33,9 @@ export async function updateNameTagInDB(newNameTag: NameTagContent) {
     const session = await getSession();
 
     if (session && session.user) {
+        // The nametag visibility should always default to 'false' in the DB.
+        newNameTag.visible = false;
+
         await fetch("/api/auth/users/userData/nameTag", { 
             method: "POST",
             body: JSON.stringify({
