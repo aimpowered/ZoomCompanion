@@ -27,16 +27,17 @@ function Mindfullness() {
   return (
     <div className="mindfulness-container">
       <h2 className="title">Mindfulness</h2>
-      <div className="video-container">
-        {videos.map((video, index) => 
-            generateVideoPlayer({
+      {videos.map((video, index) => (
+          <div key={index}>
+            <h3 className="video-title">{index + 1}. {video.name}</h3>
+            {generateVideoPlayer({
                 name: video.name,
                 videoId: video.youtubeId,
                 label: video.label,
                 alt: video.alt
-            })
-        )}
-      </div>
+            })}
+          </div>
+        ))}
     </div>
   );
 }
