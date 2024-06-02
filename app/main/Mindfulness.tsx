@@ -27,9 +27,9 @@ function Mindfullness() {
   return (
     <div className="mindfulness-container">
       <h2 className="title">Mindfulness</h2>
-      {videos.map((video, index) => (
-          <div key={index}>
-            <h3 className="video-title">{index + 1}. {video.name}</h3>
+      {videos.map((video) => (
+          <div key={video.id}>
+            <h3 className="video-title">{video.name}</h3>
             {generateVideoPlayer({
                 name: video.name,
                 videoId: video.youtubeId,
