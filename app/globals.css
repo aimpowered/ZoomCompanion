@@ -304,3 +304,40 @@ label,input{
   margin-left: 10px;
   margin-right: 30px;
 }
+
+.separator {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin-top: 40px;
+  color: #718096;
+}
+
+.separator::before,
+.separator::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid #000;
+}
+
+.separator:not(:empty)::before {
+  margin-right: .25em;
+}
+
+.separator:not(:empty)::after {
+  margin-left: .25em;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center; /* Center the buttons horizontally */
+  margin-bottom: 20px; /* Add some bottom margin */
+}
+
+.button-icon {
+  width: 15%; /* Set button width to 15% of the button-container width */
+  margin: 2%;
+  height: auto; /* Maintain aspect ratio */
+  font-size: 2em; /* Set font size */
+  color: #d68071;
+}

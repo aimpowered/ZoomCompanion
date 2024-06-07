@@ -3,6 +3,7 @@ import startDB from "@/lib/db";
 import UserModel from "@/models/userModel";
 import NextAuth, { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+import GoogleProvider from "next-auth/providers/google"
 
 import { DefaultUser } from 'next-auth';
 declare module 'next-auth' {
@@ -18,6 +19,18 @@ const authOptions: NextAuthOptions = {
         strategy: "jwt",
     },
     providers: [
+
+        GoogleProvider({
+          clientId: process.env.GOOGLE_CLIENT_ID,
+          clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+          profile(profile) {
+            return {
+                id: profile.email,
+                name: profile.name,
+            }
+          },
+        }),
+
         CredentialsProvider({
             type: "credentials",
             credentials: {},
@@ -58,6 +71,13 @@ const authOptions: NextAuthOptions = {
                 (session.user as { role: string }).role = token.role as string;
             }
             return session;
+        },
+
+        async signIn({ user, account }) {
+            if (account?.provider === 'google' && user?.id) {
+                return { id: user.id, role: 'google user' };
+            }
+            return true;
         },
     },
 };
