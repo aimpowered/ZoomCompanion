@@ -20,9 +20,15 @@ interface NameTagProps {
 }
 
 //TODO: beautify the form, perhaps use Switch rather than Checkbox
-export function NameTagForm({ content, onNameTagContentChange }: NameTagProps) {
-  const { register, handleSubmit, control } = useForm<NameTagContent>();
-
+export function NameTagForm({
+  content,
+  onNameTagContentChange
+}: NameTagProps) {
+  const { register, handleSubmit, control, watch } = useForm<NameTagContent>();
+  const maxDisclosureLength = 25;
+  const disclosureValue = watch("disclosure", content.disclosure || "Personal details to share");
+  const isOverLimit = disclosureValue.length > maxDisclosureLength;
+  
   return (
     <div className="tab-container">
       <h2 className="tab-title">Name Tag</h2>
@@ -54,9 +60,18 @@ export function NameTagForm({ content, onNameTagContentChange }: NameTagProps) {
           <label>Self Disclosure</label>
           <input
             className="text-input"
-            defaultValue={content.disclosure}
-            {...register("disclosure")}
+            defaultValue={content.disclosure || "Personal details to share"}
+            {...register("disclosure", { maxLength: maxDisclosureLength })}
           />
+          <div className={`char-count ${isOverLimit ? 'warning' : ''}`}> 
+            <span>
+              {disclosureValue.length}/{maxDisclosureLength}
+            </span>
+            <span className="char-limit-info">
+              (Maximum characters allowed)
+            </span>
+            {isOverLimit && <span className="warning-message">Exceeded length limit!</span>}
+          </div>
         </div>
         <div className="form-container">
           <div className="controller-container">
