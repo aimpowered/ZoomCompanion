@@ -33,13 +33,6 @@
 }
 
 
-.nametag-container {
-    /* TODO: Update this with a responsive design that adjusts to the screen size rather than hard-coding the height. */
-    margin-bottom: 100px; /* Adjust this value as needed */
-    margin-left: 20px;
-    margin-right: 20px;
-}
-
 .form-container {
   display: flex;
   align-items: center;

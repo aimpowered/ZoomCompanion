@@ -1,16 +1,4 @@
 /* Mindfulness.css */
-.mindfulness-container {
-  margin-left: 20px;
-  margin-right: 20px;
-  margin-bottom: 100px;
-}
-
-.title {
-  font-size: 30px;
-  font-weight: bold;
-  display: inline-block;
-}
-
 .video-container {
   display: flex;
   flex-direction: column;

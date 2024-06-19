@@ -25,8 +25,8 @@ const generateVideoPlayer = (
 
 function Mindfullness() {
   return (
-    <div className="mindfulness-container">
-      <h2 className="title">Mindfulness</h2>
+    <div className="tab-container">
+      <h2 className="tab-title">Mindfulness</h2>
       {videos.map((video) => (
           <div key={video.name}>
             <h3 className="video-title">{video.name}</h3>

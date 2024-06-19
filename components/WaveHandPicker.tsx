@@ -3,6 +3,8 @@ import { useState } from 'react';
 import { WaveHandButton } from '@/components/WaveHandButton';
 import {HandWaveBadge } from '@/lib/draw_badge_api';
 
+import '@/app/css/Wavehand.css';
+
 const waveHandEmoji = '👋';
 
 interface WaveHandPickerProps {

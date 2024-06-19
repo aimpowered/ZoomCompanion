@@ -29,10 +29,8 @@ export function NameTagForm({
   const { register, handleSubmit, control } = useForm<NameTagContent>();
 
   return (
-    <div className="nametag-container">
-      <div className="header">
-        <h2 className="title">Name Tag</h2>
-      </div>
+    <div className="tab-container">
+      <h2 className="tab-title">Name Tag</h2>
 
       <form onSubmit={handleSubmit(onNameTagContentChange)}>
         <div>
