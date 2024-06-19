@@ -76,5 +76,19 @@
   background-color: #0056b3;
 }
 
+.carousel-button {
+  color: 'black';
+  background: transparent;
+}
 
+.carousel-button-disabled {
+  color: 'gray';
+  background: #eaecef;
+}
+
+.carousel-button-disabled, .carousel-button-disabled:hover {
+  background-color: #eaecef; /* Disabled state background */
+  pointer-events: none;
+  opacity: 0.5;
+}
 
