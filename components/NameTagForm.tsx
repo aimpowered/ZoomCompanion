@@ -26,7 +26,7 @@ export function NameTagForm({
 }: NameTagProps) {
   const { register, handleSubmit, control, watch } = useForm<NameTagContent>();
   const maxDisclosureLength = 25;
-  const disclosureValue = watch("disclosure", content.disclosure || "Personal details to share");
+  const disclosureValue = watch("disclosure", content.disclosure || "I have a stutter");
   const isOverLimit = disclosureValue.length > maxDisclosureLength;
   
   return (
@@ -60,7 +60,7 @@ export function NameTagForm({
           <label>Self Disclosure</label>
           <input
             className="text-input"
-            defaultValue={content.disclosure || "Personal details to share"}
+            defaultValue={content.disclosure || "I have a stutter"}
             {...register("disclosure", { maxLength: maxDisclosureLength })}
           />
           <div className={`char-count ${isOverLimit ? 'warning' : ''}`}> 
