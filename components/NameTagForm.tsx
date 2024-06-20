@@ -29,10 +29,8 @@ export function NameTagForm({
   const { register, handleSubmit, control } = useForm<NameTagContent>();
 
   return (
-    <div className="nametag-container">
-      <div className="header">
-        <h2 className="title">Name Tag</h2>
-      </div>
+    <div className="tab-container">
+      <h2 className="tab-title">Name Tag</h2>
 
       <form onSubmit={handleSubmit(onNameTagContentChange)}>
         <div>
@@ -73,23 +71,26 @@ export function NameTagForm({
             {...register("disclosure")}
           />
         </div>
-        <div>
-          <Controller
-            control={control}
-            name="visible"
-            defaultValue={content.visible}
-            render={({ field: { onChange, value } }) => (
-              <FormControlLabel
-                control={
-                  <Checkbox checked={value} onChange={onChange} />
-                }
-                label="Display Name Tag"
-                labelPlacement="end"
-              />
-            )}
-          />
+        <div className="form-container">
+          <div className="controller-container">
+            <Controller
+              control={control}
+              name="visible"
+              defaultValue={content.visible}
+              render={({ field: { onChange, value } }) => (
+                <FormControlLabel
+                  control={
+                    <Checkbox checked={value} onChange={onChange} />
+                  }
+                  label="Display Name Tag"
+                  labelPlacement="start"
+                  className="label-styling" 
+                />
+              )}
+            />
+            </div>
+          <input type="submit" className="submit-btn" />
         </div>
-        <input type="submit" />
       </form>
     </div>
   );

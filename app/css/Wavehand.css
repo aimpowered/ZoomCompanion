@@ -1,0 +1,30 @@
+/* Wavehand.css */
+.button-rows {
+  display: inline-block;
+  width: 95%;
+  margin-left: 30px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.wave-hand-button {
+  padding: 10px 20px;
+  background-color: transparent;
+  color: black;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  cursor: pointer;
+  margin: 5px;
+  font-size: 20px;
+}
+
+.wave-hand-button:hover {
+  background-color: #f0f0f0;
+}
+
+.wave-hand-button.selected {
+  background-color: #d68071;
+  color: white;
+  font-weight: bold;
+}
+

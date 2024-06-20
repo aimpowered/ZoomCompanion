@@ -1,10 +1,4 @@
 /* NameTag.css */
-.name-tag-container {
-  margin-left: 20px;
-  margin-right: 20px;
-  margin-bottom: 100px;
-}
-
 .label-text {
   font-weight: bold;
   font-size: 30px;
@@ -36,4 +30,41 @@
 
 .colored-switch .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track {
   background-color: #d68071; /* Set the track color using a hex value */
+}
+
+
+.form-container {
+  display: flex;
+  align-items: center;
+  padding: 0px;
+  margin-bottom: 10px;
+}
+
+.submit-btn {
+  padding: 8px 16px;
+  background-color: #d68071;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.submit-btn:hover {
+  background-color: #d6624a;
+}
+
+.label-styling {
+  margin-left: 0px;
+}
+
+.controller-container {
+  margin-right: 10px;
+  margin-left: 0px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 0px 5px 0px 5px; 
+}
+
+.controller-container:hover {
+  background-color: #f0f0f0; /* Change background color on hover */
 }

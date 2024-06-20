@@ -1,55 +1,37 @@
 /* Affirmation.css */
-.affirmation-container {
-  background-color: white;
-  width: 100vw;
-  height: 100vh;
-  margin-bottom: 100px;
+.self-affirm-carousel {
+  display: flex;
 }
 
-.header {
-  margin-left: 20px;
-  margin-right: 20px;
+.self-affirm-card {
+  position: relative;
+  padding: 10px 0px 10px 0px;
+  border-radius: 10px; /* Adjust as needed */
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(#98b8cd, #cbb3e5); /* Example gradient colors */
   align-items: center;
 }
 
-.title {
-  font-size: 30px;
-  font-weight: bold;
-  display: inline-block;
-  margin: 0;
+.self-affirm-text {
+  color: #ffffff; /* White text, change if needed */
+  font-size: 32px;
+  text-align: center;
+  padding: 1.5rem;
+  justify-content: center;
+  align-items: center;
+  display: flex;
 }
 
-.add-button {
-  border: none;
-  display: inline-block;
-  font-size: 24px;
-  padding: 10px;
-  width: 50px; /* Set a fixed width, adjust as needed */
-  height: 50px; /* Set a fixed height, adjust as needed */
-  box-sizing: border-box; /* Include padding in the total width */
-}
-
-.dropdown {
+.self-affirm-new-card-button {
   position: relative;
+  top: 45%;
+  left: 45%;
+  width: 10%;
+  height: 10%;
 }
 
-.dots-button {
-  border: none;
-}
-
-.dropdown-content {
-  position: absolute;
-  background-color: #f9f9f9;
-  min-width: 160px;
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-  z-index: 1;
-}
-
-.dropdown-action {
-  border: 0.5px solid black;
-}
-
-.Modal {
+.card-modal {
   position: fixed;
   top: 50%; /* Center the modal vertically */
   left: 50%; /* Center the modal horizontally */
@@ -64,7 +46,7 @@
 }
 
 
-.Modal-Body {
+.card-modal-body {
   padding: 10px; /* Adjust the padding as needed */
 }
 
@@ -78,7 +60,7 @@
 }
 
 /* Modal Buttons */
-.modal-button {
+.card-modal-button {
   padding: 10px 20px; 
   background-color: #007bff; 
   color: #fff;
@@ -90,7 +72,7 @@
   margin-left: 10px;
 }
 
-.Modal button:hover {
+.card-modal button:hover {
   background-color: #0056b3;
 }
 

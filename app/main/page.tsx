@@ -7,8 +7,6 @@ import { useState, useEffect } from 'react';
 import { SubmitHandler } from "react-hook-form";
 import Tabs from "./Tabs";
 import Mindfulness from "./Mindfulness";
-import Affirmation from "./Affirmation";
-import { useCustomState } from './state';
 import { NameTagContent, NameTagForm } from "@/components/NameTagForm";
 import { WaveHandPicker } from "@/components/WaveHandPicker";
 import { AffirmationCarousel } from '@/components/AffirmationCarousel';
@@ -16,6 +14,7 @@ import { HandWaveBadge, DrawBadgeApi } from "@/lib/draw_badge_api";
 import { createFromConfig, ZoomApiWrapper } from "@/lib/zoomapi";
 import { ConfigOptions }  from "@zoom/appssdk";
 import { fetchNametagFromDB, updateNameTagInDB } from '@/lib/nametag_db';
+import Divider from '@mui/material/Divider';
 
 const zoomConfigOptions: ConfigOptions = {
   capabilities: [
@@ -36,19 +35,14 @@ const defaultWaveHandButtons = [
 ];
 
 const defaultAffirmations = [
-    'Say what I want to say, whatever happens will help me grow',
-    'I can take up space',
-    'I have an important voice',
-    'Feel the tension and proceed',
-    'I have the right to stutter',
-]
+    {id: 0, text: 'Say what I want to say, whatever happens will help me grow' },
+    {id: 1, text: 'I can take up space'},
+    {id: 2, text: 'I have an important voice'},
+    {id: 3, text: 'Feel the tension and proceed'},
+    {id: 4, text: 'I have the right to stutter'},
+];
 
 function App() {
-  const { state, 
-  setCurrentAffirmation,
-  setAllAffirmations,
-  } = useCustomState();
-  
   const [nameTagContent, setNameTagContent] = useState<NameTagContent>({
     visible:false,
     fullName:"",
@@ -96,16 +90,11 @@ function App() {
         updateHandWaveBadge={updateHandWaveBadge}
       />
 
+
+      <Divider />
+      
       <div>
         <Tabs>
-          <div page-label="affirmation">
-            <Affirmation 
-              allAffirmations={state.allAffirmations}
-              setCurrentAffirmation={setCurrentAffirmation}
-              setAllAffirmations={setAllAffirmations}
-            />
-          </div>
-
           <div page-label="nametag">
             {nameTagIsLoaded && <NameTagForm
               content={nameTagContent}
@@ -117,9 +106,6 @@ function App() {
             <Mindfulness />
           </div>
 
-          <div page-label="wave-hands">
-            wave-hands here! this tab is also <em>extinct</em>!
-          </div>
         </Tabs>
       </div>
     </div>

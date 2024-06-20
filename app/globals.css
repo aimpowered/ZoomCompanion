@@ -84,169 +84,12 @@ label,input{
   fill: #d68071; /* Change to your desired hover color */
 }
 
-.self-affirm-card {
-  padding: 10px 0px 10px 0px;
-  border-radius: 10px; /* Adjust as needed */
-  width: 100%;
-  background: linear-gradient(#98b8cd, #cbb3e5); /* Example gradient colors */
-}
-
-.self-affirm-text {
-  color: #ffffff; /* White text, change if needed */
-  font-size: 32px;
-  text-align: center;
-  padding: 1.5rem;
-  justify-content: center;
-  align-items: center;
-  display: flex;
-}
-
 .header {
   width: 85%;
   padding: 0px 0px 0px 30px;
   margin-left: 10px;
   margin-right: 10px;
 }
-
-.button-rows {
-  display: inline-block;
-  width: 95%;
-  margin-left: 30px;
-  margin-top: 20px;
-}
-
-.wave-hand-button {
-  padding: 10px 20px;
-  background-color: transparent;
-  color: black;
-  border: 1px solid #ccc;
-  border-radius: 20px;
-  cursor: pointer;
-  margin: 5px;
-  font-size: 20px;
-}
-
-.wave-hand-button:hover {
-  background-color: #f0f0f0;
-}
-
-.wave-hand-button.selected {
-  background-color: #d68071;
-  color: white;
-  font-weight: bold;
-}
-
-
-.Modal {
-  position: fixed;
-  top: 50%; /* Center the modal vertically */
-  left: 50%; /* Center the modal horizontally */
-  transform: translate(-50%, -50%); /* Center the modal precisely */
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 5px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
-  max-width: 400px; /* Adjust the maximum width as needed */
-  width: 100%;
-  z-index: 1000; /* Ensure the modal is above other content */
-}
-
-
-.Modal-Body {
-  padding: 10px; /* Adjust the padding as needed */
-}
-
-.large-input {
-  width: 100%;
-  padding: 10px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  height: 100px;
-}
-
-
-/* Modal Buttons */
-.Modal button {
-  padding: 10px 20px; 
-  background-color: #007bff; 
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  margin-right: 5px;
-  margin-left: 10px;
-}
-
-.Modal button:hover {
-  background-color: #0056b3;
-}
-
-
-
-
-/* Style for the dropdown container */
-.dropdown {
-  position: relative;
-  display: block;
-  padding: 10px 20px;
-  background-color: transparent;
-  color: black;
-  border: 1px solid #ccc;
-  cursor: pointer;
-  margin: 5px;
-  font-size: 20px;
-}
-
-/* Style for the dots button */
-.dropdown .dots-button {
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  transition: transform 0.3s ease; /* Add a transition effect */
-}
-
-/* Style for the dropdown content (hidden by default) */
-.dropdown .dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f9f9f9;
-  min-width: 100px;
-  z-index: 1;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  border-radius: 4px;
-  top: 100%;
-  left: 70%;
-}
-
-/* Style for dropdown items */
-.dropdown .dropdown-content button {
-  width: 100%;
-  padding: 10px;
-  text-align: left;
-  border: none;
-  background-color: transparent;
-  cursor: pointer;
-}
-
-/* Show the dropdown content on hover */
-.dropdown:hover {
-  background-color: #d68071;
-}
-
-.dropdown:hover .dots-button{
-  color: white;
-  font-weight: bold;
-}
-
-.dropdown:hover .dropdown-content {
-  display: block;
-  background-color: white;
-}
-
-
-
 
 .tab-list {
   display: flex;
@@ -304,3 +147,20 @@ label,input{
   margin-left: 10px;
   margin-right: 30px;
 }
+
+/* TODO: Update this with a responsive design that adjusts to the screen size rather than hard-coding the margin bottom. */
+.tab-container {
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 20px;
+  margin-bottom: 100px;
+}
+
+.tab-title {
+  font-size: 30px;
+  font-weight: bold;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+

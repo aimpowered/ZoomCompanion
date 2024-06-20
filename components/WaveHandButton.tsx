@@ -1,5 +1,7 @@
 import React from "react";
 
+import '@/app/css/Wavehand.css';
+
 interface HandButtonProps {
   selected: boolean;
   onClick: () => void;
