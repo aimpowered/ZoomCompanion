@@ -23,7 +23,7 @@ const userSchema = new Schema<UserDocument, {}, Methods>({
     password: { type: String, required: true},
     role: { type: String, enum: ["admin", "user"], default: "user" },
     nameTag: {
-        fullName: { type: String },
+        // fullName: { type: String },
         preferredName: { type: String },
         pronouns: { type: String },
         disclosure: { type: String },
