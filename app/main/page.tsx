@@ -45,7 +45,6 @@ const defaultAffirmations = [
 function App() {
   const [nameTagContent, setNameTagContent] = useState<NameTagContent>({
     visible:false,
-    fullName:"",
     preferredName:"",
     pronouns:"",
     disclosure:"",
