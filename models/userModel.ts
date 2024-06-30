@@ -3,6 +3,7 @@
 import { Model, models, model, Document, Schema } from "mongoose";
 import bcrypt from "bcrypt";
 import { NameTagContent } from "@/components/NameTagForm";
+import { AffirmationContent } from "@/components/AffirmationCarousel";
 
 interface UserDocument extends Document {
     email: string;
@@ -10,6 +11,7 @@ interface UserDocument extends Document {
     password: string;
     role: "admin" | "user";
     nameTag: NameTagContent;
+    affirmationCards: AffirmationContent[];
 }
 
 interface Methods {
@@ -27,9 +29,17 @@ const userSchema = new Schema<UserDocument, {}, Methods>({
         preferredName: { type: String },
         pronouns: { type: String },
         disclosure: { type: String },
-        visible: { type: Boolean }
-    }
-});
+        visible: { type: Boolean },
+    },
+    affirmationCards: {
+        type: [
+            {
+                id: { type: Number },
+                text: { type: String },
+            },
+        ],
+        default: [],
+}});
 
 //Hash the password before saving
 userSchema.pre("save", async function (next) {
