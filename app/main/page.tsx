@@ -9,12 +9,13 @@ import Tabs from "./Tabs";
 import Mindfulness from "./Mindfulness";
 import { NameTagContent, NameTagForm } from "@/components/NameTagForm";
 import { WaveHandPicker } from "@/components/WaveHandPicker";
-import { AffirmationCarousel } from '@/components/AffirmationCarousel';
+import { AffirmationCarousel, AffirmationContent } from '@/components/AffirmationCarousel';
 import { HandWaveBadge, DrawBadgeApi } from "@/lib/draw_badge_api";
 import { createFromConfig, ZoomApiWrapper } from "@/lib/zoomapi";
 import { ConfigOptions }  from "@zoom/appssdk";
 import { fetchNametagFromDB, updateNameTagInDB } from '@/lib/nametag_db';
 import Divider from '@mui/material/Divider';
+import { fetchAffirmationCardsFromDB } from '@/lib/affirmation_db';
 
 const zoomConfigOptions: ConfigOptions = {
   capabilities: [
@@ -51,6 +52,10 @@ function App() {
     disclosure:"",
   });
 
+  const [affirmationContent, setAffirmationContent] = useState<AffirmationContent[]>(defaultAffirmations);
+
+  const [affirmationIsLoaded, setAffirmationIsLoaded] = useState(false);
+
   const [nameTagIsLoaded, setNameTagIsLoaded] = useState(false);
 
   const updateNameTagContent: SubmitHandler<NameTagContent> = (data) => {
@@ -75,14 +80,22 @@ function App() {
       }
       setNameTagIsLoaded(true);
     });
+
+    fetchAffirmationCardsFromDB().then((affirmationCards)=> {
+      if (affirmationCards !== undefined) {
+        setAffirmationContent(affirmationCards);
+      }
+      setAffirmationIsLoaded(true);
+    })
   }, []);
 
   return (
     <div>
       <div className="header">
+        {affirmationIsLoaded &&
         <AffirmationCarousel
-          initialAffirmations={defaultAffirmations}
-        />
+          initialAffirmations={affirmationContent}
+        />}
       </div>
 
       <WaveHandPicker

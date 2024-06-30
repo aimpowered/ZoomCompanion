@@ -10,6 +10,12 @@ import {
 } from "@/components/ui/carousel"
 
 import '@/app/css/Affirmation.css'
+import { updateAffirmationCardsInDB } from '@/lib/affirmation_db';
+
+export interface AffirmationContent {
+  id: number;
+  text: string;
+}
 
 interface AffirmationCarouselProps {
   initialAffirmations: AffirmationCardContent[];
@@ -32,6 +38,7 @@ export function AffirmationCarousel({
         }
     });
     setAffirmationList(updatedAffirmationList);
+    saveAffirmationList(affirmationList);
   }
 
   // TODO: propogate the change to root to delete card in DB
@@ -39,6 +46,7 @@ export function AffirmationCarousel({
     setAffirmationList(
       affirmationList.filter(a => a.id != id)
     );
+    saveAffirmationList(affirmationList);
   };
 
   // TODO: propogate the change to root to add new card to DB
@@ -51,7 +59,14 @@ export function AffirmationCarousel({
     });
     const newCard = {id: maxId + 1, text: cardText};
     setAffirmationList([...affirmationList, newCard]);
+    saveAffirmationList(affirmationList);
   };
+
+  const saveAffirmationList = (affirmationList: AffirmationContent[]) => {
+    console.log("Saving affirmation list to DB");
+    console.log(affirmationList);
+    updateAffirmationCardsInDB(affirmationList)
+  }
 
   return (
     <Carousel>
