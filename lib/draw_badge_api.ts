@@ -39,6 +39,10 @@ export class DrawBadgeApi {
     this.handwave = handwave;
     return this.forceDrawing();
   }
+
+  sendDisclosureChatMessage(disclosureMessage: string, userName?: string) {
+    this.zoomApiWrapper.sendChatMessage(disclosureMessage, userName);
+  }
 }
 
 // TODO: make sure the imageData scale and resize correctly based on window size.

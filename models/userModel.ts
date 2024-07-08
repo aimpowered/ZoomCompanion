@@ -10,6 +10,7 @@ interface UserDocument extends Document {
     password: string;
     role: "admin" | "user";
     nameTag: NameTagContent;
+    botId: string;
 }
 
 interface Methods {
@@ -27,8 +28,11 @@ const userSchema = new Schema<UserDocument, {}, Methods>({
         preferredName: { type: String },
         pronouns: { type: String },
         disclosure: { type: String },
-        visible: { type: Boolean }
-    }
+        visible: { type: Boolean },
+        fullDisclosureMessage: { type: String },
+        sendDisclosureMessage: { type: Boolean }
+    },
+    botId: { type: String }
 });
 
 //Hash the password before saving

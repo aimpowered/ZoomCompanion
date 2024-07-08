@@ -21,6 +21,8 @@ const zoomConfigOptions: ConfigOptions = {
   capabilities: [
     "setVirtualForeground",
     "removeVirtualForeground",
+    "getMeetingJoinUrl",
+    "getMeetingUUID"
   ]
 };
 const zoomApi: ZoomApiWrapper = createFromConfig(zoomConfigOptions);
@@ -55,13 +57,19 @@ function App() {
     preferredName:"",
     pronouns:"",
     disclosure:"",
+    fullDisclosureMessage:"",
+    sendDisclosureMessage:false
   });
 
   const [nameTagIsLoaded, setNameTagIsLoaded] = useState(false);
 
   const updateNameTagContent: SubmitHandler<NameTagContent> = (data) => {
     setNameTagContent(data);
+
     foregroundDrawer.drawNameTag(data);
+    if (data.sendDisclosureMessage) {
+      foregroundDrawer.sendDisclosureChatMessage(data.fullDisclosureMessage, data.fullName);
+    }
 
     // Update nametag in DB
     updateNameTagInDB(data);
