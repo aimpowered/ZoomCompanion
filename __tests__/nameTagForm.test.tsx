@@ -29,14 +29,10 @@ describe('NameTagForm', () => {
     expect(screen.getByText('Preferred Name')).toBeInTheDocument();
     expect(screen.getAllByText('Pronouns')[0]).toBeInTheDocument();
     expect(screen.getByText('Self Disclosure')).toBeInTheDocument();
-
-    let checkboxes = screen.getAllByRole('checkbox');
-    checkboxes.forEach(checkbox => {
-      expect(checkbox).toBeInTheDocument();
-    })
+    expect(screen.getByRole('checkbox')).toBeInTheDocument();
   })
 
-  it('verifies that the nametag display and send disclosure message checkboxes can be checked', async () => {
+  it('verifies that the nametag display checkbox can be checked', async () => {
 
     render(
       <NameTagForm
@@ -45,21 +41,15 @@ describe('NameTagForm', () => {
       />
     );
 
-    const displayNameTagCheckboxElement = screen.getByLabelText('Display Name Tag');
-    expect(displayNameTagCheckboxElement).toBeInTheDocument();
+    const element = screen.getByLabelText('Display Name Tag');
+    expect(element).toBeInTheDocument();
 
-    const sendDisclosureMessageCheckboxElement = screen.getByLabelText('Send Disclosure Message');
-    expect(sendDisclosureMessageCheckboxElement).toBeInTheDocument();
+    let checkboxInput = screen.getByRole('checkbox')
 
-    let checkboxes = screen.getAllByRole('checkbox');
-
-    expect(checkboxes).toContain(displayNameTagCheckboxElement);
-    expect(checkboxes).toContain(sendDisclosureMessageCheckboxElement);
+    expect(checkboxInput).toBe(element);
     
-    checkboxes.forEach(async (checkboxElement) => {
-      expect(checkboxElement).not.toBeChecked();
-      await userEvent.click(checkboxElement);
-      expect(checkboxElement).toBeChecked();
-    });
+    expect(checkboxInput).not.toBeChecked();
+    await userEvent.click(checkboxInput);
+    expect(checkboxInput).toBeChecked();
   });
 })
