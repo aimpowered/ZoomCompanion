@@ -10,7 +10,6 @@ import '@/app/css/NameTag.css';
 // TODO: deduplicate this with EnabledNameTagBadge
 export interface NameTagContent {
   visible: boolean;
-  fullName: string;
   preferredName: string;
   pronouns: string;
   disclosure: string;
@@ -34,19 +33,11 @@ export function NameTagForm({
 
       <form onSubmit={handleSubmit(onNameTagContentChange)}>
         <div>
-          <label>Full Name</label>
-          <input
-            className="text-input"
-            defaultValue={content.fullName}
-            {...register("fullName", { required: true })}
-          />
-        </div>
-        <div>
           <label>Preferred Name</label>
           <input
             className="text-input"
             defaultValue={content.preferredName}
-            {...register("preferredName")}
+            {...register("preferredName", { required: true })}
           />
         </div>
         <div>

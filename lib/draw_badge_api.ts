@@ -2,7 +2,6 @@ import { ZoomApiWrapper }  from "@/lib/zoomapi";
 
 export interface EnabledNameTagBadge {
   visible: boolean;
-  fullName: string;
   preferredName: string;
   pronouns: string;
   disclosure: string;
@@ -70,11 +69,7 @@ function drawEverythingToImage(nametag: NameTagBadge, handWave: HandWaveBadge): 
     context.fillStyle = 'black';
 
 
-    if (nametag.preferredName) {
-      context.fillText(nametag.fullName + ' (' + nametag.preferredName + ')', 800, 600 + 0 * 50);
-    } else {
-      context.fillText(nametag.fullName, 800, 600 + 0 * 50);
-    }
+    context.fillText(nametag.preferredName, 800, 600 + 0 * 50);
     context.font = '30px Arial';
     context.fillText(nametag.pronouns, 800, 600 + 1 * 50);
 

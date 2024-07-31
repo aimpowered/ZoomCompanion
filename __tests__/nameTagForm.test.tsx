@@ -6,8 +6,7 @@ import { NameTagForm } from '@/components/NameTagForm';
 
 const currentNameTag = {
   visible: false,
-  fullName: "Test User",
-  preferredName: "",
+  preferredName: "Test User",
   pronouns: "",
   disclosure: "",
 };
@@ -25,7 +24,6 @@ describe('NameTagForm', () => {
         onNameTagContentChange={updateNameTagContent}
       />
     );
-    expect(screen.getByText('Full Name')).toBeInTheDocument();
     expect(screen.getByText('Preferred Name')).toBeInTheDocument();
     expect(screen.getAllByText('Pronouns')[0]).toBeInTheDocument();
     expect(screen.getByText('Self Disclosure')).toBeInTheDocument();
