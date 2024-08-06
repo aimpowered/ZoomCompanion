@@ -1,4 +1,4 @@
-import { ZoomApiWrapper }  from "@/lib/zoomapi";
+import { ZoomApiWrapper, VideoDimensions }  from "@/lib/zoomapi";
 
 export interface EnabledNameTagBadge {
   visible: boolean;
@@ -25,8 +25,8 @@ export class DrawBadgeApi {
   constructor(private zoomApiWrapper: ZoomApiWrapper) {}
 
   private forceDrawing() {
-    const imageData = drawEverythingToImage(this.nametag, this.handwave);
-    return this.zoomApiWrapper.setVirtualForeground(imageData);
+    return this.zoomApiWrapper.setDrawImageCallback(
+        (v) => drawEverythingToImage(v, this.nametag, this.handwave));
   }
 
   drawNameTag(nametag: NameTagBadge) {
@@ -40,43 +40,121 @@ export class DrawBadgeApi {
   }
 }
 
-// TODO: make sure the imageData scale and resize correctly based on window size.
-//       make need to make some more Zoom API calls to get user window size.
-function drawEverythingToImage(nametag: NameTagBadge, handWave: HandWaveBadge): ImageData {
-  const canvas = document.createElement('canvas');
-  const context = canvas.getContext('2d')!;
-  canvas.width = 1600; // Width of the canvas
-  canvas.height = 900; // Height of the canvas
-  context.clearRect(0, 0, canvas.width, canvas.height);
+// Iteratively descrease font size until finding the right size that fits.
+function findRightFontSize(
+  text: string,
+  fontType: string,
+  maxWidth: number,
+  maxHeight: number,
+  context: CanvasRenderingContext2D): number {
+  // set initial font size
+  let fontSize = 60;
+  context.font = fontSize + 'px ' + fontType;
+  let textMetrics = context.measureText(text);
 
-  if (nametag.visible) {
+  // lower the font size until the text fits within the bounds
+  do {
+    fontSize = fontSize - 1;
+    context.font = fontSize + 'px ' + fontType;
+    textMetrics = context.measureText(text);
+  } while (
+    (textMetrics.actualBoundingBoxRight + textMetrics.actualBoundingBoxLeft) > maxWidth || 
+    (textMetrics.fontBoundingBoxAscent - textMetrics.fontBoundingBoxDescent) > maxHeight
+    );
+  return fontSize;
+}
 
+function renderNameTagBadge(
+  nametag: EnabledNameTagBadge,
+  canvasWidth: number,
+  canvasHeight: number,
+  context: CanvasRenderingContext2D): void {
+    const nametagTopLeftX = 0.75 * canvasWidth;  // badge X offset
+    const nametagTopLeftY = 0.80 * canvasHeight;  // badge Y offset
+    const nametagWidth = 0.25 * canvasWidth;  // badge width
+    const nametagHeight = 0.2 * canvasHeight;  // badge height
+    const marginX = nametagWidth/40;  // badge X margin
+    const marginY = nametagHeight/10; // badge Y margin
+
+    // Draw the background
     context.fillStyle = 'white'; 
-    context.roundRect(780, 550, 505, 170, 20);
+    context.roundRect(nametagTopLeftX, nametagTopLeftY, nametagWidth, nametagHeight, 10);
     context.fill();
 
-    context.strokeStyle = '#FFD700'; 
-
-    context.lineWidth = 9;
-
     // Draw the line
+    context.strokeStyle = '#FFD700';  // bright yellow
+    context.lineWidth = nametagWidth/50;
     context.beginPath();
-    context.moveTo(790, 570); // Starting point of the line
-    context.lineTo(790, 710); // Ending point of the line
+    // Starting point of the line
+    context.moveTo(nametagTopLeftX + marginX, nametagTopLeftY + marginY);
+    // Ending point of the line
+    context.lineTo(nametagTopLeftX + marginX, nametagTopLeftY + nametagHeight - marginY);
     context.stroke(); // Apply the stroke
 
-    context.font = '40px Arial';
+    // Draw the text
+
+    // First set fontface
+    const fontFace = 'Arial';
+
+    // Then calculate the position of text
+    // all text have the same X offset
+    const textOffsetX = nametagTopLeftX + marginX * 2;
+    // calculate Y offset for bottom row (disclosure)
+    const disclosureOffsetY = nametagTopLeftY + nametagHeight - marginY;
+    // calculate the height for each row of text
+    const textRowHeight = (nametagHeight - 2 * marginY) / 3;
+    // calcualte Y offset for middle row (pronoun) 
+    const pronounOffsetY = disclosureOffsetY - textRowHeight;
+    // calcualte Y offset for top row (preferredname)
+    const nameOffsetY = pronounOffsetY - textRowHeight;
+    
+    // Pick the right font size to fit the text within the badge
+    // preferredName and disclosure have the same font size
+    const longestText = nametag.preferredName.length > nametag.disclosure.length ?
+      nametag.preferredName : nametag.disclosure;
+    const nameFontSize = findRightFontSize(
+      longestText,
+      fontFace,
+      nametagWidth - 3 * marginX, // max width for each row of text
+      textRowHeight - marginY,  // max height for each row of text 
+      context
+    );
+
+    // Draw preferred name
+    context.font = nameFontSize + 'px ' + fontFace;
     context.fillStyle = 'black';
+    context.fillText(nametag.preferredName, textOffsetX, nameOffsetY);
 
+    // Draw pronoun (slightly smaller - 75%)
+    const pronounFontSize = 0.75 * nameFontSize;
+    context.font = pronounFontSize + 'px ' + fontFace;
+    context.fillText(nametag.pronouns, textOffsetX, pronounOffsetY);
 
-    context.fillText(nametag.preferredName, 800, 600 + 0 * 50);
-    context.font = '30px Arial';
-    context.fillText(nametag.pronouns, 800, 600 + 1 * 50);
+    // Draw disclosure (same size as preferred name)
+    const disclosureFontSize = nameFontSize;
+    context.font = disclosureFontSize + 'px ' + fontFace;
+    context.fillText(nametag.disclosure, textOffsetX, disclosureOffsetY);
+}
 
-    context.font = '40px Arial';
-    context.fillText(nametag.disclosure, 800, 600 + 2 * 50);
+// TODO: make sure the handwave badge scale and resize correctly based on window size.
+function drawEverythingToImage(
+    video: VideoDimensions,
+    nametag: NameTagBadge,
+    handWave: HandWaveBadge): ImageData {
+  const canvas = document.createElement('canvas');
+  const context = canvas.getContext('2d')!;
+  canvas.width = video.width; // Width of the canvas
+  canvas.height = video.height; // Height of the canvas
+
+  context.clearRect(0, 0, canvas.width, canvas.height);
+  if (nametag.visible) {
+    renderNameTagBadge(
+      nametag,
+      canvas.width,
+      canvas.height,
+      context
+    );
   }
-
 
   if (handWave.visible) {
 

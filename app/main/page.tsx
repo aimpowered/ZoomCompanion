@@ -18,8 +18,8 @@ import Divider from '@mui/material/Divider';
 
 const zoomConfigOptions: ConfigOptions = {
   capabilities: [
-    "setVirtualForeground",
-    "removeVirtualForeground",
+    'setVirtualForeground',
+    'onMyMediaChange',
   ]
 };
 const zoomApi: ZoomApiWrapper = createFromConfig(zoomConfigOptions);

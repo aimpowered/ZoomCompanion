@@ -1,9 +1,7 @@
-import { ZoomApiWrapper } from './zoomapi';
-import { GeneralMessageResponse }  from "@zoom/appssdk";
+import { DrawImageCallback, ZoomApiWrapper } from './zoomapi';
 
 class FakeZoomApi implements ZoomApiWrapper {
-  async setVirtualForeground(): Promise<GeneralMessageResponse> { return null as unknown as GeneralMessageResponse; }
-  async removeVirtualForeground(): Promise<GeneralMessageResponse> { return null as unknown as GeneralMessageResponse; }
+  async setDrawImageCallback(cb: DrawImageCallback): Promise<void> {}
 }
 export type {ZoomApiWrapper};
 
