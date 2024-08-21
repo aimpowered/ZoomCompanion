@@ -2,20 +2,20 @@
 .button-rows {
   display: inline-block;
   width: 95%;
-  margin-left: 30px;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin-left: calc(1.875rem + 1vw); /* Responsive to system settings and screen size */
+  margin-top: calc(1.25rem + 0.5vw); /* Responsive to system settings and screen size */
+  margin-bottom: calc(1.25rem + 0.5vw); /* Responsive to system settings and screen size */
 }
 
 .wave-hand-button {
-  padding: 10px 20px;
+  padding: calc(0.625rem + 0.25vw) calc(1.25rem + 0.5vw); /* Responsive padding */
   background-color: transparent;
   color: black;
   border: 1px solid #ccc;
-  border-radius: 20px;
+  border-radius: calc(1.25rem + 0.25vw); /* Responsive border-radius */
   cursor: pointer;
-  margin: 5px;
-  font-size: 20px;
+  margin: calc(0.3125rem + 0.25vw); /* Responsive margin */
+  font-size: calc(1.25rem + 0.25vw); /* Responsive font size, adjusts with system font settings and screen size */
 }
 
 .wave-hand-button:hover {
@@ -27,4 +27,3 @@
   color: white;
   font-weight: bold;
 }
-
