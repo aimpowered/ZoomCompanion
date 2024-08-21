@@ -1,69 +1,45 @@
 
 /* Mindfulness.css */
+/* Set a responsive base font size */
 html {
-  font-size: 100%; /* Base font size set to 100%, allowing it to scale with system settings */
+  font-size: calc(1rem + 0.5vw); /* Base font size adjusts according to screen size and system settings */
 }
 
-.video-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+body {
+  font-size: 1rem; /* Base font size for body text */
 }
 
-.video-wrapper {
-  position: relative;
-  width: 100%;
-  height: 0;
-  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+h1 {
+  font-size: 2rem; /* Scales with the base font size */
 }
 
-.video {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+h2 {
+  font-size: 1.75rem; /* Scales with the base font size */
+}
+
+p {
+  font-size: 1rem; /* Same as body font size */
+}
+
+button {
+  font-size: 1rem; /* Scales with the base font size */
 }
 
 .video-title {
-  font-size: 1.25em; /* Scales based on the font-size of the parent */
-  display: inline-block;
-  margin-top: 0.625em; /* Margin scales with font size */
+  font-size: 1.5rem; /* Adjusts with viewport size and system settings */
+  margin-top: 0.75rem; /* Margin scales with the font size */
 }
 
-/* Adjust font-size based on viewport width */
+/* Fine-tuning for large screens */
 @media (min-width: 1400px) {
   html {
-    font-size: 112.5%; /* Larger base font size for large screens, responsive to system settings */
+    font-size: calc(1rem + 1vw); /* Slightly larger base font size for large screens */
   }
 }
 
-@media (min-width: 1200px) and (max-width: 1399px) {
+/* Fine-tuning for small screens */
+@media (max-width: 600px) {
   html {
-    font-size: 100%; /* Standard base font size for typical desktop screens */
-  }
-}
-
-@media (max-width: 1199px) and (min-width: 992px) {
-  html {
-    font-size: 93.75%; /* Slightly smaller base font size for smaller desktops */
-  }
-}
-
-@media (max-width: 991px) and (min-width: 768px) {
-  html {
-    font-size: 87.5%; /* Smaller base font size for tablets */
-  }
-}
-
-@media (max-width: 767px) and (min-width: 576px) {
-  html {
-    font-size: 81.25%; /* Smaller base font size for small tablets */
-  }
-}
-
-@media (max-width: 575px) {
-  html {
-    font-size: 75%; /* Smallest base font size for mobile devices */
+    font-size: calc(1rem + 0.25vw); /* Slightly smaller base font size for small screens */
   }
 }
