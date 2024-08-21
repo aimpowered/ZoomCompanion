@@ -1,4 +1,9 @@
+
 /* Mindfulness.css */
+html {
+  font-size: 100%; /* Base font size set to 100%, allowing it to scale with system settings */
+}
+
 .video-container {
   display: flex;
   flex-direction: column;
@@ -21,8 +26,44 @@
 }
 
 .video-title {
-  font-size: 20px;
+  font-size: 1.25em; /* Scales based on the font-size of the parent */
   display: inline-block;
-  margin-top: 10px;
+  margin-top: 0.625em; /* Margin scales with font size */
 }
 
+/* Adjust font-size based on viewport width */
+@media (min-width: 1400px) {
+  html {
+    font-size: 112.5%; /* Larger base font size for large screens, responsive to system settings */
+  }
+}
+
+@media (min-width: 1200px) and (max-width: 1399px) {
+  html {
+    font-size: 100%; /* Standard base font size for typical desktop screens */
+  }
+}
+
+@media (max-width: 1199px) and (min-width: 992px) {
+  html {
+    font-size: 93.75%; /* Slightly smaller base font size for smaller desktops */
+  }
+}
+
+@media (max-width: 991px) and (min-width: 768px) {
+  html {
+    font-size: 87.5%; /* Smaller base font size for tablets */
+  }
+}
+
+@media (max-width: 767px) and (min-width: 576px) {
+  html {
+    font-size: 81.25%; /* Smaller base font size for small tablets */
+  }
+}
+
+@media (max-width: 575px) {
+  html {
+    font-size: 75%; /* Smallest base font size for mobile devices */
+  }
+}

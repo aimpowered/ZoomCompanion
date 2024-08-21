@@ -27,6 +27,7 @@
     "html2canvas": "^1.4.1",
     "json-loader": "^0.5.7",
     "lucide-react": "^0.376.0",
+    "mongodb": "^6.8.0",
     "mongoose": "^8.0.3",
     "next": "^14.0.4",
     "next-auth": "^4.24.5",
