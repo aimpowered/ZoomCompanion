@@ -1,46 +1,47 @@
 /* NameTag.css */
+
 .label-text {
   font-weight: bold;
-  font-size: calc(1.875rem + 0.5vw); /* 30px equivalent, responsive to system settings and screen size */
+  font-size: calc(2rem + 0.5vw); /* Responsive to screen size */
 }
 
 .input-field {
-  margin-top: 0; /* No change needed */
+  margin-top: 0; 
 }
 
 .text-input,
 .select-input {
   border: 1px solid #ccc;
   border-radius: 4px;
-  padding: calc(0.5rem + 0.25vw); /* Responsive padding */
+  padding: calc(1rem + 0.5vw); /* Padding with responsiveness */
   width: 80%; /* Adjust the width as needed */
 }
 
 .block-style {
-  height: calc(1.25rem + 0.25vw); /* Responsive height for spacing */
+  height: calc(2rem + 0.5vw); /* Height with responsiveness */
 }
 
 .colored-switch .MuiSwitch-switchBase.Mui-checked {
-  color: #d68071; /* No change needed */
+  color: #d68071; 
 }
 
 .colored-switch .MuiSwitch-switchBase.Mui-checked:hover {
-  background-color: rgba(214, 128, 113, 0.04); /* No change needed */
+  background-color: rgba(214, 128, 113, 0.04); 
 }
 
 .colored-switch .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track {
-  background-color: #d68071; /* No change needed */
+  background-color: #d68071; 
 }
 
 .form-container {
   display: flex;
   align-items: center;
-  padding: 0; /* No change needed */
-  margin-bottom: calc(0.625rem + 0.25vw); /* Responsive bottom margin */
+  padding: 0; 
+  margin-bottom: 10px; /* Fixed margin, not responsive */
 }
 
 .submit-btn {
-  padding: calc(0.5rem + 0.25vw) calc(1rem + 0.5vw); /* Responsive padding */
+  padding: calc(1rem + 0.5vw) calc(2rem + 0.5vw); /* Consistent padding with responsiveness */
   background-color: #d68071;
   color: white;
   border: none;
@@ -49,21 +50,21 @@
 }
 
 .submit-btn:hover {
-  background-color: #d6624a; /* No change needed */
+  background-color: #d6624a; 
 }
 
 .label-styling {
-  margin-left: 0; /* No change needed */
+  margin-left: 0; 
 }
 
 .controller-container {
-  margin-right: calc(0.625rem + 0.25vw); /* Responsive right margin */
-  margin-left: 0; /* No change needed */
-  margin-top: calc(0.625rem + 0.25vw); /* Responsive top margin */
-  margin-bottom: calc(0.625rem + 0.25vw); /* Responsive bottom margin */
-  padding: 0 calc(0.3125rem + 0.125vw); /* Responsive padding */
+  margin-right: 10px; /* Fixed right margin */
+  margin-left: 0; 
+  margin-top: 10px; /* Fixed top margin */
+  margin-bottom: 10px; /* Fixed bottom margin */
+  padding: calc(1rem + 0.5vw) calc(2rem + 0.5vw); /* Padding with responsiveness */
 }
 
 .controller-container:hover {
-  background-color: #f0f0f0; /* No change needed */
+  background-color: #f0f0f0; 
 }
