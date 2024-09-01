@@ -35,7 +35,6 @@ const authOptions: NextAuthOptions = {
                 if (!passwordMatch) throw Error("Email/Password mismatch!");
 
                 return {
-                    name: user.name,
                     email: user.email,
                     role: user.role,
                     id: user._id,
