@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Root variables for colors */
 /* :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -19,13 +20,14 @@
 body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+    to bottom,
+    transparent,
+    rgb(var(--background-end-rgb))
+  )
+  rgb(var(--background-start-rgb));
 } */
 
+/* Styling for form elements */
 label,
 input {
   display: flex;
@@ -35,55 +37,58 @@ input {
 .footer {
   display: flex;
   justify-content: space-around;
-  padding: 0px;
+  align-items: center;
+  padding: 10px; /* Add padding to provide space around content */
   background: #f8f9fa;
   width: 100%;
+  min-height: 60px; /* Allow footer to expand vertically */
+  flex-wrap: wrap; /* Enable wrapping to handle larger text sizes */
 }
 
 .footer-section {
-  flex: 1; /* This will make each section flexible and divide the space equally */
-  display: flex; /* Use flexbox to center the link inside the section */
-  justify-content: center; /* Center horizontally */
-  align-items: center; /* Center vertically */
-  padding: 0px; /* You can adjust the padding to control the spacing inside the sections */
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column; /* Stack items vertically */
+  padding: 10px; /* Add padding to prevent overflow */
+  text-align: center;
 }
 
 .footer-link {
-  display: block;
-  width: 100%; /* Take the full width */
-  height: 100%; /* Take the full height */
+  display: flex;
+  flex-direction: column; /* Stack icon and text vertically */
+  align-items: center;
+  justify-content: center;
+  width: auto;
   background-color: transparent;
   text-decoration: none;
   color: #000;
   font-weight: bold;
-  text-align: center; /* Ensure the text is centered */
-  padding: 20px 20px; /* Add padding to the top and bottom if needed */
-  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+  padding: 10px; /* Adjust padding for better spacing */
+  font-size: 1.5rem; /* Use relative units to scale with user settings */
+  line-height: 1.5; /* Maintain good readability */
+  box-sizing: border-box;
   transition: color 0.1s;
 }
 
-.icon-container {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-}
-
 .footer-link svg {
-  width: 3em;
-  height: 3em;
+  width: 2rem; /* Adjust icon size for responsiveness */
+  height: 2rem;
+  margin-bottom: 2px; /* Space between icon and text */
 }
 
 .footer-link:hover {
-  color: #d68071; /* Replace with the color you want on hover */
-  background-color: #e9ecef; /* Optional: if you want to keep the background change on hover */
+  color: #d68071; 
+  background-color: #e9ecef; 
 }
 
 .footer-link:hover svg {
-  fill: #d68071; /* Change to your desired hover color */
+  fill: #d68071; 
 }
 
+
+/* Header and Tab List Styles */
 .header {
   width: 100%;
   padding: 0px 0px 0px 0px;
@@ -109,7 +114,6 @@ input {
   width: 100%; /* Take the full width */
   height: 136px;
   background-color: transparent;
-  /*  background: #f8f9fa;*/
   text-decoration: none;
   color: #000;
   font-weight: bold;

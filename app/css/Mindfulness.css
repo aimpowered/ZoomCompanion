@@ -1,45 +1,59 @@
-
 /* Mindfulness.css */
-/* Set a responsive base font size */
-html {
-  font-size: calc(1rem + 0.5vw); /* Base font size adjusts according to screen size and system settings */
-}
-
 body {
-  font-size: 1rem; /* Base font size for body text */
+  font-size: calc(1rem + 1vw); /* Consistent body text size across pages */
 }
 
-h1 {
-  font-size: 2rem; /* Scales with the base font size */
+h1, .tab-title {
+  font-size: calc(2.5rem + 1vw); /* Consistent header text size across pages */
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 1rem;
 }
 
-h2 {
-  font-size: 1.75rem; /* Scales with the base font size */
+.video-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-p {
-  font-size: 1rem; /* Same as body font size */
+.video-wrapper {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
 }
 
-button {
-  font-size: 1rem; /* Scales with the base font size */
+.video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .video-title {
-  font-size: 1.5rem; /* Adjusts with viewport size and system settings */
-  margin-top: 0.75rem; /* Margin scales with the font size */
+  font-size: calc(2rem + 1vw); /* Responsive font size, consistent with label text */
+  margin-top: 1rem;
+}
+
+p {
+  font-size: calc(1rem + 1vw); /* Consistent body text size */
+}
+
+button {
+  font-size: calc(2rem + 1vw); /* Consistent button text size */
 }
 
 /* Fine-tuning for large screens */
 @media (min-width: 1400px) {
   html {
-    font-size: calc(1rem + 1vw); /* Slightly larger base font size for large screens */
+    font-size: calc(2rem + 1vw); /* Larger base font size for large screens */
   }
 }
 
 /* Fine-tuning for small screens */
 @media (max-width: 600px) {
   html {
-    font-size: calc(1rem + 0.25vw); /* Slightly smaller base font size for small screens */
+    font-size: calc(1rem + 0.5vw); /* Slightly smaller base font size for small screens */
   }
 }

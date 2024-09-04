@@ -1,11 +1,23 @@
 /* Affirmation.css */
+
+/* .self-affirm-carousel {
+  display: flex;
+  width: 100%; /* Set full width for the carousel container */
+  /* position: relative; /* Relative positioning to allow absolute positioning of arrows */
+/* } */
+
+
+/* Affirmation.css */
+
 .self-affirm-carousel {
   display: flex;
+  position: relative; /* Allows positioning of child elements like arrows */
+  width: 100%;
 }
 
 .self-affirm-card {
   position: relative;
-  padding: 10px 0px 10px 0px;
+  padding: 10px 0px;
   border-radius: 10px; /* Adjust as needed */
   width: 100%;
   height: 100%;
@@ -15,7 +27,7 @@
 
 .self-affirm-text {
   color: #ffffff; /* White text, change if needed */
-  font-size: 32px;
+  font-size: calc(1.5rem + 1vw); /* Responsive font size */
   text-align: center;
   padding: 1.5rem;
   justify-content: center;
@@ -24,7 +36,7 @@
 }
 
 .self-affirm-new-card-button {
-  position: relative;
+  position: absolute;
   top: 45%;
   left: 45%;
   width: 10%;
@@ -75,13 +87,36 @@
   background-color: #0056b3;
 }
 
+/* Styles for Carousel Arrows */
 .carousel-button {
-  color: "black";
+  position: absolute; /* Position arrows absolutely within the carousel */
+  top: 50%; /* Center vertically within the carousel */
+  transform: translateY(-50%); /* Adjust vertical centering */
+  color: black; /* Color of the arrow */
   background: transparent;
+  border: none; /* No border for the arrows */
+  cursor: pointer; /* Cursor changes to pointer on hover */
+  font-size: calc(2rem + 1vw); /* More responsive font size for larger visibility */
+  display: flex; /* Flexbox to center the arrow icon */
+  align-items: center; /* Center align the arrow icon vertically */
+  justify-content: center; /* Center align the arrow icon horizontally */
+  z-index: 10; /* Ensure arrows are above other content */
+  width: calc(4rem + 1vw); /* Responsive width for arrow */
+  height: calc(4rem + 1vw); /* Responsive height for arrow */
+}
+
+/* Position for left arrow */
+.carousel-button.left {
+  left: 20px; /* Fixed position for the left arrow inside the carousel */
+}
+
+/* Position for right arrow */
+.carousel-button.right {
+  right: 20px; /* Fixed position for the right arrow inside the carousel */
 }
 
 .carousel-button-disabled {
-  color: "gray";
+  color: gray;
   background: #eaecef;
 }
 

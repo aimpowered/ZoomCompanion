@@ -1,21 +1,21 @@
 /* Wavehand.css */
 .button-rows {
   display: inline-block;
-  width: 95%;
-  margin-left: calc(1.875rem + 1vw); /* Responsive to system settings and screen size */
-  margin-top: calc(1.25rem + 0.5vw); /* Responsive to system settings and screen size */
-  margin-bottom: calc(1.25rem + 0.5vw); /* Responsive to system settings and screen size */
+  width: 90%; /* Reduced width for compactness */
+  margin-left: calc(1rem + 1vw); /* Smaller left margin to keep it compact */
+  margin-top: calc(0.5rem + 0.5vw); /* Smaller top margin */
+  margin-bottom: calc(0.5rem + 0.5vw); /* Smaller bottom margin */
 }
 
 .wave-hand-button {
-  padding: calc(0.625rem + 0.25vw) calc(1.25rem + 0.5vw); /* Responsive padding */
+  padding: calc(0.4rem + 0.25vw) calc(0.8rem + 0.5vw); /* Reduced padding for compactness */
   background-color: transparent;
   color: black;
   border: 1px solid #ccc;
-  border-radius: calc(1.25rem + 0.25vw); /* Responsive border-radius */
+  border-radius: calc(0.8rem + 0.25vw); /* Smaller border-radius */
   cursor: pointer;
-  margin: calc(0.3125rem + 0.25vw); /* Responsive margin */
-  font-size: calc(1.25rem + 0.25vw); /* Responsive font size, adjusts with system font settings and screen size */
+  margin: calc(0.2rem + 0.25vw); /* Reduced margin */
+  font-size: calc(1rem + 0.3vw); /* Slightly smaller font size */
 }
 
 .wave-hand-button:hover {
