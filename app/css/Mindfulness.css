@@ -1,10 +1,10 @@
 /* Mindfulness.css */
 body {
-  font-size: calc(1rem + 1vw); /* Consistent body text size across pages */
+  font-size: 1rem; /* Base body text size; reflects user/system settings */
 }
 
 h1, .tab-title {
-  font-size: calc(2.5rem + 1vw); /* Consistent header text size across pages */
+  font-size: 1.8rem; /* Header text size relative to base size */
   font-weight: bold;
   text-align: center;
   margin-bottom: 1rem;
@@ -32,28 +32,52 @@ h1, .tab-title {
 }
 
 .video-title {
-  font-size: calc(2rem + 1vw); /* Responsive font size, consistent with label text */
+  font-size: 1.25rem; /* Video title size relative to base size */
   margin-top: 1rem;
 }
 
 p {
-  font-size: calc(1rem + 1vw); /* Consistent body text size */
+  font-size: 1rem; /* Paragraph size equal to base size */
 }
 
 button {
-  font-size: calc(2rem + 1vw); /* Consistent button text size */
+  font-size: 1rem; /* Button text size equal to base size */
 }
 
 /* Fine-tuning for large screens */
 @media (min-width: 1400px) {
   html {
-    font-size: calc(2rem + 1vw); /* Larger base font size for large screens */
+    font-size: 1rem; /* Keeps the base font size consistent for user settings */
+  }
+
+  h1, .tab-title {
+    font-size: 2rem; /* Slightly larger header size for large screens */
+  }
+
+  .video-title {
+    font-size: 1.5rem; /* Slightly larger video title size for large screens */
+  }
+
+  button {
+    font-size: 1rem; /* Consistent button size for large screens */
   }
 }
 
 /* Fine-tuning for small screens */
 @media (max-width: 600px) {
   html {
-    font-size: calc(1rem + 0.5vw); /* Slightly smaller base font size for small screens */
+    font-size: 1rem; /* Keeps the base font size consistent for user settings */
+  }
+
+  h1, .tab-title {
+    font-size: 1.6rem; /* Smaller header size for small screens */
+  }
+
+  .video-title {
+    font-size: 1.1rem; /* Smaller video title size for small screens */
+  }
+
+  button {
+    font-size: 1rem; /* Consistent button size for small screens */
   }
 }

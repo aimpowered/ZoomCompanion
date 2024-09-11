@@ -1,10 +1,10 @@
 /* NameTag.css */
 body {
-  font-size: calc(1rem + 1vw); /* Consistent body text size across pages */
+  font-size: 1rem; /* Base body text size; reflects user/system settings */
 }
 
 h1, .tab-title {
-  font-size: calc(2.5rem + 1vw); /* Consistent header text size across pages */
+  font-size: 2rem; /* Header text size relative to base size */
   font-weight: bold;
   text-align: center;
   margin-bottom: 1rem;
@@ -12,7 +12,7 @@ h1, .tab-title {
 
 .label-text {
   font-weight: bold;
-  font-size: calc(2rem + 1vw); /* Responsive font size, scales with viewport size */
+  font-size: 1.5rem; /* Adjusted label text size for consistency */
 }
 
 .input-field {
@@ -23,12 +23,12 @@ h1, .tab-title {
 .select-input {
   border: 1px solid #ccc;
   border-radius: 4px;
-  padding: calc(1rem + 1vw); /* Responsive padding */
+  padding: 0.75rem; /* Consistent padding relative to base size */
   width: 80%;
 }
 
 .block-style {
-  height: calc(2rem + 1vw); /* Responsive height */
+  height: 2rem; /* Consistent height */
 }
 
 .colored-switch .MuiSwitch-switchBase.Mui-checked {
@@ -47,11 +47,11 @@ h1, .tab-title {
   display: flex;
   align-items: center;
   padding: 0;
-  margin-bottom: calc(1rem + 1vw); /* Responsive margin */
+  margin-bottom: 1rem; /* Consistent margin relative to base size */
 }
 
 .submit-btn {
-  padding: calc(1rem + 1vw) calc(2rem + 1vw); /* Responsive padding */
+  padding: 0.75rem 1.5rem; /* Consistent padding relative to base size */
   background-color: #d68071;
   color: white;
   border: none;
@@ -68,11 +68,11 @@ h1, .tab-title {
 }
 
 .controller-container {
-  margin-right: calc(1rem + 1vw);
+  margin-right: 1rem;
   margin-left: 0;
-  margin-top: calc(1rem + 1vw);
-  margin-bottom: calc(1rem + 1vw);
-  padding: 0 calc(1rem + 1vw);
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding: 0 1rem;
 }
 
 .controller-container:hover {
