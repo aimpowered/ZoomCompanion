@@ -9,8 +9,6 @@ const currentEditContentMenuItemProps = {
     mockOnCardDeletion: jest.fn()
 };
 
-
-
 jest.mock('next/navigation', () => jest.requireActual('next-router-mock'));
 
 describe('Edit affirmation card content from the drop down menu', () => {
