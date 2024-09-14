@@ -5,7 +5,7 @@ import React from 'react';
 
 
 const currentEditContentMenuItemProps = {
-    id: 1,
+    id: 11,
     mockOnCardDeletion: jest.fn()
 };
 
@@ -68,7 +68,7 @@ describe('Edit affirmation card content from the drop down menu', () => {
         expect(screen.getByText('Confirm')).toBeTruthy();
         fireEvent.click(screen.getByText('Confirm'));
         expect(currentEditContentMenuItemProps.mockOnCardDeletion).toHaveBeenCalledTimes(1);
-        expect(currentEditContentMenuItemProps.mockOnCardDeletion).toHaveBeenCalledWith(currentEditContentMenuItemProps.id)
+        expect(currentEditContentMenuItemProps.mockOnCardDeletion).toHaveBeenCalledWith(11)
         expect(screen.queryByText('Confirm')).toBeNull();
     });
 });
