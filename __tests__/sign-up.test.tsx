@@ -8,7 +8,7 @@ describe('Page', () => {
   it('creates email sign up field', () => {
     render(<Page />)
 
-    const username = screen.getByPlaceholderText("Username")
+    const username = screen.queryByPlaceholderText("Username")
 
     expect(username).not.toBeInTheDocument()
   })
