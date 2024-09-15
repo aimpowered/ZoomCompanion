@@ -28,13 +28,14 @@ export function NameTagForm({
   const maxDisclosureLength = 25;
   const disclosureValue = watch("disclosure", content.disclosure || "I have a stutter");
   const isOverLimit = disclosureValue.length > maxDisclosureLength;
+  const bottom_padding=12;
   
   return (
     <div className="tab-container">
       <h2 className="tab-title">Name Tag</h2>
 
       <form onSubmit={handleSubmit(onNameTagContentChange)}>
-        <div>
+        <div style={{ paddingBottom: bottom_padding }}>
           <label>Preferred Name</label>
           <input
             className="text-input"
@@ -42,7 +43,7 @@ export function NameTagForm({
             {...register("preferredName", { required: true })}
           />
         </div>
-        <div>
+        <div style={{ paddingBottom: bottom_padding+5 }}>
           <label>Pronouns</label>
           <select
             className="select-input"
@@ -56,7 +57,7 @@ export function NameTagForm({
             <option value="other">Other</option>
           </select>
         </div>
-        <div>
+        <div style={{ paddingBottom: bottom_padding }}>
           <label>Self Disclosure</label>
           <input
             className="text-input"
