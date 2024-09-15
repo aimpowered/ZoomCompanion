@@ -58,7 +58,7 @@ export function NameTagForm({
           </select>
         </div>
         <div style={{ paddingBottom: bottom_padding }}>
-          <label>Self Disclosure</label>
+          <label>Something About Me</label>
           <input
             className="text-input"
             defaultValue={content.disclosure || "I have a stutter"}
