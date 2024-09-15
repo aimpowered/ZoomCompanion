@@ -4,7 +4,9 @@ import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import Checkbox from "@mui/material/Checkbox";
 import FormControlLabel from "@mui/material/FormControlLabel";
 
-import "@/app/css/NameTag.css";
+
+import '@/app/css/NameTag.css';
+import Switch from "@mui/material/Switch";
 
 // TODO: deduplicate this with EnabledNameTagBadge
 export interface NameTagContent {
@@ -82,17 +84,28 @@ export function NameTagForm({
               defaultValue={content.visible}
               render={({ field: { onChange, value } }) => (
                 <FormControlLabel
+<<<<<<< HEAD
                   control={<Checkbox checked={value} onChange={onChange} />}
+=======
+                  control={
+                    <Switch checked={value} onChange={(e) => { onChange(e); handleSubmit(onNameTagContentChange)();}} />
+                  }
+>>>>>>> 44247c3 (Use switch instead of checkbox to hide nametag)
                   label="Display Name Tag"
                   labelPlacement="start"
                   className="label-styling"
                 />
               )}
             />
+<<<<<<< HEAD
           </div>
           <input type="submit" className="submit-btn" />
+=======
+            </div>
+>>>>>>> 44247c3 (Use switch instead of checkbox to hide nametag)
         </div>
       </form>
     </div>
   );
 }
+
