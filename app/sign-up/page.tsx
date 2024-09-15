@@ -4,15 +4,19 @@ import React, { ChangeEventHandler, FormEventHandler, useState } from "react";
 import "../css/sign-up.css"; // Import CSS file
 
 const SignUp = () => {
-  const [busy, setBusy] = useState(false);
-  const [userInfo, setUserInfo] = useState({
-    name: "",
-    email: "",
-    password: "",
-  });
-  const [isUserCreated, setIsUserCreated] = useState(false); // State variable to track user creation
+    const [busy, setBusy] = useState(false);
+    const [userInfo, setUserInfo] = useState({
+        email: "",
+        password: "",
+    });
+    const [isUserCreated, setIsUserCreated] = useState(false); // State variable to track user creation
 
-  const { name, email, password } = userInfo;
+    const {email, password } = userInfo;
+    
+    const handleChange: ChangeEventHandler<HTMLInputElement> = ({ target }) => {
+        const { name, value } = target;
+        setUserInfo({ ...userInfo, [name]: value });
+    };
 
   const handleChange: ChangeEventHandler<HTMLInputElement> = ({ target }) => {
     const { name, value } = target;

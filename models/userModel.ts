@@ -5,11 +5,18 @@ import bcrypt from "bcrypt";
 import { NameTagContent } from "@/components/NameTagForm";
 
 interface UserDocument extends Document {
+<<<<<<< HEAD
   email: string;
   name: string;
   password: string;
   role: "admin" | "user";
   nameTag: NameTagContent;
+=======
+    email: string;
+    password: string;
+    role: "admin" | "user";
+    nameTag: NameTagContent;
+>>>>>>> b96bdb1 (removed username)
 }
 
 interface Methods {
@@ -18,6 +25,7 @@ interface Methods {
 
 //DB Schema
 const userSchema = new Schema<UserDocument, {}, Methods>({
+<<<<<<< HEAD
   email: { type: String, required: true, unique: true },
   name: { type: String, required: true, trim: true },
   password: { type: String, required: true },
@@ -28,6 +36,17 @@ const userSchema = new Schema<UserDocument, {}, Methods>({
     disclosure: { type: String },
     visible: { type: Boolean },
   },
+=======
+    email: { type: String, required: true, unique: true },
+    password: { type: String, required: true},
+    role: { type: String, enum: ["admin", "user"], default: "user" },
+    nameTag: {
+        preferredName: { type: String },
+        pronouns: { type: String },
+        disclosure: { type: String },
+        visible: { type: Boolean }
+    }
+>>>>>>> b96bdb1 (removed username)
 });
 
 //Hash the password before saving
