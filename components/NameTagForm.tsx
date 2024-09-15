@@ -81,7 +81,7 @@ export function NameTagForm({
             <Controller
               control={control}
               name="visible"
-              defaultValue={content.visible}
+              defaultValue={false}
               render={({ field: { onChange, value } }) => (
                 <FormControlLabel
 <<<<<<< HEAD
