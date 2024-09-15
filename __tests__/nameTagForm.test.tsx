@@ -23,11 +23,21 @@ describe("NameTagForm", () => {
         onNameTagContentChange={updateNameTagContent}
       />,
     );
+<<<<<<< HEAD
     expect(screen.getByText("Preferred Name")).toBeInTheDocument();
     expect(screen.getAllByText("Pronouns")[0]).toBeInTheDocument();
     expect(screen.getByText("Self Disclosure")).toBeInTheDocument();
     expect(screen.getByRole("checkbox")).toBeInTheDocument();
   });
+=======
+    expect(screen.getByText('Preferred Name')).toBeInTheDocument();
+    expect(screen.getAllByText('Pronouns')[0]).toBeInTheDocument();
+    expect(screen.getByText('Something About Me')).toBeInTheDocument();
+    expect(screen.getByRole('checkbox')).toBeInTheDocument();
+  })
+
+  it('verifies that the nametag display checkbox can be checked', async () => {
+>>>>>>> 92e6bb5 (updated test to work with new NameTagForm)
 
   it("verifies that the nametag display checkbox can be checked", async () => {
     render(

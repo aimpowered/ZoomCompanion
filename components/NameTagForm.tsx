@@ -84,25 +84,16 @@ export function NameTagForm({
               defaultValue={false}
               render={({ field: { onChange, value } }) => (
                 <FormControlLabel
-<<<<<<< HEAD
-                  control={<Checkbox checked={value} onChange={onChange} />}
-=======
                   control={
-                    <Switch checked={value} onChange={(e) => { onChange(e); handleSubmit(onNameTagContentChange)();}} />
+                    <Switch checked={value} onChange={(e) => { onChange(e); handleSubmit(onNameTagContentChange)();}} type="checkbox"/>
                   }
->>>>>>> 44247c3 (Use switch instead of checkbox to hide nametag)
                   label="Display Name Tag"
                   labelPlacement="start"
                   className="label-styling"
                 />
               )}
             />
-<<<<<<< HEAD
-          </div>
-          <input type="submit" className="submit-btn" />
-=======
             </div>
->>>>>>> 44247c3 (Use switch instead of checkbox to hide nametag)
         </div>
       </form>
     </div>
