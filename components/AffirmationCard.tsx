@@ -70,11 +70,12 @@ export function AffirmationCard({
         <Menu
           id="action-menu"
           MenuListProps={{
-            'aria-labelledby': 'card-action-button',
+            'aria-labelledby': 'card-action-button'
           }}
           anchorEl={anchorEl}
           open={open}
           onClose={handleClose}
+          aria-label='menu-edit-delete'
         >
           <EditContentMenuItem
             id={currentId}
