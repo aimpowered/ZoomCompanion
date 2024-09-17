@@ -1,7 +1,32 @@
 /* Affirmation.css */
 .self-affirm-carousel {
+  padding: 10px;
+  overflow: auto;
+  resize: vertical; /* Allows only vertical resizing */
   display: flex;
-}
+  flex-direction: column; /* Ensures carousel items stack vertically */
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background: linear-gradient(#98b8cd, #cbb3e5); /* Example gradient colors */
+  border-radius: 10px; /* Rounded corners */
+  cursor: ns-resize; /* Cursor indicates vertical resizing */
+  font-size: clamp(0.8rem, 1rem, 1.5rem); /* Dynamic font size: min 0.8rem, preferred 1rem, max 1.5rem */
+  width: 100%; /* Ensures the carousel fills the width of its container */
+  max-width: 100%; /* Prevents the carousel from exceeding the container width */
+  height: auto; /* Adjust height to fit content */
+  max-height: 100%; /* Prevents the carousel from exceeding the container height */
+ }
+ 
+ 
+ 
+ .self-affirm-carousel > .carousel-item {
+  display: flex;
+  text-align: center;
+  width: 100%; /* Make sure items fit within the resizable container */
+  height: auto; /* Allow height to adjust dynamically */
+ }
+ 
 
 .self-affirm-card {
   position: relative;
@@ -13,15 +38,24 @@
   align-items: center;
 }
 
+/* Responsive text style */
 .self-affirm-text {
   color: #ffffff; /* White text, change if needed */
-  font-size: 32px;
+  font-size: clamp(1rem, 2rem, 3rem); /* Dynamic font size between 1rem and 3rem */
   text-align: center;
-  padding: 1.5rem;
-  justify-content: center;
-  align-items: center;
+  padding: clamp(0.5rem, 1rem, 1.5rem); /* Responsive padding */
+  margin: 0; /* Remove any default margins */
+  /* justify-content: center; */
+  text-align: center;
+  /* align-items: center; */
   display: flex;
-}
+  flex-wrap: wrap; /* Ensure the text wraps within the container */
+  line-height: 1.2; /* Adjust line height for better readability */
+  width: 100%;
+  height: auto;
+  word-break: break-word; /* Break long words to fit within the container */
+ }
+ 
 
 .self-affirm-new-card-button {
   position: relative;
