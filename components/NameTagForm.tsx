@@ -1,8 +1,7 @@
 import React from "react";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
 
-import Checkbox from "@mui/material/Checkbox";
-import FormControlLabel from "@mui/material/FormControlLabel";
+import FormControlLabel from '@mui/material/FormControlLabel';
 
 
 import '@/app/css/NameTag.css';
