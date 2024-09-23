@@ -28,7 +28,7 @@ export function NameTagForm({
   onNameTagContentChange
 }: NameTagProps) {
   const { register, handleSubmit, control, watch } = useForm<NameTagContent>();
-  const maxDisclosureLength = 25;
+  const maxDisclosureLength = 30;
   const disclosureValue = watch("disclosure", content.disclosure || "I have a stutter");
   const isOverLimit = disclosureValue.length > maxDisclosureLength;
   const bottom_padding=12;
