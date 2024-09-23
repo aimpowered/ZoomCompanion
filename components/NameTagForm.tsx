@@ -6,6 +6,8 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 
 import '@/app/css/NameTag.css';
 import Switch from "@mui/material/Switch";
+import Button from '@mui/material/Button';
+import { updateNameTagInDB } from "@/lib/nametag_db";
 
 // TODO: deduplicate this with EnabledNameTagBadge
 export interface NameTagContent {
@@ -30,6 +32,17 @@ export function NameTagForm({
   const disclosureValue = watch("disclosure", content.disclosure || "I have a stutter");
   const isOverLimit = disclosureValue.length > maxDisclosureLength;
   const bottom_padding=12;
+
+  // Button click handler to manually update database with specific fields
+  const handleButtonClick = () => {
+    const updatedData = {
+      preferredName: watch("preferredName", content.preferredName),
+      pronouns: watch("pronouns", content.pronouns),
+      disclosure: watch("disclosure", content.disclosure),
+      visible: watch("visible", content.visible),
+    };
+    updateNameTagInDB(updatedData);  // Update DB with current form data
+  };
   
   return (
     <div className="tab-container">
@@ -93,6 +106,16 @@ export function NameTagForm({
               )}
             />
             </div>
+            </div>
+            <div>
+            {/* Add the Button here to manually trigger DB update */}
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={handleButtonClick}  // Handle click to update DB
+            >
+              Update Name Tag in DB
+            </Button>
         </div>
       </form>
     </div>
