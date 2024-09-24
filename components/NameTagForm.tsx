@@ -34,7 +34,7 @@ export function NameTagForm({
   const bottom_padding=12;
 
   // Button click handler to manually update database with specific fields
-  const handleButtonClick = () => {
+  const handleSaveButtonClick = () => {
     const updatedData = {
       preferredName: watch("preferredName", content.preferredName),
       pronouns: watch("pronouns", content.pronouns),
@@ -112,9 +112,9 @@ export function NameTagForm({
             <Button
               variant="contained"
               color="primary"
-              onClick={handleButtonClick}  // Handle click to update DB
+              onClick={handleSaveButtonClick}  // Handle click to update DB
             >
-              Update Name Tag in DB
+              Save Name Tag
             </Button>
         </div>
       </form>
