@@ -1,139 +1,169 @@
 /* Affirmation.css */
-.self-affirm-carousel {
-  padding: 10px;
-  overflow: auto;
-  resize: vertical; /* Allows only vertical resizing */
-  display: flex;
-  flex-direction: column; /* Ensures carousel items stack vertically */
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  background: linear-gradient(#98b8cd, #cbb3e5); /* Example gradient colors */
-  border-radius: 10px; /* Rounded corners */
-  cursor: ns-resize; /* Cursor indicates vertical resizing */
-  font-size: clamp(0.8rem, 1rem, 1.5rem); /* Dynamic font size: min 0.8rem, preferred 1rem, max 1.5rem */
-  width: 100%; /* Ensures the carousel fills the width of its container */
-  max-width: 100%; /* Prevents the carousel from exceeding the container width */
-  height: auto; /* Adjust height to fit content */
-  max-height: 100%; /* Prevents the carousel from exceeding the container height */
+/* Use rem-based font sizes for better scalability and responsiveness */
+:root {
+  --font-size-small: 0.75rem;   /* Smaller base small font size (~12px) */
+  --font-size-medium: 1rem;     /* Smaller base medium font size (~16px) */
+  --font-size-large: 1.5rem;    /* Smaller base large font size (~24px) */
  }
  
  
- 
- .self-affirm-carousel > .carousel-item {
-  display: flex;
-  text-align: center;
-  width: 100%; /* Make sure items fit within the resizable container */
-  height: auto; /* Allow height to adjust dynamically */
+ /* Adjust font sizes for larger screens */
+ @media (min-width: 768px) {
+  :root {
+    --font-size-small: 0.875rem;  /* Slightly larger for small text (~14px) */
+    --font-size-medium: 1.125rem; /* Slightly larger for medium text (~18px) */
+    --font-size-large: 1.75rem;   /* Slightly larger for large text (~28px) */
+  }
  }
  
-
-.self-affirm-card {
+ 
+ /* Further adjustments for very large screens */
+ @media (min-width: 1024px) {
+  :root {
+    --font-size-small: 1rem;      /* Increase small text size (~16px) */
+    --font-size-medium: 1.25rem;  /* Increase medium text size (~20px) */
+    --font-size-large: 2rem;      /* Increase large text size (~32px) */
+  }
+ }
+ 
+ 
+ .self-affirm-carousel {
+  display: flex;
+ }
+ 
+ 
+ .self-affirm-card {
   position: relative;
-  padding: 10px 0px 10px 0px;
-  border-radius: 10px; /* Adjust as needed */
+  padding: 10px 0;
+  border-radius: 10px;
   width: 100%;
   height: 100%;
-  background: linear-gradient(#98b8cd, #cbb3e5); /* Example gradient colors */
+  background: linear-gradient(#98b8cd, #cbb3e5);
   align-items: center;
-}
-
-/* Responsive text style */
-.self-affirm-text {
-  color: #ffffff; /* White text, change if needed */
-  font-size: clamp(1rem, 2rem, 3rem); /* Dynamic font size between 1rem and 3rem */
-  text-align: center;
-  padding: clamp(0.5rem, 1rem, 1.5rem); /* Responsive padding */
-  margin: 0; /* Remove any default margins */
-  /* justify-content: center; */
-  text-align: center;
-  /* align-items: center; */
-  display: flex;
-  flex-wrap: wrap; /* Ensure the text wraps within the container */
-  line-height: 1.2; /* Adjust line height for better readability */
-  width: 100%;
-  height: auto;
-  word-break: break-word; /* Break long words to fit within the container */
  }
  
-
-.self-affirm-new-card-button {
+ 
+ /* Smaller, responsive font size for affirmation text */
+ .self-affirm-text {
+  color: #ffffff;
+  font-size: var(--font-size-medium); /* Smaller font size (~16px, adjusts with screen size) */
+  text-align: center;
+  padding: 1rem;  /* Adjust padding to fit the smaller font */
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  word-break: break-word;
+ }
+ 
+ 
+ .self-affirm-new-card-button {
   position: relative;
   top: 45%;
   left: 45%;
   width: 10%;
   height: 10%;
-}
-
-.card-modal {
+  font-size: var(--font-size-small);
+ }
+ 
+ 
+ /* Modal window with responsive font sizes */
+ .card-modal {
   position: fixed;
-  top: 50%; /* Center the modal vertically */
-  left: 50%; /* Center the modal horizontally */
-  transform: translate(-50%, -50%); /* Center the modal precisely */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   background-color: #fff;
-  padding: 20px;
+  padding: 1.25rem;
   border-radius: 5px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
-  max-width: 400px; /* Adjust the maximum width as needed */
+  max-width: 400px;
   width: 100%;
-  z-index: 1000; /* Ensure the modal is above other content */
-}
-
-.card-modal-body {
-  padding: 10px; /* Adjust the padding as needed */
-}
-
-.large-input {
+  z-index: 1000;
+ }
+ 
+ 
+ /* Responsive padding for modal body */
+ .card-modal-body {
+  padding: 1rem;
+ }
+ 
+ 
+ /* Responsive input field */
+ .large-input {
   width: 100%;
-  padding: 10px;
-  font-size: 16px;
+  padding: 1rem;
+  font-size: var(--font-size-small);
   border: 1px solid #ccc;
   border-radius: 4px;
   height: 100px;
-}
-
-/* Modal Buttons */
-.card-modal-button {
-  padding: 10px 20px;
+ }
+ 
+ 
+ /* Modal Buttons with dynamic font size */
+ .card-modal-button {
+  padding: 0.75rem 1.25rem;
+  font-size: var(--font-size-small);
   background-color: #007bff;
-  color: #fff;
+  color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  margin-right: 5px;
-  margin-left: 10px;
-}
-
-.card-modal button:hover {
+  margin-right: 0.5rem;
+  margin-left: 0.5rem;
+ }
+ 
+ 
+ .card-modal-button:hover {
   background-color: #0056b3;
-}
-
-.carousel-button {
-  color: "black";
+ }
+ 
+ 
+ /* Carousel Buttons with dynamic sizes */
+ .carousel-button {
+  color: black;
   background: transparent;
-}
-
-.carousel-button-disabled {
-  color: "gray";
+  font-size: var(--font-size-small);
+  /* padding: 0.75rem 1.5rem; */
+ }
+ 
+ 
+ .carousel-button:hover {
+  background-color: #007bff;
+  color: white;
+ }
+ 
+ 
+ .carousel-button-disabled {
+  color: gray;
   background: #eaecef;
-}
-
-.carousel-button-disabled,
-.carousel-button-disabled:hover {
-  background-color: #eaecef; /* Disabled state background */
+ }
+ 
+ 
+ .carousel-button-disabled,
+ .carousel-button-disabled:hover {
+  background-color: #eaecef;
   pointer-events: none;
   opacity: 0.5;
-}
-
-.css-1orgm40 {
-  padding: 0px !important;
-}
-
-.-left-12 {
-  margin-left: 60px !important;
-}
-
-.-right-12 {
-  margin-right: 60px !important;
-}
+ }
+ 
+ 
+ .css-1orgm40 {
+  padding: 0 !important;
+ }
+ 
+ 
+ .-left-12 {
+  margin-left: 3rem !important; /* 60px converted to rem */
+ }
+ 
+ 
+ .-right-12 {
+  margin-right: 3rem !important; /* 60px converted to rem */
+ }
+ 
+ 
+ 
+ 
+ 
+ 

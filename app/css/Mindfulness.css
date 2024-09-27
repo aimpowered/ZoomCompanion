@@ -1,28 +1,45 @@
 /* Mindfulness.css */
-body {
-  font-size: 1rem; /* Base body text size; reflects user/system settings */
+/* Define base font sizes using rem for scalability and responsiveness */
+:root {
+  --font-size-small: 1rem;      /* Base small font size (~16px) */
+  --font-size-medium: 1.25rem;  /* Medium font size (~20px) */
+  --font-size-large: 1.5rem;    /* Large font size (~24px) */
 }
 
-h1, .tab-title {
-  font-size: 1.8rem; /* Header text size relative to base size */
-  font-weight: bold;
-  text-align: center;
-  margin-bottom: 1rem;
+/* Adjust font sizes for larger screens */
+@media (min-width: 768px) {
+  :root {
+      --font-size-small: 1.25rem;  /* Larger small text (~20px) */
+      --font-size-medium: 1.5rem;  /* Larger medium text (~24px) */
+      --font-size-large: 1.75rem;  /* Larger large text (~28px) */
+  }
 }
 
+/* Further adjustments for very large screens */
+@media (min-width: 1024px) {
+  :root {
+    --font-size-small: 1.5rem;      /* Small text size (~24px) */
+    --font-size-medium: 1.75rem;    /* Medium text size (~28px) */
+    --font-size-large: 2rem;        /* Large text size (~32px) */
+  }
+}
+
+/* Container for the video elements */
 .video-container {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
+/* Ensure the video maintains a 16:9 aspect ratio */
 .video-wrapper {
   position: relative;
   width: 100%;
   height: 0;
-  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  padding-bottom: 56.25%; /* Maintain 16:9 aspect ratio */
 }
 
+/* Video element takes up full width and height */
 .video {
   position: absolute;
   top: 0;
@@ -31,53 +48,12 @@ h1, .tab-title {
   height: 100%;
 }
 
+/* Responsive font size for video title */
 .video-title {
-  font-size: 1.25rem; /* Video title size relative to base size */
-  margin-top: 1rem;
+  font-size: var(--font-size-medium); /* Use responsive medium font size (~20px) */
+  display: inline-block;
+  margin-top: 1rem;  /* Use rem for consistent spacing */
+  text-align: center;
+  font-weight: normal;
 }
 
-p {
-  font-size: 1rem; /* Paragraph size equal to base size */
-}
-
-button {
-  font-size: 1rem; /* Button text size equal to base size */
-}
-
-/* Fine-tuning for large screens */
-@media (min-width: 1400px) {
-  html {
-    font-size: 1rem; /* Keeps the base font size consistent for user settings */
-  }
-
-  h1, .tab-title {
-    font-size: 2rem; /* Slightly larger header size for large screens */
-  }
-
-  .video-title {
-    font-size: 1.5rem; /* Slightly larger video title size for large screens */
-  }
-
-  button {
-    font-size: 1rem; /* Consistent button size for large screens */
-  }
-}
-
-/* Fine-tuning for small screens */
-@media (max-width: 600px) {
-  html {
-    font-size: 1rem; /* Keeps the base font size consistent for user settings */
-  }
-
-  h1, .tab-title {
-    font-size: 1.6rem; /* Smaller header size for small screens */
-  }
-
-  .video-title {
-    font-size: 1.1rem; /* Smaller video title size for small screens */
-  }
-
-  button {
-    font-size: 1rem; /* Consistent button size for small screens */
-  }
-}

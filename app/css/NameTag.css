@@ -1,57 +1,73 @@
 /* NameTag.css */
-body {
-  font-size: 1rem; /* Base body text size; reflects user/system settings */
+
+/* Define base font sizes using rem for scalability and responsiveness */
+:root {
+  --font-size-small: 1rem;      /* Base small font size (~16px) */
+  --font-size-medium: 1.25rem;  /* Medium font size (~20px) */
+  --font-size-large: 1.5rem;    /* Large font size (~24px) */
 }
 
-h1, .tab-title {
-  font-size: 2rem; /* Header text size relative to base size */
-  font-weight: bold;
-  text-align: center;
-  margin-bottom: 1rem;
+/* Adjust font sizes for larger screens */
+@media (min-width: 768px) {
+  :root {
+      --font-size-small: 1.25rem;  /* Larger small text (~20px) */
+      --font-size-medium: 1.5rem;  /* Larger medium text (~24px) */
+      --font-size-large: 1.75rem;  /* Larger large text (~28px) */
+  }
+}
+
+/* Further adjustments for very large screens */
+@media (min-width: 1024px) {
+  :root {
+    --font-size-small: 1.5rem;      /* Small text size (~24px) */
+    --font-size-medium: 1.75rem;    /* Medium text size (~28px) */
+    --font-size-large: 2rem;        /* Large text size (~32px) */
+  }
 }
 
 .label-text {
   font-weight: bold;
-  font-size: 1.5rem; /* Adjusted label text size for consistency */
+  font-size: var(--font-size-small); /* Responsive font size for label text */
 }
 
 .input-field {
-  margin-top: 0;
+  margin-top: 0px;
 }
 
 .text-input,
 .select-input {
   border: 1px solid #ccc;
   border-radius: 4px;
-  padding: 0.75rem; /* Consistent padding relative to base size */
-  width: 80%;
+  padding: 8px;
+  width: 80%; /* Adjust the width as needed */
 }
 
 .block-style {
-  height: 2rem; /* Consistent height */
+  height: 20px; /* Adjust the height value to control the spacing */
 }
 
 .colored-switch .MuiSwitch-switchBase.Mui-checked {
-  color: #d68071;
+  color: #d68071; /* Set the color using a hex value */
 }
 
 .colored-switch .MuiSwitch-switchBase.Mui-checked:hover {
-  background-color: rgba(214, 128, 113, 0.04);
+  background-color: rgba(214, 128, 113, 0.04); /* Set the hover color using a hex value */
 }
 
 .colored-switch .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track {
-  background-color: #d68071;
+  background-color: #d68071; /* Set the track color using a hex value */
 }
+
 
 .form-container {
   display: flex;
   align-items: center;
-  padding: 0;
-  margin-bottom: 1rem; /* Consistent margin relative to base size */
+  padding: 0px;
+  margin-bottom: 10px;
 }
 
 .submit-btn {
-  padding: 0.75rem 1.5rem; /* Consistent padding relative to base size */
+  padding: 8px 16px;
   background-color: #d68071;
   color: white;
   border: none;
@@ -64,17 +80,17 @@ h1, .tab-title {
 }
 
 .label-styling {
-  margin-left: 0;
+  margin-left: 0px;
 }
 
 .controller-container {
-  margin-right: 1rem;
-  margin-left: 0;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-  padding: 0 1rem;
+  margin-right: 10px;
+  margin-left: 0px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 0px 5px 0px 5px; 
 }
 
 .controller-container:hover {
-  background-color: #f0f0f0;
+  background-color: #f0f0f0; /* Change background color on hover */
 }

@@ -2,32 +2,45 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Root variables for colors */
-/* :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+/* Define responsive font sizes */
+:root {
+  --font-size-small: 1rem;      /* Base small font size (~16px) */
+  --font-size-medium: 1.25rem;  /* Medium font size (~20px) */
+  --font-size-large: 1.5rem;    /* Large font size (~24px) */
+  --font-size-heading: 2rem;    /* Base heading font size (~32px) */
+  --footer-font-size: 0.5rem
 }
 
-@media (prefers-color-scheme: dark) {
+/* Adjust font sizes for larger screens */
+@media (min-width: 768px) {
   :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    --font-size-small: 1.25rem;  /* Larger small text (~20px) */
+    --font-size-medium: 1.5rem;  /* Larger medium text (~24px) */
+    --font-size-large: 1.75rem;  /* Larger large text (~28px) */
+    --font-size-heading: 2.5rem; /* Larger heading font size (~40px) */
+    --footer-font-size: 0.6rem
+
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-    to bottom,
-    transparent,
-    rgb(var(--background-end-rgb))
-  )
-  rgb(var(--background-start-rgb));
-} */
+/* Further adjustments for larger desktop screens */
+@media (min-width: 1024px) {
+  :root {
+    --font-size-small: 1.5rem;      /* Small text size (~24px) */
+    --font-size-medium: 1.75rem;    /* Medium text size (~28px) */
+    --font-size-large: 2rem;        /* Large text size (~32px) */
+    --font-size-heading: 3rem;      /* Larger heading font size (~48px) */
+    --footer-font-size: 0.7rem
+  }
+}
 
-/* Styling for form elements */
+label,
+input {
+  display: flex;
+  flex-direction: column;
+  word-wrap: break-word; 
+}
+
 label,
 input {
   display: flex;
@@ -37,61 +50,58 @@ input {
 .footer {
   display: flex;
   justify-content: space-around;
-  align-items: center;
-  padding: 10px; /* Add padding to provide space around content */
+  padding: 0px;
   background: #f8f9fa;
   width: 100%;
-  min-height: 60px; /* Allow footer to expand vertically */
-  flex-wrap: wrap; /* Enable wrapping to handle larger text sizes */
 }
 
 .footer-section {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column; /* Stack items vertically */
-  padding: 10px; /* Add padding to prevent overflow */
-  text-align: center;
+  flex: 1; /* This will make each section flexible and divide the space equally */
+  display: flex; /* Use flexbox to center the link inside the section */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  padding: 0px; /* You can adjust the padding to control the spacing inside the sections */
 }
 
 .footer-link {
-  display: flex;
-  flex-direction: column; /* Stack icon and text vertically */
-  align-items: center;
-  justify-content: center;
-  width: auto;
+  display: block;
+  width: 100%; /* Take the full width */
+  height: 100%; /* Take the full height */
   background-color: transparent;
   text-decoration: none;
   color: #000;
   font-weight: bold;
-  padding: 10px; /* Adjust padding for better spacing */
-  font-size: 1.5rem; /* Use relative units to scale with user settings */
-  line-height: 1.5; /* Maintain good readability */
-  box-sizing: border-box;
+  text-align: center; /* Ensure the text is centered */
+  padding: 20px 20px; /* Add padding to the top and bottom if needed */
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
   transition: color 0.1s;
 }
 
+.icon-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
 .footer-link svg {
-  width: 2rem; /* Adjust icon size for responsiveness */
+  width: 2rem;  /* Base size, responsive to root font size */
   height: 2rem;
-  margin-bottom: 2px; /* Space between icon and text */
 }
 
+
 .footer-link:hover {
-  color: #d68071; 
-  background-color: #e9ecef; 
+  color: #d68071;
+  background-color: #e9ecef;
 }
 
 .footer-link:hover svg {
-  fill: #d68071; 
+  fill: #d68071;
 }
 
-
-/* Header and Tab List Styles */
 .header {
   width: 100%;
-  padding: 0px 0px 0px 0px;
+  padding: 0px;
   margin-left: 0px;
   margin-right: 0px;
 }
@@ -111,16 +121,17 @@ input {
 
 .tab-list-item {
   display: block;
-  width: 100%; /* Take the full width */
+  width: 100%;
   height: 136px;
   background-color: transparent;
   text-decoration: none;
   color: #000;
   font-weight: bold;
-  text-align: center; /* Ensure the text is centered */
-  padding: 0px 0px; /* Add padding to the top and bottom if needed */
-  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+  text-align: center;
+  padding: 0px;
+  box-sizing: border-box;
   transition: color 0.1s;
+  font-size: var(--font-size-small); /* Responsive font size */
 }
 
 .tab-list-active {
@@ -132,14 +143,14 @@ input {
   text-decoration: none;
   font-weight: bold;
   text-align: center;
-  padding: 0px 0px; /* Add padding to the top and bottom if needed */
-  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+  padding: 0px;
+  box-sizing: border-box;
   transition: color 0.1s;
 }
 
 .tab-list-item:hover {
-  color: #d68071; /* Replace with the color you want on hover */
-  background-color: #e9ecef; /* Optional: if you want to keep the background change on hover */
+  color: #d68071;
+  background-color: #e9ecef;
 }
 
 .tabs {
@@ -148,17 +159,30 @@ input {
   margin-right: 30px;
 }
 
-/* TODO: Update this with a responsive design that adjusts to the screen size rather than hard-coding the margin bottom. */
+/* Responsive tab container design */
 .tab-container {
   margin-left: 20px;
   margin-right: 20px;
   margin-top: 20px;
-  margin-bottom: 100px;
+  margin-bottom: 5rem; /* Increase margin-bottom for better accessibility */
 }
 
 .tab-title {
-  font-size: 30px;
+  font-size: var(--font-size-large); /* Responsive font size for titles */
   font-weight: bold;
   display: inline-block;
   margin-bottom: 10px;
+  word-wrap: break-word; /* Ensures long words break and wrap onto the next line */
 }
+
+
+
+/* Specific heading sizes for hierarchy */
+h1 {
+  font-size: var(--font-size-heading); /* Larger size for h1 */
+  word-wrap: break-word; /* Ensures long words break and wrap onto the next line */
+
+}
+
+
+
