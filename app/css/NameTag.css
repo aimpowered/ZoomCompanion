@@ -1,7 +1,33 @@
 /* NameTag.css */
+
+/* Define base font sizes using rem for scalability and responsiveness */
+:root {
+  --font-size-small: 1rem;      /* Base small font size (~16px) */
+  --font-size-medium: 1.25rem;  /* Medium font size (~20px) */
+  --font-size-large: 1.5rem;    /* Large font size (~24px) */
+}
+
+/* Adjust font sizes for larger screens */
+@media (min-width: 768px) {
+  :root {
+      --font-size-small: 1.25rem;  /* Larger small text (~20px) */
+      --font-size-medium: 1.5rem;  /* Larger medium text (~24px) */
+      --font-size-large: 1.75rem;  /* Larger large text (~28px) */
+  }
+}
+
+/* Further adjustments for very large screens */
+@media (min-width: 1024px) {
+  :root {
+    --font-size-small: 1.5rem;      /* Small text size (~24px) */
+    --font-size-medium: 1.75rem;    /* Medium text size (~28px) */
+    --font-size-large: 2rem;        /* Large text size (~32px) */
+  }
+}
+
 .label-text {
   font-weight: bold;
-  font-size: 30px;
+  font-size: var(--font-size-small); /* Responsive font size for label text */
 }
 
 .input-field {

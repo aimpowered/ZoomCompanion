@@ -81,7 +81,7 @@ return (
                             className="w-full text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-colors"
                             type="submit"
                             disabled={busy}
-                            style={{ opacity: busy ? 0.5 : 1 , maxWidth: '100px', backgroundColor: '#d68071'}}
+                            style={{ opacity: busy ? 0.5 : 1 , maxWidth: '300px', backgroundColor: '#d68071'}}
                         >
                             Sign Up
                         </button>
