@@ -12,9 +12,15 @@ import { WaveHandPicker } from "@/components/WaveHandPicker";
 import { AffirmationCarousel } from "@/components/AffirmationCarousel";
 import { HandWaveBadge, DrawBadgeApi } from "@/lib/draw_badge_api";
 import { createFromConfig, ZoomApiWrapper } from "@/lib/zoomapi";
+<<<<<<< HEAD
 import { ConfigOptions } from "@zoom/appssdk";
 import { fetchNametagFromDB, updateNameTagInDB } from "@/lib/nametag_db";
 import Divider from "@mui/material/Divider";
+=======
+import { ConfigOptions }  from "@zoom/appssdk";
+import { fetchNametagFromDB } from '@/lib/nametag_db';
+import Divider from '@mui/material/Divider';
+>>>>>>> 16d6526 (added logging code)
 
 const zoomConfigOptions: ConfigOptions = {
   capabilities: ["setVirtualForeground", "onMyMediaChange"],
@@ -53,8 +59,6 @@ function App() {
     setNameTagContent(data);
     foregroundDrawer.drawNameTag(data);
 
-    // Update nametag in DB
-    updateNameTagInDB(data);
   };
 
   const updateHandWaveBadge = (badge: HandWaveBadge) => {

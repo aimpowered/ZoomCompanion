@@ -12,8 +12,14 @@ const currentNameTag = {
 };
 const updateNameTagContent = jest.fn();
 
-jest.mock("next/navigation", () => jest.requireActual("next-router-mock"));
-jest.mock("../lib/zoomapi", () => jest.requireActual("../lib/fakezoomapi"));
+jest.mock('next/navigation', () => jest.requireActual('next-router-mock'))
+jest.mock('../lib/zoomapi', () => jest.requireActual('../lib/fakezoomapi'));
+
+global.fetch = jest.fn(() =>
+  Promise.resolve({
+    json: () => Promise.resolve({}),
+  })
+);
 
 describe("NameTagForm", () => {
   it("renders the heading and input fields", () => {

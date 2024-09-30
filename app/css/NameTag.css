@@ -72,3 +72,24 @@
 .controller-container:hover {
   background-color: #f0f0f0; /* Change background color on hover */
 }
+
+.char-count {
+  margin-top: 5px;
+  font-size: 12px;
+  color: #666;
+}
+
+.char-count.warning {
+  color: red;
+}
+
+.char-limit-info {
+  margin-left: 5px;
+  font-style: italic;
+}
+
+.warning-message {
+  display: block;
+  margin-top: 5px;
+  color: red;
+}
