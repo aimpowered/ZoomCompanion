@@ -1,12 +1,6 @@
 import React from "react";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
 
-<<<<<<< HEAD
-import Checkbox from "@mui/material/Checkbox";
-import FormControlLabel from "@mui/material/FormControlLabel";
-
-import "@/app/css/NameTag.css";
-=======
 import FormControlLabel from '@mui/material/FormControlLabel';
 
 
@@ -17,7 +11,6 @@ import { updateNameTagInDB } from "@/lib/nametag_db";
 import { getSession } from 'next-auth/react';
 
 
->>>>>>> 16d6526 (added logging code)
 
 // TODO: deduplicate this with EnabledNameTagBadge
 export interface NameTagContent {
@@ -33,10 +26,6 @@ interface NameTagProps {
 }
 
 //TODO: beautify the form, perhaps use Switch rather than Checkbox
-<<<<<<< HEAD
-export function NameTagForm({ content, onNameTagContentChange }: NameTagProps) {
-  const { register, handleSubmit, control } = useForm<NameTagContent>();
-=======
 export function NameTagForm({
   content,
   onNameTagContentChange
@@ -46,7 +35,6 @@ export function NameTagForm({
   const disclosureValue = watch("disclosure", content.disclosure || "I have a stutter");
   const isOverLimit = disclosureValue.length > maxDisclosureLength;
   const bottom_padding=12;
->>>>>>> 16d6526 (added logging code)
 
   const newLogActionRequest = {
     userEmail: "", 
@@ -141,9 +129,6 @@ export function NameTagForm({
               defaultValue={false}
               render={({ field: { onChange, value } }) => (
                 <FormControlLabel
-<<<<<<< HEAD
-                  control={<Checkbox checked={value} onChange={onChange} />}
-=======
                   control={
                     <Switch checked={value} onChange={(e) => {
                       onChange(e); 
@@ -151,17 +136,12 @@ export function NameTagForm({
                       handleSubmit(onNameTagContentChange)();
                     }} type="checkbox"/>
                   }
->>>>>>> 16d6526 (added logging code)
                   label="Display Name Tag"
                   labelPlacement="start"
                   className="label-styling"
                 />
               )}
             />
-<<<<<<< HEAD
-          </div>
-          <input type="submit" className="submit-btn" />
-=======
             </div>
             </div>
             <div>
@@ -173,7 +153,6 @@ export function NameTagForm({
             >
               Save Name Tag
             </Button>
->>>>>>> 16d6526 (added logging code)
         </div>
       </form>
     </div>
