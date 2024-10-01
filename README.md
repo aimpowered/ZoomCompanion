@@ -1,7 +1,7 @@
-# ZoomCompanion
-An Zoom app to provide emotional and relational support during videoconferencing.
+# LibOrate
+A meeting companion app to provide emotional and relational support during videoconferencing.
 
-Designed and developed by AImpower.
+Designed and developed by AImpower.org.
 
 To build:
 ```
