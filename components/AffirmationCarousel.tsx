@@ -27,9 +27,9 @@ export function AffirmationCarousel({
     if (carouselRef.current) {
       const height = carouselRef.current.clientHeight;
 
-      // Update CSS variables for card height and font size (removed width)
+      // Update CSS variables for card height and font size 
       carouselRef.current.style.setProperty('--card-height', `${height}px`);
-      carouselRef.current.style.setProperty('--font-size', `${Math.max(32, height / 10)}px`); // Minimum font size 16px
+      carouselRef.current.style.setProperty('--font-size', `${Math.max(32, height / 10)}px`); // Minimum font size 32px
     }
   };
 
