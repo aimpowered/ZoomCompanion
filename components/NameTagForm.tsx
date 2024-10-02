@@ -89,6 +89,14 @@ export function NameTagForm({
           </div>
         </div>
         <div className="form-container">
+          {/* Add the Button here to manually trigger DB update */}
+          <Button
+              variant="contained"
+              color="primary"
+              onClick={handleSaveButtonClick}  // Handle click to update DB
+            >
+              Save Name Tag
+            </Button>
           <div className="controller-container">
             <Controller
               control={control}
@@ -108,14 +116,6 @@ export function NameTagForm({
             </div>
             </div>
             <div>
-            {/* Add the Button here to manually trigger DB update */}
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={handleSaveButtonClick}  // Handle click to update DB
-            >
-              Save Name Tag
-            </Button>
         </div>
       </form>
     </div>
