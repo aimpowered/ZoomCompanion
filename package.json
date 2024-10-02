@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "jest"
+    "test": "jest",
+    "prettier:format": "prettier --write \"**/*.{ts,tsx,js,md,mdx,css,yaml}\"",
+    "prettier:check": "prettier --check \"**/*.{ts,tsx,js,md,mdx,css,yaml}\""
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",
@@ -57,6 +59,7 @@
     "lodash": "^4.17.21",
     "next-router-mock": "^0.9.11",
     "postcss": "^8",
+    "prettier": "3.3.3",
     "react-test-renderer": "^18.2.0",
     "tailwindcss": "^3",
     "typescript": "^5"
