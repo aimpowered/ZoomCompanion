@@ -2,7 +2,8 @@ import "@testing-library/jest-dom";
 import { render, screen, fireEvent } from "@testing-library/react";
 import { userEvent } from "@testing-library/user-event";
 
-import { NameTagForm } from "@/components/NameTagForm";
+import { NameTagForm } from '@/components/NameTagForm';
+import exp from 'constants';
 
 const currentNameTag = {
   visible: false,
@@ -23,13 +24,6 @@ describe("NameTagForm", () => {
         onNameTagContentChange={updateNameTagContent}
       />,
     );
-<<<<<<< HEAD
-    expect(screen.getByText("Preferred Name")).toBeInTheDocument();
-    expect(screen.getAllByText("Pronouns")[0]).toBeInTheDocument();
-    expect(screen.getByText("Self Disclosure")).toBeInTheDocument();
-    expect(screen.getByRole("checkbox")).toBeInTheDocument();
-  });
-=======
     expect(screen.getByText('Preferred Name')).toBeInTheDocument();
     expect(screen.getAllByText('Pronouns')[0]).toBeInTheDocument();
     expect(screen.getByText('Something About Me')).toBeInTheDocument();
@@ -37,7 +31,6 @@ describe("NameTagForm", () => {
   })
 
   it('verifies that the nametag display checkbox can be checked', async () => {
->>>>>>> 92e6bb5 (updated test to work with new NameTagForm)
 
   it("verifies that the nametag display checkbox can be checked", async () => {
     render(
@@ -55,7 +48,27 @@ describe("NameTagForm", () => {
     expect(checkboxInput).toBe(element);
 
     expect(checkboxInput).not.toBeChecked();
+    expect(currentNameTag.visible).toBe(true);
     await userEvent.click(checkboxInput);
     expect(checkboxInput).toBeChecked();
+    expect(currentNameTag.visible).toBe(false);
   });
-});
+
+  it('checks that self disclosure character length limit is working', async () => {
+
+    render(
+      <NameTagForm
+        content={currentNameTag}
+        onNameTagContentChange={updateNameTagContent}
+      />
+    );
+
+    let disclosureField = screen.getByText('Something About Me')
+    let characterLimit = screen.getByText("${disclosureValue.length}/${maxDisclosureLength}")
+    
+    expect(characterLimit).not.toBeInTheDocument()
+    await userEvent.type(disclosureField,"message that is too long to fit in the disclosure field because the field has a 30 character limit")
+    expect(characterLimit).toBeInTheDocument()
+  });
+
+})
