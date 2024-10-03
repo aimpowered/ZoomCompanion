@@ -1,11 +1,10 @@
 import React from "react";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
 
-import Checkbox from '@mui/material/Checkbox';
-import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from "@mui/material/Checkbox";
+import FormControlLabel from "@mui/material/FormControlLabel";
 
-
-import '@/app/css/NameTag.css';
+import "@/app/css/NameTag.css";
 
 // TODO: deduplicate this with EnabledNameTagBadge
 export interface NameTagContent {
@@ -21,10 +20,7 @@ interface NameTagProps {
 }
 
 //TODO: beautify the form, perhaps use Switch rather than Checkbox
-export function NameTagForm({
-  content,
-  onNameTagContentChange
-}: NameTagProps) {
+export function NameTagForm({ content, onNameTagContentChange }: NameTagProps) {
   const { register, handleSubmit, control } = useForm<NameTagContent>();
 
   return (
@@ -70,16 +66,14 @@ export function NameTagForm({
               defaultValue={content.visible}
               render={({ field: { onChange, value } }) => (
                 <FormControlLabel
-                  control={
-                    <Checkbox checked={value} onChange={onChange} />
-                  }
+                  control={<Checkbox checked={value} onChange={onChange} />}
                   label="Display Name Tag"
                   labelPlacement="start"
-                  className="label-styling" 
+                  className="label-styling"
                 />
               )}
             />
-            </div>
+          </div>
           <input type="submit" className="submit-btn" />
         </div>
       </form>

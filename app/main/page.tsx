@@ -2,52 +2,49 @@
 
 "use client";
 
-import React from 'react';
-import { useState, useEffect } from 'react';
+import React from "react";
+import { useState, useEffect } from "react";
 import { SubmitHandler } from "react-hook-form";
 import Tabs from "./Tabs";
 import Mindfulness from "./Mindfulness";
 import { NameTagContent, NameTagForm } from "@/components/NameTagForm";
 import { WaveHandPicker } from "@/components/WaveHandPicker";
-import { AffirmationCarousel } from '@/components/AffirmationCarousel';
+import { AffirmationCarousel } from "@/components/AffirmationCarousel";
 import { HandWaveBadge, DrawBadgeApi } from "@/lib/draw_badge_api";
 import { createFromConfig, ZoomApiWrapper } from "@/lib/zoomapi";
-import { ConfigOptions }  from "@zoom/appssdk";
-import { fetchNametagFromDB, updateNameTagInDB } from '@/lib/nametag_db';
-import Divider from '@mui/material/Divider';
+import { ConfigOptions } from "@zoom/appssdk";
+import { fetchNametagFromDB, updateNameTagInDB } from "@/lib/nametag_db";
+import Divider from "@mui/material/Divider";
 
 const zoomConfigOptions: ConfigOptions = {
-  capabilities: [
-    'setVirtualForeground',
-    'onMyMediaChange',
-  ]
+  capabilities: ["setVirtualForeground", "onMyMediaChange"],
 };
 const zoomApi: ZoomApiWrapper = createFromConfig(zoomConfigOptions);
 const foregroundDrawer: DrawBadgeApi = new DrawBadgeApi(zoomApi);
 
 const defaultWaveHandButtons = [
-    '',
-    'I\'m not done',
-    'Question',
-    'Agree',
-    'Different Opinion',
-    'Support',
+  "",
+  "I'm not done",
+  "Question",
+  "Agree",
+  "Different Opinion",
+  "Support",
 ];
 
 const defaultAffirmations = [
-    {id: 0, text: 'Say what I want to say, whatever happens will help me grow' },
-    {id: 1, text: 'I can take up space'},
-    {id: 2, text: 'I have an important voice'},
-    {id: 3, text: 'Feel the tension and proceed'},
-    {id: 4, text: 'I have the right to stutter'},
+  { id: 0, text: "Say what I want to say, whatever happens will help me grow" },
+  { id: 1, text: "I can take up space" },
+  { id: 2, text: "I have an important voice" },
+  { id: 3, text: "Feel the tension and proceed" },
+  { id: 4, text: "I have the right to stutter" },
 ];
 
 function App() {
   const [nameTagContent, setNameTagContent] = useState<NameTagContent>({
-    visible:false,
-    preferredName:"",
-    pronouns:"",
-    disclosure:"",
+    visible: false,
+    preferredName: "",
+    pronouns: "",
+    disclosure: "",
   });
 
   const [nameTagIsLoaded, setNameTagIsLoaded] = useState(false);
@@ -66,7 +63,7 @@ function App() {
 
   //TODO: query and load user saved buttons;
   const savedWaveHandButtons = defaultWaveHandButtons;
-  
+
   useEffect(() => {
     fetchNametagFromDB().then((newNameTag) => {
       if (newNameTag !== undefined) {
@@ -79,9 +76,7 @@ function App() {
   return (
     <div>
       <div className="header">
-        <AffirmationCarousel
-          initialAffirmations={defaultAffirmations}
-        />
+        <AffirmationCarousel initialAffirmations={defaultAffirmations} />
       </div>
 
       <WaveHandPicker
@@ -89,22 +84,22 @@ function App() {
         updateHandWaveBadge={updateHandWaveBadge}
       />
 
-
       <Divider />
-      
+
       <div>
         <Tabs>
           <div page-label="nametag">
-            {nameTagIsLoaded && <NameTagForm
-              content={nameTagContent}
-              onNameTagContentChange={updateNameTagContent}
-            />}
+            {nameTagIsLoaded && (
+              <NameTagForm
+                content={nameTagContent}
+                onNameTagContentChange={updateNameTagContent}
+              />
+            )}
           </div>
 
           <div page-label="mindfulness">
             <Mindfulness />
           </div>
-
         </Tabs>
       </div>
     </div>
