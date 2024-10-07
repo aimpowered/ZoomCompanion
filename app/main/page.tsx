@@ -15,6 +15,7 @@ import { createFromConfig, ZoomApiWrapper } from "@/lib/zoomapi";
 import { ConfigOptions }  from "@zoom/appssdk";
 import { fetchNametagFromDB, updateNameTagInDB } from '@/lib/nametag_db';
 import Divider from '@mui/material/Divider';
+import { useWebSocket } from "@/lib/websocket_context";
 
 const zoomConfigOptions: ConfigOptions = {
   capabilities: [
@@ -51,6 +52,8 @@ function App() {
   });
 
   const [nameTagIsLoaded, setNameTagIsLoaded] = useState(false);
+  const socket = useWebSocket();
+  //const [socket, setSocket] = useState<WebSocket | null>(null); // Manage WebSocket connection locally
 
   const updateNameTagContent: SubmitHandler<NameTagContent> = (data) => {
     setNameTagContent(data);
@@ -66,7 +69,7 @@ function App() {
 
   //TODO: query and load user saved buttons;
   const savedWaveHandButtons = defaultWaveHandButtons;
-  
+ 
   useEffect(() => {
     fetchNametagFromDB().then((newNameTag) => {
       if (newNameTag !== undefined) {
@@ -74,7 +77,34 @@ function App() {
       }
       setNameTagIsLoaded(true);
     });
-  }, []);
+
+    if (socket) {
+      // Handle incoming messages
+      socket.onmessage = (event) => {
+        console.log("Received message from server:", event.data);
+        updateHandWaveBadge({
+          visible: true,
+          waveText: '👋' + event.data,
+        });
+      };
+
+      // Handle WebSocket errors
+      socket.onerror = (error) => {
+        console.error("WebSocket error:", error);
+      };
+
+      // Handle WebSocket closure
+      socket.onclose = () => {
+        console.log("WebSocket connection closed");
+      };
+
+      // Cleanup function to remove event listeners when the component unmounts
+      return () => {
+        socket.onmessage = null;
+      };
+    }
+
+  }, [socket]);
 
   return (
     <div>
