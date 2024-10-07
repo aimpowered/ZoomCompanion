@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom";
-import { render, screen, waitFor} from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import { userEvent } from "@testing-library/user-event";
 
 import { NameTagForm } from "@/components/NameTagForm";
@@ -58,7 +58,7 @@ describe("NameTagForm", () => {
           preferredName: expect.anything(),
           pronouns: expect.anything(),
           disclosure: expect.anything(),
-        })
+        }),
       );
     });
   });
