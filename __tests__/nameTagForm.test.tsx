@@ -15,6 +15,12 @@ const updateNameTagContent = jest.fn();
 jest.mock("next/navigation", () => jest.requireActual("next-router-mock"));
 jest.mock("../lib/zoomapi", () => jest.requireActual("../lib/fakezoomapi"));
 
+global.fetch = jest.fn(() =>
+  Promise.resolve({
+    json: () => Promise.resolve({}),
+  }),
+);
+
 describe("NameTagForm", () => {
   it("renders the heading and input fields", () => {
     render(
@@ -25,7 +31,7 @@ describe("NameTagForm", () => {
     );
     expect(screen.getByText("Preferred Name")).toBeInTheDocument();
     expect(screen.getAllByText("Pronouns")[0]).toBeInTheDocument();
-    expect(screen.getByText("Self Disclosure")).toBeInTheDocument();
+    expect(screen.getByText("Something About Me")).toBeInTheDocument();
     expect(screen.getByRole("checkbox")).toBeInTheDocument();
   });
 
