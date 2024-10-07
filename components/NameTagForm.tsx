@@ -1,12 +1,11 @@
 import React from "react";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
 
-import FormControlLabel from '@mui/material/FormControlLabel';
+import FormControlLabel from "@mui/material/FormControlLabel";
 
-
-import '@/app/css/NameTag.css';
+import "@/app/css/NameTag.css";
 import Switch from "@mui/material/Switch";
-import Button from '@mui/material/Button';
+import Button from "@mui/material/Button";
 import { updateNameTagInDB } from "@/lib/nametag_db";
 
 // TODO: deduplicate this with EnabledNameTagBadge
@@ -23,15 +22,15 @@ interface NameTagProps {
 }
 
 //TODO: beautify the form, perhaps use Switch rather than Checkbox
-export function NameTagForm({
-  content,
-  onNameTagContentChange
-}: NameTagProps) {
+export function NameTagForm({ content, onNameTagContentChange }: NameTagProps) {
   const { register, handleSubmit, control, watch } = useForm<NameTagContent>();
   const maxDisclosureLength = 30;
-  const disclosureValue = watch("disclosure", content.disclosure || "I have a stutter");
+  const disclosureValue = watch(
+    "disclosure",
+    content.disclosure || "I have a stutter",
+  );
   const isOverLimit = disclosureValue.length > maxDisclosureLength;
-  const bottom_padding=12;
+  const bottom_padding = 12;
 
   // Button click handler to manually update database with specific fields
   const handleSaveButtonClick = () => {
@@ -41,9 +40,9 @@ export function NameTagForm({
       disclosure: watch("disclosure", content.disclosure),
       visible: watch("visible", content.visible),
     };
-    updateNameTagInDB(updatedData);  // Update DB with current form data
+    updateNameTagInDB(updatedData); // Update DB with current form data
   };
-  
+
   return (
     <div className="tab-container">
       <h2 className="tab-title">Name Tag</h2>
@@ -57,7 +56,7 @@ export function NameTagForm({
             {...register("preferredName", { required: true })}
           />
         </div>
-        <div style={{ paddingBottom: bottom_padding+5 }}>
+        <div style={{ paddingBottom: bottom_padding + 5 }}>
           <label>Pronouns</label>
           <select
             className="select-input"
@@ -78,27 +77,29 @@ export function NameTagForm({
             defaultValue={content.disclosure || "I have a stutter"}
             {...register("disclosure", { maxLength: maxDisclosureLength })}
           />
-          <div className={`char-count ${isOverLimit ? 'warning' : ''}`}> 
+          <div className={`char-count ${isOverLimit ? "warning" : ""}`}>
             <span>
               {disclosureValue.length}/{maxDisclosureLength}
             </span>
             <span className="char-limit-info">
               (Maximum characters allowed)
             </span>
-            {isOverLimit && <span className="warning-message">Exceeded length limit!</span>}
+            {isOverLimit && (
+              <span className="warning-message">Exceeded length limit!</span>
+            )}
           </div>
         </div>
         <div className="form-container">
           <div className="controller-container">
             {/* Add the Button here to manually trigger DB update */}
-          <Button
+            <Button
               variant="contained"
               color="primary"
-              onClick={handleSaveButtonClick}  // Handle click to update DB
-              style={{ marginBottom: '20px' }}
+              onClick={handleSaveButtonClick} // Handle click to update DB
+              style={{ marginBottom: "20px" }}
             >
               Save Name Tag
-          </Button>
+            </Button>
             <Controller
               control={control}
               name="visible"
@@ -106,7 +107,14 @@ export function NameTagForm({
               render={({ field: { onChange, value } }) => (
                 <FormControlLabel
                   control={
-                    <Switch checked={value} onChange={(e) => { onChange(e); handleSubmit(onNameTagContentChange)();}} type="checkbox"/>
+                    <Switch
+                      checked={value}
+                      onChange={(e) => {
+                        onChange(e);
+                        handleSubmit(onNameTagContentChange)();
+                      }}
+                      type="checkbox"
+                    />
                   }
                   label="Display Name Tag"
                   labelPlacement="start"
@@ -114,12 +122,10 @@ export function NameTagForm({
                 />
               )}
             />
-            </div>
-            </div>
-            <div>
+          </div>
         </div>
+        <div></div>
       </form>
     </div>
   );
 }
-
