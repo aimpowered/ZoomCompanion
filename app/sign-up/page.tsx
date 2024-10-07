@@ -4,19 +4,14 @@ import React, { ChangeEventHandler, FormEventHandler, useState } from "react";
 import "../css/sign-up.css"; // Import CSS file
 
 const SignUp = () => {
-    const [busy, setBusy] = useState(false);
-    const [userInfo, setUserInfo] = useState({
-        email: "",
-        password: "",
-    });
-    const [isUserCreated, setIsUserCreated] = useState(false); // State variable to track user creation
+  const [busy, setBusy] = useState(false);
+  const [userInfo, setUserInfo] = useState({
+    email: "",
+    password: "",
+  });
+  const [isUserCreated, setIsUserCreated] = useState(false); // State variable to track user creation
 
-    const {email, password } = userInfo;
-    
-    const handleChange: ChangeEventHandler<HTMLInputElement> = ({ target }) => {
-        const { name, value } = target;
-        setUserInfo({ ...userInfo, [name]: value });
-    };
+  const { email, password } = userInfo;
 
   const handleChange: ChangeEventHandler<HTMLInputElement> = ({ target }) => {
     const { name, value } = target;
@@ -46,18 +41,6 @@ const SignUp = () => {
           </div>
         )}
         <form className="space-y-4" onSubmit={handleSubmit}>
-          <div>
-            <input
-              placeholder="Username"
-              type="text"
-              id="name"
-              name="name"
-              value={name}
-              onChange={handleChange}
-              className="w-full mt-2 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
-              required
-            />
-          </div>
           <div>
             <input
               placeholder="Email"

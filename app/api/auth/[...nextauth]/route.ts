@@ -34,7 +34,6 @@ const authOptions: NextAuthOptions = {
         if (!passwordMatch) throw Error("Email/Password mismatch!");
 
         return {
-          name: user.name,
           email: user.email,
           role: user.role,
           id: user._id,
@@ -51,56 +50,12 @@ const authOptions: NextAuthOptions = {
       // reutrn final_token
       return token;
     },
-<<<<<<< HEAD
     session({ session, token }) {
       if (session.user) {
         (session.user as { id: string }).id = token.id as string;
         (session.user as { role: string }).role = token.role as string;
       }
       return session;
-=======
-    providers: [
-        CredentialsProvider({
-            type: "credentials",
-            credentials: {},
-            async authorize(credentials, req) {
-                const { email, password } = credentials as {
-                    email: string;
-                    password: string;
-                };
-                await startDB();
-
-                const user = await UserModel.findOne({ email });
-                if (!user) throw Error("User not found!");
-
-                const passwordMatch = await user.comparePassword(password); 
-                if (!passwordMatch) throw Error("Email/Password mismatch!");
-
-                return {
-                    email: user.email,
-                    role: user.role,
-                    id: user._id,
-                };
-            },
-        }),
-    ],
-    callbacks: {
-        jwt({ user, token }) {
-            if (user?.role) {
-                token.role = user.role;
-                token.id = user.id;
-            }
-            // reutrn final_token
-            return token;
-        },
-        session({ session, token }) {
-            if (session.user) {
-                (session.user as { id: string }).id = token.id as string;
-                (session.user as { role: string }).role = token.role as string;
-            }
-            return session;
-        },
->>>>>>> b96bdb1 (removed username)
     },
   },
 };
