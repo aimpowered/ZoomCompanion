@@ -12,64 +12,19 @@ const SignUp = () => {
   });
   const [isUserCreated, setIsUserCreated] = useState(false); // State variable to track user creation
 
-<<<<<<< HEAD
   const { name, email, password } = userInfo;
+
+  const newLogActionRequest = {
+    userEmail: "",
+    action: "",
+    timestamp: new Date(),
+    metadata: JSON.stringify({}),
+  };
 
   const handleChange: ChangeEventHandler<HTMLInputElement> = ({ target }) => {
     const { name, value } = target;
     setUserInfo({ ...userInfo, [name]: value });
   };
-=======
-    const { name, email, password } = userInfo;
-    
-    const newLogActionRequest = {
-        userEmail: "", 
-        action: "", 
-        timestamp: new Date(), 
-        metadata: JSON.stringify({}) 
-    };
-    
-    const handleChange: ChangeEventHandler<HTMLInputElement> = ({ target }) => {
-        const { name, value } = target;
-        setUserInfo({ ...userInfo, [name]: value });
-    };
-
-    const handleSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
-        setBusy(true);
-        e.preventDefault();
-        await fetch("/api/auth/users", { 
-            method: "POST",
-            body: JSON.stringify(userInfo),
-            })
-            .then((res) => res.json())
-            .then((data) => {
-
-                //setting values for newLogActionRequest 
-                if(Object.keys(data)[0]=="user"){
-                    newLogActionRequest.userEmail=data["user"]["email"];
-                    newLogActionRequest.action="user_sign_up";
-                    newLogActionRequest.timestamp = new Date();
-                    newLogActionRequest.metadata=JSON.stringify(data);
-                }else{
-                    newLogActionRequest.userEmail="null";
-                    newLogActionRequest.action="user_sign_up_error";
-                    newLogActionRequest.timestamp = new Date();
-                    newLogActionRequest.metadata=JSON.stringify(data);
-                }
-            });
-
-        setIsUserCreated(true);
-        setBusy(false);
-        
-        //posting log data to db
-        setBusy(true);
-        await fetch("/api/log", { 
-            method: "POST",
-            body: JSON.stringify(newLogActionRequest),
-        }).then((res) => res.json());
-        setBusy(false);
-    };
->>>>>>> 16d6526 (added logging code)
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
     setBusy(true);
@@ -77,8 +32,32 @@ const SignUp = () => {
     await fetch("/api/auth/users", {
       method: "POST",
       body: JSON.stringify(userInfo),
-    }).then((res) => res.json());
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        //setting values for newLogActionRequest
+        if (Object.keys(data)[0] == "user") {
+          newLogActionRequest.userEmail = data["user"]["email"];
+          newLogActionRequest.action = "user_sign_up";
+          newLogActionRequest.timestamp = new Date();
+          newLogActionRequest.metadata = JSON.stringify(data);
+        } else {
+          newLogActionRequest.userEmail = "null";
+          newLogActionRequest.action = "user_sign_up_error";
+          newLogActionRequest.timestamp = new Date();
+          newLogActionRequest.metadata = JSON.stringify(data);
+        }
+      });
+
     setIsUserCreated(true);
+    setBusy(false);
+
+    //posting log data to db
+    setBusy(true);
+    await fetch("/api/log", {
+      method: "POST",
+      body: JSON.stringify(newLogActionRequest),
+    }).then((res) => res.json());
     setBusy(false);
   };
 

@@ -1,16 +1,13 @@
 import React from "react";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
 
-import FormControlLabel from '@mui/material/FormControlLabel';
+import FormControlLabel from "@mui/material/FormControlLabel";
 
-
-import '@/app/css/NameTag.css';
+import "@/app/css/NameTag.css";
 import Switch from "@mui/material/Switch";
-import Button from '@mui/material/Button';
+import Button from "@mui/material/Button";
 import { updateNameTagInDB } from "@/lib/nametag_db";
-import { getSession } from 'next-auth/react';
-
-
+import { getSession } from "next-auth/react";
 
 // TODO: deduplicate this with EnabledNameTagBadge
 export interface NameTagContent {
@@ -26,21 +23,21 @@ interface NameTagProps {
 }
 
 //TODO: beautify the form, perhaps use Switch rather than Checkbox
-export function NameTagForm({
-  content,
-  onNameTagContentChange
-}: NameTagProps) {
+export function NameTagForm({ content, onNameTagContentChange }: NameTagProps) {
   const { register, handleSubmit, control, watch } = useForm<NameTagContent>();
   const maxDisclosureLength = 30;
-  const disclosureValue = watch("disclosure", content.disclosure || "I have a stutter");
+  const disclosureValue = watch(
+    "disclosure",
+    content.disclosure || "I have a stutter",
+  );
   const isOverLimit = disclosureValue.length > maxDisclosureLength;
-  const bottom_padding=12;
+  const bottom_padding = 12;
 
   const newLogActionRequest = {
-    userEmail: "", 
-    action: "", 
-    timestamp: new Date(), 
-    metadata: JSON.stringify({}) 
+    userEmail: "",
+    action: "",
+    timestamp: new Date(),
+    metadata: JSON.stringify({}),
   };
 
   // Button click handler to manually update database with specific fields
@@ -51,13 +48,13 @@ export function NameTagForm({
       disclosure: watch("disclosure", content.disclosure),
       visible: watch("visible", content.visible),
     };
-    updateNameTagInDB(updatedData);  // Update DB with current form data
+    updateNameTagInDB(updatedData); // Update DB with current form data
   };
 
-  async function logNameTagDisplay(){
+  async function logNameTagDisplay() {
     const session = await getSession();
-    
-    if(session && session.user){
+
+    if (session && session.user) {
       const logUpdatedData = {
         preferredName: watch("preferredName", content.preferredName),
         pronouns: watch("pronouns", content.pronouns),
@@ -65,18 +62,18 @@ export function NameTagForm({
         visible: watch("visible", content.visible),
       };
 
-      newLogActionRequest.userEmail=session.user.email as string;
-      newLogActionRequest.action="nametag_display_change";
+      newLogActionRequest.userEmail = session.user.email as string;
+      newLogActionRequest.action = "nametag_display_change";
       newLogActionRequest.timestamp = new Date();
       newLogActionRequest.metadata = JSON.stringify(logUpdatedData);
 
-      await fetch("/api/log", { 
+      await fetch("/api/log", {
         method: "POST",
         body: JSON.stringify(newLogActionRequest),
       }).then((res) => res.json());
     }
   }
-  
+
   return (
     <div className="tab-container">
       <h2 className="tab-title">Name Tag</h2>
@@ -90,7 +87,7 @@ export function NameTagForm({
             {...register("preferredName", { required: true })}
           />
         </div>
-        <div style={{ paddingBottom: bottom_padding+5 }}>
+        <div style={{ paddingBottom: bottom_padding + 5 }}>
           <label>Pronouns</label>
           <select
             className="select-input"
@@ -111,14 +108,16 @@ export function NameTagForm({
             defaultValue={content.disclosure || "I have a stutter"}
             {...register("disclosure", { maxLength: maxDisclosureLength })}
           />
-          <div className={`char-count ${isOverLimit ? 'warning' : ''}`}> 
+          <div className={`char-count ${isOverLimit ? "warning" : ""}`}>
             <span>
               {disclosureValue.length}/{maxDisclosureLength}
             </span>
             <span className="char-limit-info">
               (Maximum characters allowed)
             </span>
-            {isOverLimit && <span className="warning-message">Exceeded length limit!</span>}
+            {isOverLimit && (
+              <span className="warning-message">Exceeded length limit!</span>
+            )}
           </div>
         </div>
         <div className="form-container">
@@ -130,11 +129,15 @@ export function NameTagForm({
               render={({ field: { onChange, value } }) => (
                 <FormControlLabel
                   control={
-                    <Switch checked={value} onChange={(e) => {
-                      onChange(e); 
-                      logNameTagDisplay();
-                      handleSubmit(onNameTagContentChange)();
-                    }} type="checkbox"/>
+                    <Switch
+                      checked={value}
+                      onChange={(e) => {
+                        onChange(e);
+                        logNameTagDisplay();
+                        handleSubmit(onNameTagContentChange)();
+                      }}
+                      type="checkbox"
+                    />
                   }
                   label="Display Name Tag"
                   labelPlacement="start"
@@ -142,17 +145,17 @@ export function NameTagForm({
                 />
               )}
             />
-            </div>
-            </div>
-            <div>
-            {/* Add the Button here to manually trigger DB update */}
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={handleSaveButtonClick}  // Handle click to update DB
-            >
-              Save Name Tag
-            </Button>
+          </div>
+        </div>
+        <div>
+          {/* Add the Button here to manually trigger DB update */}
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={handleSaveButtonClick} // Handle click to update DB
+          >
+            Save Name Tag
+          </Button>
         </div>
       </form>
     </div>
