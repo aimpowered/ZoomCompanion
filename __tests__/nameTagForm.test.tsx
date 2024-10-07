@@ -30,8 +30,6 @@ describe("NameTagForm", () => {
     expect(screen.getByRole('checkbox')).toBeInTheDocument();
   })
 
-  it('verifies that the nametag display checkbox can be checked', async () => {
-
   it("verifies that the nametag display checkbox can be checked", async () => {
     render(
       <NameTagForm
