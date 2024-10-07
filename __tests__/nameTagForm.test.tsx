@@ -31,7 +31,7 @@ describe("NameTagForm", () => {
     );
     expect(screen.getByText("Preferred Name")).toBeInTheDocument();
     expect(screen.getAllByText("Pronouns")[0]).toBeInTheDocument();
-    expect(screen.getByText("Self Disclosure")).toBeInTheDocument();
+    expect(screen.getByText("Something About Me")).toBeInTheDocument();
     expect(screen.getByRole("checkbox")).toBeInTheDocument();
   });
 
